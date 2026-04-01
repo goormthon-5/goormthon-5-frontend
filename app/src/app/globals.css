@@ -1,5 +1,11 @@
 .root {
   isolation: isolate;
+
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  min-height: 100vh;
+  background-color: #e2fcfd; /* 임시 */
 }
 
 * {
