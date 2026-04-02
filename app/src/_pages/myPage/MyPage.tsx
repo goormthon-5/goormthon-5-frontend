@@ -6,6 +6,7 @@ import BottomNavBar from '@/components/BottomNavBar';
 import ActionButton from '@/components/ActionButton';
 import Modal from '@/components/Modal';
 import { Box, HStack, Text, VStack } from '@vapor-ui/core';
+import ImgProfile from '@/assets/images/my-profile.svg';
 
 const MENU_ITEMS = [
   '포인트',
@@ -51,7 +52,7 @@ export default function MyPage() {
             }}
           >
             <Image
-              src="/images/main_profile.png"
+              src={ImgProfile}
               alt="프로필"
               width={106}
               height={106}
