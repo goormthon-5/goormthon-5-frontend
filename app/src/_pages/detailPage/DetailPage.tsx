@@ -165,11 +165,13 @@ const styles = {
   contentSection: {
     display: 'flex',
     width: '100%',
+    maxWidth: '350px',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
     gap: '30px',
     padding: `22px var(--vapor-size-space-250)`,
     alignSelf: 'center',
+    boxSizing: 'border-box' as const,
     paddingBottom: '120px',
   },
   infoBlock: {
@@ -274,12 +276,13 @@ const styles = {
   bottomBar: {
     position: 'fixed' as const,
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: '50%',
+    transform: 'translateX(-50%)',
+    width: '100%',
+    maxWidth: '390px',
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
-    maxWidth: '390px',
   },
   reserveBar: {
     width: '100%',
