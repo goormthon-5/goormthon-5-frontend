@@ -93,9 +93,7 @@ export default function ReservationPage() {
                   label: opt.name || opt,
                   color: accStyle.tagColor,
                 }))}
-              onClick={() =>
-                router.push(`/reservation/detail/${accId}`)
-              }
+              onClick={undefined}
               renderRightTop={
                 <button
                   style={styles.guestbookBtn}

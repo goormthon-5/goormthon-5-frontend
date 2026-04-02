@@ -50,7 +50,7 @@ export default function SamchonCard({
     <VStack
       onClick={onClick}
       $css={{
-        cursor: 'pointer',
+        cursor: onClick ? 'pointer' : 'default',
         width: '100%',
         maxWidth: '350px',
         backgroundColor: '#ffffff',
