@@ -15,7 +15,7 @@ export default function RatingBadge({ rating, reviewCount }: RatingBadgeProps) {
       <Text
         $css={{
           color: '#111',
-          fontSize: '11px',
+          fontSize: '13.12px',
           fontWeight: 700,
           lineHeight: '16.5px',
         }}
@@ -25,7 +25,7 @@ export default function RatingBadge({ rating, reviewCount }: RatingBadgeProps) {
       <Text
         $css={{
           color: '#AAA',
-          fontSize: '10px',
+          fontSize: '12px',
           fontWeight: 500,
           lineHeight: '15px',
         }}

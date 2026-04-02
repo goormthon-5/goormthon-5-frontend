@@ -90,7 +90,7 @@ export default function BottomActionBar({
         <Box
           style={{
             width: '134px',
-            height: '5px',
+            height: '20px',
             borderRadius: '100px',
             backgroundColor: '#fff',
           }}
