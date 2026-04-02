@@ -79,7 +79,8 @@ const styles = {
     display: 'flex',
     width: '80px',
     height: '80px',
-    padding: '20px 29px 18px 28px',
+    padding:
+      'var(--vapor-size-space-250) 29px var(--vapor-size-space-225) 28px',
     flexDirection: 'column' as const,
     justifyContent: 'center',
     alignItems: 'center',
