@@ -72,9 +72,12 @@ export default function OnboardingPage() {
   // 스와이프
   const touchStartX = useRef(0);
   const touchEndX = useRef(0);
+  const swiped = useRef(false);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX;
+    swiped.current = false;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -85,6 +88,7 @@ export default function OnboardingPage() {
     const diff = touchStartX.current - touchEndX.current;
     if (Math.abs(diff) < 50) return;
 
+    swiped.current = true;
     if (diff > 0 && step < ONBOARDING_DATA.length - 1) {
       setStep(step + 1);
     } else if (diff < 0 && step > 0) {
@@ -92,11 +96,19 @@ export default function OnboardingPage() {
     }
   };
 
+  const handleClick = () => {
+    if (swiped.current) {
+      swiped.current = false;
+      return;
+    }
+    if (!isLastStep) handleNext();
+  };
+
   if (isLoading) return null;
 
   return (
     <VStack
-      onClick={!isLastStep ? handleNext : undefined}
+      onClick={handleClick}
       style={{ margin: '0 auto' }}
       $css={{
         width: '100%',
@@ -162,7 +174,7 @@ export default function OnboardingPage() {
               <VStack key={item.id} $css={{ minWidth: '100%', height: '100%' }}>
                 <main style={styles.main}>
                   <VStack
-                    style={{ paddingTop: '100px' }}
+                    style={{ paddingTop: '70px' }}
                     $css={{
                       flex: 1,
                       alignItems: 'center',
@@ -192,7 +204,7 @@ export default function OnboardingPage() {
                       {item.title}
                     </Text>
                     <HStack
-                      style={{ marginTop: '46px' }}
+                      style={{ marginTop: '30px' }}
                       $css={{
                         gap: '$100',
                         alignItems: 'center',
@@ -227,7 +239,7 @@ export default function OnboardingPage() {
                       src={item.img}
                       alt="onboarding"
                       fill
-                      style={{ objectFit: 'contain', objectPosition: 'bottom' }}
+                      style={{ objectFit: 'cover', objectPosition: 'bottom center' }}
                       priority
                     />
                   </Box>
@@ -271,7 +283,7 @@ const styles = {
     flexDirection: 'column' as const,
     alignItems: 'center',
     textAlign: 'center' as const,
-    paddingTop: 'min(100px, 12vh)',
+    paddingTop: 'min(70px, 9vh)',
     flex: '0 0 auto',
   },
   logoWrapper: { marginBottom: 'min(42px, 5vh)' },

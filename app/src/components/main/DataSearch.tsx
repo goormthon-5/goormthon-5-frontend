@@ -7,14 +7,18 @@ import Image from 'next/image';
 import { Box, HStack, Text } from '@vapor-ui/core';
 import IcCalendar from '@/assets/icons/calendar-icon.svg';
 
-export default function DataSearch() {
+interface DataSearchProps {
+  onDateChange?: (date: Date | null) => void;
+}
+
+export default function DataSearch({ onDateChange }: DataSearchProps) {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isOpen, setIsOpen] = useState(false);
 
-  // 날짜 선택 핸들러
   const handleDateChange = (date: any) => {
     setSelectedDate(date);
     setIsOpen(false);
+    onDateChange?.(date);
   };
 
   // 날짜 포맷팅 (yyyy. mm. dd)

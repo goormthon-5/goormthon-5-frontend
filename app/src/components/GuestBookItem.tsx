@@ -1,17 +1,27 @@
 import Image from 'next/image';
+import guestBook1 from '@/assets/images/guest-book-1.png';
+import guestBook2 from '@/assets/images/guest-book-2.png';
+import guestBook3 from '@/assets/images/guest-book-3.png';
+import guestBook4 from '@/assets/images/guest-book-4.png';
+import guestBook5 from '@/assets/images/guest-book-5.png';
+
+const DEFAULT_IMAGES = [guestBook1, guestBook2, guestBook3, guestBook4, guestBook5];
 
 interface GuestBookItemProps {
   imageUrl?: string | null;
   message: string;
+  index?: number;
 }
 
 export default function GuestBookItem({
   imageUrl,
   message,
+  index = 0,
 }: GuestBookItemProps) {
-  // 기본 이미지
   const displayImg =
-    imageUrl && imageUrl.trim() !== '' ? imageUrl : '/images/default-img.png';
+    imageUrl && imageUrl.trim() !== ''
+      ? imageUrl
+      : DEFAULT_IMAGES[index % DEFAULT_IMAGES.length];
 
   return (
     <div style={S.card}>
@@ -33,7 +43,7 @@ export default function GuestBookItem({
 
 const S = {
   card: {
-    width: '165px',
+    width: '100%',
     backgroundColor: '#FBFBFB',
     borderRadius: '8px',
     overflow: 'hidden',
@@ -47,8 +57,8 @@ const S = {
   },
   imageWrapper: {
     position: 'relative' as const,
-    width: '147px',
-    height: '147px',
+    width: 'calc(100% - 18px)',
+    aspectRatio: '1',
     overflow: 'hidden',
   },
   textWrapper: {
