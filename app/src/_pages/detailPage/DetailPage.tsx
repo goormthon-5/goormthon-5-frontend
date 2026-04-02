@@ -12,6 +12,7 @@ import BottomActionBar from '@/components/BottomActionBar';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { reservationApi } from '@/apis/reservationApi';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 interface DetailPageProps {
   id?: number;
@@ -87,7 +88,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
           </button>
         </Box>
 
-        <HouseCard imageUrl={data.imageUrl || ''} bgColor="#E0F4FF" size="detail" />
+        <HouseCard imageUrl={getAccommodationStyle(id).houseImage} bgColor={getAccommodationStyle(id).bgColor} size="detail" />
       </Box>
 
       {/* 정보 영역 */}
@@ -122,7 +123,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
               <CategoryTag
                 key={`${opt.name}-${idx}`}
                 label={opt.name}
-                color="#6DBFFF"
+                color={getAccommodationStyle(id).tagColor}
               />
             ))}
           </HStack>

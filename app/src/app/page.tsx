@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { HStack, IconButton, Text, TextInput, VStack } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
 import { accommodationApi } from '@/apis/accommodationApi';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
 import ImgLogo from '@/assets/images/main-logo.svg';
@@ -225,22 +226,25 @@ export default function Home() {
                 삼춘 목록
               </Text>
 
-              {accommodations.map((s: any) => (
-                <SamchonCard
-                  key={s.accommodationId}
-                  imageUrl={s.imageUrl || ''}
-                  bgColor="#E0F4FF"
-                  location={s.address?.address_short || ''}
-                  name={s.name}
-                  rating={s.averageRating || 0}
-                  reviewCount={s.guestBookCount || 0}
-                  tags={(s.options || []).slice(0, 1).map((opt: any) => ({
-                    label: opt.name || opt,
-                    color: '#6DBFFF',
-                  }))}
-                  onClick={() => router.push(`/detail/${s.accommodationId}`)}
-                />
-              ))}
+              {accommodations.map((s: any) => {
+                const style = getAccommodationStyle(s.accommodationId);
+                return (
+                  <SamchonCard
+                    key={s.accommodationId}
+                    imageUrl={style.houseImage}
+                    bgColor={style.bgColor}
+                    location={s.address?.address_short || ''}
+                    name={s.name}
+                    rating={s.averageRating || 0}
+                    reviewCount={s.guestBookCount || 0}
+                    tags={(s.options || []).slice(0, 1).map((opt: any) => ({
+                      label: opt.name || opt,
+                      color: style.tagColor,
+                    }))}
+                    onClick={() => router.push(`/detail/${s.accommodationId}`)}
+                  />
+                );
+              })}
             </VStack>
           </section>
         </VStack>

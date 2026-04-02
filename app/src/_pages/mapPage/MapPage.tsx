@@ -7,6 +7,7 @@ import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import CategoryTag from '@/components/CategoryTag';
 import { accommodationApi } from '@/apis/accommodationApi';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 declare global {
@@ -108,17 +109,11 @@ export default function MapPage() {
             s.address.longitude,
           );
 
+          const markerStyle = getAccommodationStyle(s.accommodationId);
           const wrapper = document.createElement('div');
           wrapper.style.cursor = 'pointer';
           wrapper.innerHTML = `
-            <div style="position:relative;width:46px;height:57px;">
-              <svg width="46" height="57" viewBox="0 0 46 57" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M23 0C10.3 0 0 10.3 0 23C0 35.7 23 57 23 57C23 57 46 35.7 46 23C46 10.3 35.7 0 23 0Z" fill="#6DBFFF"/>
-              </svg>
-              <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:35px;height:35px;border-radius:50%;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#333;">
-                🏠
-              </div>
-            </div>
+            <img src="${markerStyle.markerIcon}" width="46" height="57" style="display:block;" />
           `;
           wrapper.addEventListener('click', () => {
             handleMarkerClick(
@@ -174,6 +169,9 @@ export default function MapPage() {
             if (!e.target.value.trim()) {
               setSheetMode('hidden');
               setSelectedId(null);
+            } else {
+              setSelectedId(null);
+              setSheetMode('list');
             }
           }}
           onKeyDown={handleSearch}
@@ -202,7 +200,7 @@ export default function MapPage() {
       )}
 
       {/* 오버레이 */}
-      {sheetMode === 'detail' && (
+      {sheetMode !== 'hidden' && (
         <div
           style={styles.overlay}
           onClick={() => {
@@ -221,20 +219,23 @@ export default function MapPage() {
             sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
         }}
       >
-        <div
-          style={styles.handleBar}
-          onClick={() => {
-            setSheetMode('hidden');
-            setSelectedId(null);
-          }}
-        >
-          <div style={styles.handle} />
+        <div style={styles.handleBar}>
+          <div
+            style={styles.handle}
+            onClick={() => {
+              setSheetMode('hidden');
+              setSelectedId(null);
+              setSearchQuery('');
+            }}
+          />
         </div>
 
         {/* 검색 결과 리스트 */}
         {sheetMode === 'list' && (
           <div style={styles.resultList}>
-            {searchResults.map((s: any) => (
+            {searchResults.map((s: any) => {
+              const cardStyle = getAccommodationStyle(s.accommodationId);
+              return (
               <div
                 key={s.accommodationId}
                 style={styles.resultCard}
@@ -243,10 +244,10 @@ export default function MapPage() {
                 <div
                   style={{
                     ...styles.resultImage,
-                    backgroundColor: '#E0F4FF',
+                    backgroundColor: cardStyle.bgColor,
                   }}
                 >
-                  <span style={{ fontSize: '32px' }}>🏠</span>
+                  <img src={cardStyle.houseImage} alt="" width={100} height={72} style={{ objectFit: 'contain' }} />
                 </div>
                 <div style={styles.resultInfo}>
                   <span style={styles.resultLocation}>
@@ -257,7 +258,7 @@ export default function MapPage() {
                     <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                       <CategoryTag
                         label={s.options[0]?.name || s.options[0]}
-                        color="#6DBFFF"
+                        color={cardStyle.tagColor}
                       />
                     </div>
                   )}
@@ -278,7 +279,8 @@ export default function MapPage() {
                   />
                 </div>
               </div>
-            ))}
+              );
+            })}
             {searchResults.length === 0 && (
               <div style={styles.noResult}>검색 결과가 없습니다.</div>
             )}
@@ -286,9 +288,11 @@ export default function MapPage() {
         )}
 
         {/* 상세 미리보기 */}
-        {sheetMode === 'detail' && selected && (
+        {sheetMode === 'detail' && selected && (() => {
+          const detailStyle = getAccommodationStyle(selected.accommodationId);
+          return (
           <div style={styles.detailContent}>
-            <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
+            <HouseCard imageUrl={detailStyle.houseImage} bgColor={detailStyle.bgColor} size="card" />
             <div style={styles.detailInfo}>
               <div style={styles.detailInfoInner}>
                 <span style={styles.detailLocation}>
@@ -299,7 +303,7 @@ export default function MapPage() {
                   <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                     <CategoryTag
                       label={selected.options[0]?.name || selected.options[0]}
-                      color="#6DBFFF"
+                      color={detailStyle.tagColor}
                     />
                   </div>
                 )}
@@ -317,7 +321,8 @@ export default function MapPage() {
               </button>
             </div>
           </div>
-        )}
+          );
+        })()}
       </div>
 
       <BottomNavBar />
@@ -423,8 +428,9 @@ const styles = {
   },
   resultCard: {
     display: 'flex',
+    flexDirection: 'row' as const,
     position: 'relative' as const,
-    height: '103px',
+    minHeight: '103px',
     border: '1px solid #E1E1E1',
     borderRadius: '8px',
     overflow: 'hidden',
@@ -432,37 +438,37 @@ const styles = {
     backgroundColor: '#fff',
   },
   resultImage: {
-    width: '132px',
-    height: '103px',
+    width: '120px',
+    minHeight: '103px',
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
     borderRadius: '8px 0 0 8px',
-    borderRight: '1px solid #E1E1E1',
   },
   resultInfo: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '7px',
-    padding: '16px 12px',
+    gap: '6px',
+    padding: '14px 12px',
     flex: 1,
+    minWidth: 0,
     overflow: 'hidden',
   },
   resultLocation: {
     fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '9.72px',
+    fontSize: '12px',
     fontWeight: 500,
-    lineHeight: '14.58px',
+    lineHeight: '18px',
     color: '#A1A1A1',
   },
   resultName: {
     fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '14.58px',
+    fontSize: '15px',
     fontWeight: 700,
-    lineHeight: '21.06px',
-    letterSpacing: '-0.081px',
+    lineHeight: '22px',
+    letterSpacing: '-0.08px',
     color: '#262626',
   },
   starButton: {
