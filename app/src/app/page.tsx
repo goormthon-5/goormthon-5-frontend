@@ -28,8 +28,6 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
   const name: string = '제주좋아';
 
   const filteredAccommodations = accommodations.filter((s: any) => {
@@ -51,7 +49,6 @@ export default function Home() {
     return nameMatch || addressMatch || tagMatch;
   });
 
-  // 온보딩 체크 로직
   useEffect(() => {
     const hasSeen = localStorage.getItem('hasSeenOnboarding');
     if (!hasSeen) {
@@ -61,7 +58,6 @@ export default function Home() {
     }
   }, [router]);
 
-  // 숙소 목록 API 호출
   useEffect(() => {
     setIsListLoading(true);
     accommodationApi
@@ -73,32 +69,6 @@ export default function Home() {
 
   return (
     <>
-    <Spinner loading={isListLoading} />
-    <VStack
-      $css={{
-        width: '100%',
-        maxWidth: '390px',
-        margin: '0 auto',
-        minHeight: '100vh',
-        paddingBlock: '$250',
-        paddingInline: '$250',
-        boxSizing: 'border-box',
-        backgroundColor: '#ffffff',
-        fontFamily:
-          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-      }}
-    >
-      <header>
-        <HStack
-          $css={{
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            paddingBlock: '$250',
-            paddingInline: '$000',
-            width: '100%',
-          }}
-        >
-          <VStack
       <Spinner loading={isListLoading} />
 
       <VStack
@@ -204,7 +174,11 @@ export default function Home() {
                   $css={{
                     flex: 1,
                     border: 'none',
+                    borderRadius: 0,
+                    boxShadow: 'none',
                     backgroundColor: 'transparent',
+                    paddingBlock: '$000',
+                    paddingInline: '$000',
                     fontSize: '14.4px',
                     outline: 'none',
                   }}
@@ -301,6 +275,8 @@ export default function Home() {
                       bgColor={style.bgColor}
                       location={s.address?.address_short || ''}
                       name={s.name}
+                      cost={s.cost}
+                      hostInfo={s.accommodationHostInfo}
                       renderRightTop={
                         <RatingBadge
                           rating={s.averageRating || 0}

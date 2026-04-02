@@ -29,9 +29,9 @@ interface SamchonCardProps {
 }
 
 const CLEAN_LABEL: Record<string, string> = {
-  LV1: '보통',
-  LV2: '깔끔',
-  LV3: '매우 깔끔',
+  LV1: '청결 C',
+  LV2: '청결 B',
+  LV3: '청결 A',
 };
 
 export default function SamchonCard({
