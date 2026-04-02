@@ -91,9 +91,8 @@ export default function ReservationPage() {
               renderRightTop={
                 <button
                   style={styles.guestbookBtn}
-                  // 클릭 시 해당 삼춘 이름을 넘겨줌
                   onClick={(e) => {
-                    e.stopPropagation(); // 카드 클릭 이벤트 전파 방지
+                    e.stopPropagation();
                     handleOpenModal(samchonName);
                   }}
                 >
@@ -121,7 +120,6 @@ export default function ReservationPage() {
         <ActionButton label="예약 추가" onClick={() => router.push('/')} />
       </VStack>
 
-      {/* 2. 방명록 작성을 위한 모달 추가 */}
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <GuestbookModal
           onClose={handleCloseModal}
@@ -135,7 +133,6 @@ export default function ReservationPage() {
 }
 
 const styles = {
-  // ... 기존 스타일 유지
   layout: {
     width: '100%',
     minHeight: '100vh',

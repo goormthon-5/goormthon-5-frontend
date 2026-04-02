@@ -1,5 +1,7 @@
 'use client';
 
+import { useSyncExternalStore } from 'react';
+import { createPortal } from 'react-dom';
 import { Box, Button, Text, VStack } from '@vapor-ui/core';
 
 interface BottomActionBarProps {
@@ -19,19 +21,28 @@ export default function BottomActionBar({
   labelFontSize = '16px',
   labelFontWeight = 500,
 }: BottomActionBarProps) {
-  return (
+  const portalTarget = useSyncExternalStore(
+    () => () => {},
+    () => document.body,
+    () => null,
+  );
+
+  const bar = (
     <VStack
       style={{
         position: 'fixed',
         bottom: 0,
-        left: '50%',
-        transform: 'translateX(-50%)',
+        left: 0,
+        right: 0,
+        marginLeft: 'auto',
+        marginRight: 'auto',
       }}
       $css={{
         alignItems: 'center',
         width: '100%',
         maxWidth: '390px',
         zIndex: 1000,
+        pointerEvents: 'auto',
       }}
     >
       <VStack
@@ -97,4 +108,8 @@ export default function BottomActionBar({
       </VStack>
     </VStack>
   );
+
+  if (!portalTarget) return null;
+
+  return createPortal(bar, portalTarget);
 }

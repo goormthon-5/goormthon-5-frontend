@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react';
 import Image from 'next/image';
-import { Box, HStack, Text, VStack } from '@vapor-ui/core';
+import { Box, Button, HStack, Text, Textarea, VStack } from '@vapor-ui/core';
 
 import IcStar from '@/assets/icons/active-star.svg';
 import IcCamera from '@/assets/icons/camera-icon.svg';
@@ -25,7 +25,6 @@ export default function GuestbookModal({
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
-  // 활성화 조건
   const isFormValid = rating > 0 && content.trim().length > 0;
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +45,7 @@ export default function GuestbookModal({
         <Text $css={S.title}>방명록을 작성해주세요.</Text>
 
         <VStack $css={S.starSection}>
-          <HStack $css={{ gap: '4px' }}>
+          <HStack style={{ gap: '4px' }}>
             {[1, 2, 3, 4, 5].map((num) => (
               <Box
                 key={num}
@@ -65,19 +64,42 @@ export default function GuestbookModal({
         </VStack>
       </VStack>
 
-      <textarea
+      <Textarea
         placeholder="내용을 입력해주세요."
         value={content}
-        onChange={(e) => setContent(e.target.value)}
-        style={S.textarea}
+        onValueChange={(value) => setContent(value)}
+        style={{
+          width: '100%',
+          height: '107px',
+          marginTop: '21px',
+          marginBottom: '15px',
+        }}
+        $css={{
+          padding: '10px',
+          borderRadius: '6px',
+          border: '1px solid #E1E1E1',
+          fontSize: '15px',
+          lineHeight: '1.5',
+          resize: 'none',
+          outline: 'none',
+        }}
       />
 
       <HStack $css={S.bottomSection}>
         <Box
           onClick={() => fileInputRef.current?.click()}
-          $css={{
-            ...S.cameraBtn,
+          style={{
             backgroundColor: selectedFile ? '#E0F4FF' : '#F1F1F1',
+          }}
+          $css={{
+            width: '54px',
+            height: '41px',
+            borderRadius: '$300',
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            cursor: 'pointer',
+            flexShrink: 0,
           }}
         >
           <Image src={IcCamera} alt="사진 첨부" width={24} height={24} />
@@ -90,17 +112,28 @@ export default function GuestbookModal({
           />
         </Box>
 
-        <button
+        <Button
+          type="button"
+          variant="fill"
+          colorPalette="contrast"
+          size="lg"
           disabled={!isFormValid}
+          onClick={handleSave}
           style={{
-            ...S.saveBtn,
+            flex: 1,
+            height: '41px',
+          }}
+          $css={{
+            borderRadius: '$300',
+            fontSize: '18px',
+            fontWeight: 700,
             backgroundColor: isFormValid ? '#2B343B' : '#C2C2C2',
+            color: '#fff',
             cursor: isFormValid ? 'pointer' : 'not-allowed',
           }}
-          onClick={handleSave}
         >
           저장하기
-        </button>
+        </Button>
       </HStack>
     </VStack>
   );
@@ -129,42 +162,9 @@ const S = {
     fontSize: '14px',
     color: '#C2C2C2',
   },
-  textarea: {
-    width: '100%',
-    height: '107px',
-    padding: '10px',
-    borderRadius: '6px',
-    border: '1px solid #E1E1E1',
-    fontSize: '15px',
-    lineHeight: '1.5',
-    resize: 'none' as const,
-    outline: 'none',
-    marginTop: '21px',
-    marginBottom: '15px',
-  },
   bottomSection: {
     width: '100%',
     gap: '12px',
     alignItems: 'center',
-  },
-  cameraBtn: {
-    width: '54px',
-    height: '41px',
-    borderRadius: '8px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    flexShrink: 0,
-  },
-  saveBtn: {
-    flex: 1,
-    height: '41px',
-    color: '#fff',
-    borderRadius: '8px',
-    border: 'none',
-    fontSize: '18px',
-    fontWeight: 700,
-    transition: 'all 0.2s ease',
   },
 };
