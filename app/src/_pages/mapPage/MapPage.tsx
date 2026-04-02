@@ -39,7 +39,7 @@ export default function MapPage() {
       s.name.includes(searchQuery) ||
       (s.address?.address_short || '').includes(searchQuery) ||
       (s.address?.address_group || '').includes(searchQuery) ||
-      (s.options || []).some((opt: string) => opt.includes(searchQuery)),
+      (s.options || []).some((opt: any) => (opt.name || opt).includes(searchQuery)),
   );
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
@@ -256,7 +256,7 @@ export default function MapPage() {
                   {(s.options || []).length > 0 && (
                     <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                       <CategoryTag
-                        label={s.options[0]}
+                        label={s.options[0]?.name || s.options[0]}
                         color="#6DBFFF"
                       />
                     </div>
@@ -298,7 +298,7 @@ export default function MapPage() {
                 {(selected.options || []).length > 0 && (
                   <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                     <CategoryTag
-                      label={selected.options[0]}
+                      label={selected.options[0]?.name || selected.options[0]}
                       color="#6DBFFF"
                     />
                   </div>

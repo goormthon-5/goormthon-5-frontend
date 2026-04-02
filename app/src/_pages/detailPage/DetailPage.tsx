@@ -118,10 +118,10 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
             $css={{ alignItems: 'center', width: '100%' }}
             style={styles.tagRow}
           >
-            {(data.options || []).map((opt: string) => (
+            {(data.options || []).map((opt: any, idx: number) => (
               <CategoryTag
-                key={opt}
-                label={opt}
+                key={`${opt.name}-${idx}`}
+                label={opt.name}
                 color="#6DBFFF"
               />
             ))}

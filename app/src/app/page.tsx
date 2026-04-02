@@ -234,8 +234,8 @@ export default function Home() {
                   name={s.name}
                   rating={s.averageRating || 0}
                   reviewCount={s.guestBookCount || 0}
-                  tags={(s.options || []).slice(0, 1).map((opt: string) => ({
-                    label: opt,
+                  tags={(s.options || []).slice(0, 1).map((opt: any) => ({
+                    label: opt.name || opt,
                     color: '#6DBFFF',
                   }))}
                   onClick={() => router.push(`/detail/${s.accommodationId}`)}

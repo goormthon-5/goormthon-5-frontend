@@ -83,7 +83,7 @@ export default function ReservationPage() {
               {(item.accommodation?.options || []).length > 0 && (
                 <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                   <CategoryTag
-                    label={item.accommodation.options[0]}
+                    label={item.accommodation.options[0]?.name || item.accommodation.options[0]}
                     color="#6DBFFF"
                   />
                 </Box>
