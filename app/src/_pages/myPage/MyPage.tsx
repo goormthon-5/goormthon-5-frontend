@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import BottomNavBar from '@/components/BottomNavBar';
+import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 
 const MENU_ITEMS = [
   '포인트',
@@ -19,10 +20,33 @@ const MENU_ITEMS = [
 
 export default function MyPage() {
   return (
-    <div style={styles.layout}>
+    <VStack
+      $css={{
+        width: '100%',
+        minHeight: '100vh',
+        backgroundColor: '#fff',
+      }}
+    >
       {/* 프로필 영역 */}
-      <div style={styles.profileSection}>
-        <div style={styles.profileImage}>
+      <VStack
+        $css={{
+          alignItems: 'center',
+          gap: '$250', // 20px
+        }}
+        style={{
+          marginTop: '50px',
+          paddingBottom: '26px',
+        }}
+      >
+        <Box
+          style={{
+            width: '105.6px',
+            height: '105.6px',
+            borderRadius: '110px',
+            backgroundColor: '#AFE1FC',
+            overflow: 'hidden',
+          }}
+        >
           <Image
             src="/images/profile.png"
             alt="프로필"
@@ -30,103 +54,94 @@ export default function MyPage() {
             height={106}
             style={{ objectFit: 'cover', borderRadius: '110px' }}
           />
-        </div>
-        <p style={styles.nickname}>
+        </Box>
+
+        <Text
+          style={{
+            margin: 0,
+            fontFamily: 'Pretendard, sans-serif',
+            fontSize: '22px',
+            fontWeight: 700,
+            color: '#000',
+            textAlign: 'center',
+            letterSpacing: '-0.33px',
+          }}
+        >
           <span style={{ color: '#6DBFFF' }}>제주좋아</span>
           <span> 님</span>
-        </p>
-        <div style={styles.editButton}>
-          <span style={styles.editButtonText}>내 정보 수정</span>
-        </div>
-      </div>
+        </Text>
+
+        <HStack
+          $css={{
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          style={{
+            width: '87px',
+            height: '30px',
+            borderRadius: '106px',
+            backgroundColor: '#2B343B',
+            overflow: 'hidden',
+          }}
+        >
+          <Text
+            style={{
+              margin: 0,
+              fontFamily: 'Pretendard, sans-serif',
+              fontSize: '13.66px',
+              fontWeight: 600,
+              color: '#fff',
+              textAlign: 'center',
+            }}
+          >
+            내 정보 수정
+          </Text>
+        </HStack>
+      </VStack>
 
       {/* 구분선 */}
-      <div style={styles.divider} />
+      <Box
+        style={{
+          width: '100%',
+          height: '10px',
+          backgroundColor: '#F3F3F3',
+        }}
+      />
 
       {/* 메뉴 목록 */}
-      <div style={styles.menuList}>
+      <VStack
+        $css={{
+          alignItems: 'flex-start',
+        }}
+        style={{
+          gap: '25px',
+          paddingTop: '29px',
+          paddingBottom: '29px',
+          paddingLeft: '26px',
+          paddingRight: '26px',
+          marginBottom: '100px',
+        }}
+      >
         {MENU_ITEMS.map((item) => (
-          <div key={item} style={styles.menuItem}>
-            <span style={styles.menuText}>{item}</span>
-          </div>
+          <Box key={item} style={{ cursor: 'default' }}>
+            <Text
+              style={{
+                margin: 0,
+                fontFamily: 'Pretendard, sans-serif',
+                fontSize: '18px',
+                fontWeight: 500,
+                color: '#000',
+                letterSpacing: '-0.3px',
+              }}
+            >
+              {item}
+            </Text>
+          </Box>
         ))}
-      </div>
+      </VStack>
 
       {/* 하단 네비게이션 */}
       <BottomNavBar />
-    </div>
+    </VStack>
   );
 }
-
-const styles = {
-  layout: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#fff',
-  },
-  profileSection: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    gap: '20px',
-    marginTop: '50px',
-    paddingBottom: '26px',
-  },
-  profileImage: {
-    width: '105.6px',
-    height: '105.6px',
-    borderRadius: '110px',
-    backgroundColor: '#AFE1FC',
-    overflow: 'hidden',
-  },
-  nickname: {
-    fontFamily: 'Pretendard, sans-serif',
-    fontSize: '22px',
-    fontWeight: 700,
-    color: '#000',
-    textAlign: 'center' as const,
-    letterSpacing: '-0.33px',
-    margin: 0,
-  },
-  editButton: {
-    width: '87px',
-    height: '30px',
-    borderRadius: '106px',
-    backgroundColor: '#2B343B',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    overflow: 'hidden',
-  },
-  editButtonText: {
-    fontFamily: 'Pretendard, sans-serif',
-    fontSize: '13.66px',
-    fontWeight: 600,
-    color: '#fff',
-    textAlign: 'center' as const,
-  },
-  divider: {
-    width: '100%',
-    height: '10px',
-    backgroundColor: '#F3F3F3',
-  },
-  menuList: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '25px',
-    padding: '29px 26px',
-    marginBottom: '100px',
-  },
-  menuItem: {
-    cursor: 'default',
-  },
-  menuText: {
-    fontFamily: 'Pretendard, sans-serif',
-    fontSize: '18px',
-    fontWeight: 500,
-    color: '#000',
-    letterSpacing: '-0.3px',
-  },
-} as const;
