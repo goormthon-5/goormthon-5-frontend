@@ -1,17 +1,28 @@
 import Image from 'next/image';
 import { Box, Text, VStack } from '@vapor-ui/core';
+import guestBook1 from '@/assets/images/guest-book-1.png';
+import guestBook2 from '@/assets/images/guest-book-2.png';
+import guestBook3 from '@/assets/images/guest-book-3.png';
+import guestBook4 from '@/assets/images/guest-book-4.png';
+import guestBook5 from '@/assets/images/guest-book-5.png';
+
+const DEFAULT_IMAGES = [guestBook1, guestBook2, guestBook3, guestBook4, guestBook5];
 
 interface GuestBookItemProps {
   imageUrl?: string | null;
   message: string;
+  index?: number;
 }
 
 export default function GuestBookItem({
   imageUrl,
   message,
+  index = 0,
 }: GuestBookItemProps) {
   const displayImg =
-    imageUrl && imageUrl.trim() !== '' ? imageUrl : '/images/default-img.png';
+    imageUrl && imageUrl.trim() !== ''
+      ? imageUrl
+      : DEFAULT_IMAGES[index % DEFAULT_IMAGES.length];
 
   return (
     <VStack
