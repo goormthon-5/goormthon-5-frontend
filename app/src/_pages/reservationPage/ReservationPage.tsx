@@ -7,6 +7,7 @@ import ActionButton from '@/components/ActionButton';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
+import reservations from '@/mocks/reservations.json';
 
 export default function ReservationPage() {
   const router = useRouter();
