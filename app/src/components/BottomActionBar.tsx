@@ -92,7 +92,6 @@ export default function BottomActionBar({
             width: '134px',
             height: '20px',
             borderRadius: '100px',
-            backgroundColor: '#fff',
           }}
         />
       </VStack>

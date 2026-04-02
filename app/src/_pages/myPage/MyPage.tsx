@@ -31,7 +31,7 @@ export default function MyPage() {
       <VStack
         $css={{
           alignItems: 'center',
-          gap: '$250', // 20px
+          gap: '$250',
         }}
         style={{
           marginTop: '50px',
