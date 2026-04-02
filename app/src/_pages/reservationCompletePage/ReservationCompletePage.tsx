@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import ImgHareubang from '@/assets/images/hareubang.svg';
+import BottomActionBar from '@/components/main/BottomActionBar';
 
 export default function ReservationCompletePage() {
   const router = useRouter();
@@ -21,14 +22,7 @@ export default function ReservationCompletePage() {
       </div>
 
       {/* 하단 완료하기 */}
-      <div style={styles.bottomBar}>
-        <div style={styles.completeBar} onClick={() => router.push('/')}>
-          <span style={styles.completeText}>완료하기</span>
-        </div>
-        <div style={styles.homeBar}>
-          <div style={styles.homeIndicator} />
-        </div>
-      </div>
+      <BottomActionBar label="완료" onClick={() => router.push('/')} />
     </div>
   );
 }
@@ -104,7 +98,6 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#2B343B',
     overflow: 'hidden',
     cursor: 'pointer',
   },
@@ -119,7 +112,6 @@ const styles = {
   homeBar: {
     width: '100%',
     height: '34px',
-    backgroundColor: '#2B343B',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
@@ -129,6 +121,5 @@ const styles = {
     width: '134px',
     height: '5px',
     borderRadius: '100px',
-    backgroundColor: '#fff',
   },
 } as const;
