@@ -67,28 +67,6 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
           />
         ))}
       </div>
-
-      {/* 하단 입력창 */}
-      <div style={S.inputSticky}>
-        <div style={S.inputWrapper}>
-          <button style={S.plusButton}>+</button>
-          <div style={S.inputField}>
-            <input
-              type="text"
-              placeholder="삼춘에게 메시지를 남겨보세요!"
-              style={S.input}
-            />
-            <button style={S.sendButton}>
-              <Image
-                src="/icons/send-icon.svg"
-                alt="전송"
-                width={24}
-                height={24}
-              />
-            </button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
@@ -136,45 +114,5 @@ const S = {
     gridTemplateColumns: 'repeat(2, 1fr)',
     gap: '16px',
     padding: '0 20px',
-  },
-  inputSticky: {
-    position: 'fixed' as const,
-    bottom: 0,
-    width: '100%',
-    maxWidth: '390px',
-    backgroundColor: '#2B343B',
-    padding: '12px 20px 34px 20px',
-    boxSizing: 'border-box' as const,
-    zIndex: 100,
-  },
-  inputWrapper: { display: 'flex', alignItems: 'center', gap: '12px' },
-  plusButton: {
-    fontSize: '28px',
-    color: '#fff',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-  },
-  inputField: {
-    flex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-    borderRadius: '25px',
-    padding: '4px 6px 4px 16px',
-  },
-  input: {
-    flex: 1,
-    border: 'none',
-    outline: 'none',
-    height: '40px',
-    fontSize: '14px',
-  },
-  sendButton: {
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
-    display: 'flex',
-    alignItems: 'center',
   },
 };
