@@ -1,11 +1,12 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import Image from 'next/image';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
 import BottomNavBar from '@/components/BottomNavBar';
+import HouseCard from '@/components/HouseCard';
+import Image from 'next/image';
 
 // 임시 더미데이터
 const DUMMY_RESERVATIONS = [
@@ -49,47 +50,7 @@ export default function ReservationPage() {
         {DUMMY_RESERVATIONS.map((item, idx) => (
           <div key={idx} style={styles.card}>
             {/* 카드 이미지 */}
-            <div style={styles.cardImage}>
-              <Image
-                src="/icons/sam-text.svg"
-                alt=""
-                width={62}
-                height={64}
-                style={{
-                  position: 'absolute',
-                  left: '26px',
-                  top: '10px',
-                  transform: 'rotate(14.39deg)',
-                }}
-              />
-              <Image
-                src="/icons/chun-text.svg"
-                alt=""
-                width={55}
-                height={64}
-                style={{
-                  position: 'absolute',
-                  left: '257px',
-                  top: '52px',
-                  transform: 'rotate(-10deg)',
-                }}
-              />
-              {item.imageUrl && (
-                <Image
-                  src={item.imageUrl}
-                  alt={item.name}
-                  width={226}
-                  height={163}
-                  style={{
-                    position: 'absolute',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%)',
-                    objectFit: 'contain',
-                  }}
-                />
-              )}
-            </div>
+            <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
             {/* 카드 정보 */}
             <div style={styles.cardContent}>
               <div style={styles.cardTopRow}>

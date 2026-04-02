@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import HouseCard from '@/components/HouseCard';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
@@ -59,45 +60,11 @@ export default function DetailPage() {
             />
           </button>
         </div>
-        <Image
-          src="/icons/sam-text.svg"
-          alt=""
-          width={90}
-          height={93}
-          style={{
-            position: 'absolute',
-            left: '27px',
-            top: '88px',
-            transform: 'rotate(14.39deg)',
-          }}
+        <HouseCard
+          imageUrl={DUMMY.imageUrl}
+          bgColor="#E0F4FF"
+          size="detail"
         />
-        <Image
-          src="/icons/chun-text.svg"
-          alt=""
-          width={80}
-          height={93}
-          style={{
-            position: 'absolute',
-            right: '27px',
-            top: '120px',
-            transform: 'rotate(-10deg)',
-          }}
-        />
-        {DUMMY.imageUrl && (
-          <Image
-            src={DUMMY.imageUrl}
-            alt={DUMMY.name}
-            width={326}
-            height={235}
-            style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -45%)',
-              objectFit: 'contain',
-            }}
-          />
-        )}
       </div>
 
       {/* 정보 영역 */}
@@ -202,7 +169,7 @@ const styles = {
   },
   backButtonWrap: {
     position: 'absolute' as const,
-    top: '48px',
+    top: '20px',
     left: '0',
     display: 'flex',
     alignItems: 'center',
