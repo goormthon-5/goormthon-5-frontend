@@ -52,6 +52,7 @@ export default function DateSearch() {
           <div style={S.calendarPopup}>
             <Calendar
               onChange={handleDateChange}
+              calendarType="gregory"
               value={selectedDate || new Date()}
               locale="ko-KR"
               formatDay={(_, date) =>
@@ -110,6 +111,7 @@ const S = {
     boxShadow: '0 10px 25px rgba(0,0,0,0.1)',
     borderRadius: '12px',
     overflow: 'hidden',
+    paddingBottom: '10px',
   },
   overlay: {
     position: 'fixed' as const,
