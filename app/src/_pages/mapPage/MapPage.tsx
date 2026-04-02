@@ -6,8 +6,8 @@ import Image from 'next/image';
 import { Box, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
-import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
-import samchons from '@/mocks/samchons.json';
+import CategoryTag from '@/components/CategoryTag';
+import { accommodationApi } from '@/apis/accommodationApi';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 declare global {
@@ -24,20 +24,25 @@ export default function MapPage() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
+  const [accommodations, setAccommodations] = useState<any[]>([]);
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [sheetMode, setSheetMode] = useState<SheetMode>('hidden');
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
 
-  const selectedSamchon = samchons.find((s) => s.id === selectedId);
+  const selected = accommodations.find(
+    (s: any) => s.accommodationId === selectedId,
+  );
 
-  const searchResults = samchons.filter(
-    (s) =>
+  const searchResults = accommodations.filter(
+    (s: any) =>
       s.name.includes(searchQuery) ||
-      s.location.includes(searchQuery) ||
-      s.area.includes(searchQuery) ||
-      s.tags.some((t) => t.label.includes(searchQuery)),
+      (s.address?.address_short || '').includes(searchQuery) ||
+      (s.address?.address_group || '').includes(searchQuery) ||
+      (s.options || []).some((opt: any) =>
+        (opt.name || opt).includes(searchQuery),
+      ),
   );
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
@@ -62,17 +67,28 @@ export default function MapPage() {
     }
   };
 
-  const handleCardClick = (s: (typeof samchons)[0]) => {
-    setSelectedId(s.id);
+  const handleCardClick = (s: any) => {
+    setSelectedId(s.accommodationId);
     setSheetMode('detail');
-    if (kakaoMapRef.current) {
+    if (kakaoMapRef.current && s.address) {
       kakaoMapRef.current.panTo(
-        new window.kakao.maps.LatLng(s.latitude, s.longitude),
+        new window.kakao.maps.LatLng(s.address.latitude, s.address.longitude),
       );
     }
   };
 
+  // API 호출
   useEffect(() => {
+    accommodationApi
+      .getAll()
+      .then((res) => setAccommodations(res.data))
+      .catch(() => {});
+  }, []);
+
+  // 카카오맵
+  useEffect(() => {
+    if (accommodations.length === 0) return;
+
     const script = document.createElement('script');
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false`;
     script.async = true;
@@ -88,19 +104,31 @@ export default function MapPage() {
         });
         kakaoMapRef.current = map;
 
-        samchons.forEach((s) => {
+        accommodations.forEach((s: any) => {
+          if (!s.address) return;
           const position = new window.kakao.maps.LatLng(
-            s.latitude,
-            s.longitude,
+            s.address.latitude,
+            s.address.longitude,
           );
 
           const wrapper = document.createElement('div');
           wrapper.style.cursor = 'pointer';
           wrapper.innerHTML = `
-            <img src="${s.markerIcon}" width="46" height="57" style="display:block;" />
+            <div style="position:relative;width:46px;height:57px;">
+              <svg width="46" height="57" viewBox="0 0 46 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 0C10.3 0 0 10.3 0 23C0 35.7 23 57 23 57C23 57 46 35.7 46 23C46 10.3 35.7 0 23 0Z" fill="#6DBFFF"/>
+              </svg>
+              <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:35px;height:35px;border-radius:50%;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#333;">
+                🏠
+              </div>
+            </div>
           `;
           wrapper.addEventListener('click', () => {
-            handleMarkerClick(s.id, s.latitude, s.longitude);
+            handleMarkerClick(
+              s.accommodationId,
+              s.address.latitude,
+              s.address.longitude,
+            );
           });
 
           new window.kakao.maps.CustomOverlay({
@@ -131,7 +159,7 @@ export default function MapPage() {
       document.head.removeChild(script);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [accommodations]);
 
   return (
     <Box
@@ -248,7 +276,7 @@ export default function MapPage() {
         </HStack>
       )}
 
-      {/* 어두운 오버레이 (상세 모드) */}
+      {/* 오버레이 */}
       {sheetMode === 'detail' && (
         <Box
           $css={{
@@ -311,90 +339,42 @@ export default function MapPage() {
 
         {/* 검색 결과 리스트 */}
         {sheetMode === 'list' && (
-          <VStack
-            $css={{
-              gap: '10px',
-              paddingTop: '$100',
-              paddingInline: '$250',
-              paddingBottom: '$250',
-              overflowY: 'auto',
-              maxHeight: '430px',
-            }}
-          >
-            {searchResults.map((s) => (
-              <HStack
-                key={s.id}
+          <div style={styles.resultList}>
+            {searchResults.map((s: any) => (
+              <div
+                key={s.accommodationId}
+                style={styles.resultCard}
                 onClick={() => handleCardClick(s)}
-                $css={{
-                  position: 'relative',
-                  height: '103px',
-                  border: '1px solid #E1E1E1',
-                  borderRadius: '$300',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  backgroundColor: '#fff',
-                }}
               >
-                <HStack
-                  $css={{
-                    width: '132px',
-                    height: '103px',
-                    flexShrink: 0,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    overflow: 'hidden',
-                    borderRadius: '8px 0 0 8px',
-                    borderRight: '1px solid #E1E1E1',
-                    backgroundColor: s.bgColor,
-                  }}
-                >
-                  <Image
-                    src={s.imageUrl}
-                    alt={s.name}
-                    width={120}
-                    height={86}
-                    style={{ objectFit: 'contain' }}
-                  />
-                </HStack>
-                <VStack
-                  $css={{
-                    gap: '7px',
-                    paddingBlock: '$200',
-                    paddingInline: '$150',
-                    flex: 1,
-                    overflow: 'hidden',
-                    alignItems: 'flex-start',
-                  }}
-                >
-                  <Text style={styles.resultLocation}>{s.location}</Text>
-                  <Text style={styles.resultName}>{s.name}</Text>
-                  <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                    <CategoryTag
-                      label={s.tags[0].label}
-                      color={
-                        TAG_COLORS[s.tags[0].color as keyof typeof TAG_COLORS]
-                      }
-                    />
-                  </Box>
-                </VStack>
-                <HStack
-                  onClick={(e) => toggleFavorite(s.id, e)}
-                  $css={{
-                    position: 'absolute',
-                    top: '$200',
-                    right: '$200',
-                    width: '18px',
-                    height: '17px',
-                    borderRadius: '$500',
+                <div
+                  style={{
+                    ...styles.resultImage,
                     backgroundColor: '#E0F4FF',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer',
                   }}
+                >
+                  <span style={{ fontSize: '32px' }}>🏠</span>
+                </div>
+                <div style={styles.resultInfo}>
+                  <span style={styles.resultLocation}>
+                    {s.address?.address_short || ''}
+                  </span>
+                  <span style={styles.resultName}>{s.name}</span>
+                  {(s.options || []).length > 0 && (
+                    <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                      <CategoryTag
+                        label={s.options[0]?.name || s.options[0]}
+                        color="#6DBFFF"
+                      />
+                    </div>
+                  )}
+                </div>
+                <div
+                  style={styles.starButton}
+                  onClick={(e) => toggleFavorite(s.accommodationId, e)}
                 >
                   <img
                     src={
-                      favorites.includes(s.id)
+                      favorites.includes(s.accommodationId)
                         ? '/icons/active-star.svg'
                         : '/icons/non-active-star.svg'
                     }
@@ -402,8 +382,8 @@ export default function MapPage() {
                     width={11}
                     height={11}
                   />
-                </HStack>
-              </HStack>
+                </div>
+              </div>
             ))}
             {searchResults.length === 0 && (
               <Text
@@ -418,58 +398,40 @@ export default function MapPage() {
                 검색 결과가 없습니다.
               </Text>
             )}
-          </VStack>
+          </div>
         )}
 
         {/* 상세 미리보기 */}
-        {sheetMode === 'detail' && selectedSamchon && (
-          <VStack
-            $css={{
-              gap: '22px',
-              paddingInline: '$250',
-              paddingBottom: '$250',
-            }}
-          >
-            <HouseCard
-              imageUrl={selectedSamchon.imageUrl}
-              bgColor={selectedSamchon.bgColor}
-              size="card"
-            />
-            <VStack $css={{ gap: '$250', width: '100%' }}>
-              <VStack
-                $css={{
-                  gap: '11px',
-                  width: '100%',
-                  alignItems: 'flex-start',
-                }}
-              >
-                <Text style={styles.detailLocation}>
-                  {selectedSamchon.location}
-                </Text>
-                <Text style={styles.detailName}>{selectedSamchon.name}</Text>
-                <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                  <CategoryTag
-                    label={selectedSamchon.tags[0].label}
-                    color={
-                      TAG_COLORS[
-                        selectedSamchon.tags[0].color as keyof typeof TAG_COLORS
-                      ]
-                    }
-                  />
-                </Box>
-                <Text render={<p />} style={styles.detailDescription}>
-                  {selectedSamchon.description}
-                </Text>
-              </VStack>
+        {sheetMode === 'detail' && selected && (
+          <div style={styles.detailContent}>
+            <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
+            <div style={styles.detailInfo}>
+              <div style={styles.detailInfoInner}>
+                <span style={styles.detailLocation}>
+                  {selected.address?.address_short || ''}
+                </span>
+                <span style={styles.detailName}>{selected.name}</span>
+                {(selected.options || []).length > 0 && (
+                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                    <CategoryTag
+                      label={selected.options[0]?.name || selected.options[0]}
+                      color="#6DBFFF"
+                    />
+                  </div>
+                )}
+                <p style={styles.detailDescription}>{selected.description}</p>
+              </div>
               <button
                 type="button"
                 style={styles.detailButton}
-                onClick={() => router.push(`/detail/${selectedSamchon.id}`)}
+                onClick={() =>
+                  router.push(`/detail/${selected.accommodationId}`)
+                }
               >
                 자세히 보기
               </button>
-            </VStack>
-          </VStack>
+            </div>
+          </div>
         )}
       </VStack>
 
@@ -479,6 +441,132 @@ export default function MapPage() {
 }
 
 const styles = {
+  layout: {
+    position: 'relative' as const,
+    width: '100%',
+    height: '100vh',
+    overflow: 'hidden',
+  },
+  map: { width: '100%', height: '100%' },
+  searchBar: {
+    position: 'absolute' as const,
+    top: '20px',
+    left: '20px',
+    right: '20px',
+    maxWidth: '350px',
+    height: '48px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '7px',
+    padding: '0 16px',
+    backgroundColor: '#fff',
+    border: '1px solid #E1E1E1',
+    borderRadius: '8px',
+    zIndex: 10,
+  },
+  searchInput: {
+    flex: 1,
+    border: 'none',
+    outline: 'none',
+    backgroundColor: 'transparent',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: '14.4px',
+    fontWeight: 500,
+    color: '#333',
+  },
+  filterRow: {
+    position: 'absolute' as const,
+    top: '78px',
+    left: '20px',
+    display: 'flex',
+    gap: '8px',
+    zIndex: 10,
+  },
+  filterBadge: {
+    height: '24px',
+    padding: '0 8px',
+    borderRadius: '16px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: '12px',
+    fontWeight: 500,
+    cursor: 'pointer',
+    whiteSpace: 'nowrap' as const,
+  },
+  overlay: {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    zIndex: 15,
+  },
+  bottomSheet: {
+    position: 'absolute' as const,
+    bottom: '80px',
+    left: 0,
+    right: 0,
+    backgroundColor: '#fff',
+    borderRadius: '24px 24px 0 0',
+    zIndex: 20,
+    transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
+  },
+  handleBar: {
+    display: 'flex',
+    justifyContent: 'center',
+    padding: '10px 0',
+    backgroundColor: '#fff',
+    borderRadius: '24px 24px 0 0',
+    cursor: 'pointer',
+  },
+  handle: {
+    width: '44px',
+    height: '4px',
+    borderRadius: '4px',
+    backgroundColor: '#DEDEDE',
+  },
+  resultList: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '10px',
+    padding: '10px 20px 20px',
+    overflowY: 'auto' as const,
+    maxHeight: '430px',
+  },
+  resultCard: {
+    display: 'flex',
+    position: 'relative' as const,
+    height: '103px',
+    border: '1px solid #E1E1E1',
+    borderRadius: '8px',
+    overflow: 'hidden',
+    cursor: 'pointer',
+    backgroundColor: '#fff',
+  },
+  resultImage: {
+    width: '132px',
+    height: '103px',
+    flexShrink: 0,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    overflow: 'hidden',
+    borderRadius: '8px 0 0 8px',
+    borderRight: '1px solid #E1E1E1',
+  },
+  resultInfo: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '7px',
+    padding: '16px 12px',
+    flex: 1,
+    overflow: 'hidden',
+  },
   resultLocation: {
     fontFamily:
       'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
@@ -495,6 +583,43 @@ const styles = {
     lineHeight: '21.06px',
     letterSpacing: '-0.081px',
     color: '#262626',
+  },
+  starButton: {
+    position: 'absolute' as const,
+    top: '16px',
+    right: '16px',
+    width: '18px',
+    height: '17px',
+    borderRadius: '16px',
+    backgroundColor: '#E0F4FF',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    cursor: 'pointer',
+  },
+  noResult: {
+    padding: '40px 0',
+    textAlign: 'center' as const,
+    color: '#989898',
+    fontSize: '14px',
+  },
+  detailContent: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '22px',
+    padding: '0 20px 20px',
+  },
+  detailInfo: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '20px',
+    width: '100%',
+  },
+  detailInfoInner: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '11px',
+    width: '100%',
   },
   detailLocation: {
     fontFamily:

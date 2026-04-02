@@ -14,7 +14,7 @@ interface BottomActionBarProps {
 export default function BottomActionBar({
   label,
   onClick,
-  buttonWidth = '350px',
+  buttonWidth = '100%',
   buttonHeight = '48px',
   labelFontSize = '16px',
   labelFontWeight = 500,
@@ -39,6 +39,8 @@ export default function BottomActionBar({
         $css={{
           justifyContent: 'center',
           alignItems: 'center',
+          padding: '0 20px',
+          boxSizing: 'border-box' as const,
         }}
       >
         <Button
