@@ -25,6 +25,15 @@ export default function Home() {
   const name: string = '제주좋아';
 
   const filteredAccommodations = accommodations.filter((s: any) => {
+    // 지역 탭 필터
+    const area = AREAS[selectedIdx];
+    if (area.keywords.length > 0) {
+      const short = s.address?.address_short || '';
+      const matchArea = area.keywords.some((kw) => short.includes(kw));
+      if (!matchArea) return false;
+    }
+
+    // 검색어 필터
     if (!searchQuery.trim()) return true;
     const q = searchQuery.trim().toLowerCase();
     const nameMatch = s.name?.toLowerCase().includes(q);
@@ -169,13 +178,14 @@ export default function Home() {
             </HStack>
           </VStack>
 
-          <nav>
+          <nav style={{ overflowX: 'auto', WebkitOverflowScrolling: 'touch' }}>
             <HStack
               $css={{
                 gap: '24px',
                 borderBottom: '1px solid #F3F4F6',
                 position: 'relative',
-                width: '100%',
+                width: 'max-content',
+                minWidth: '100%',
               }}
             >
               {AREAS.map((area, idx) => (
@@ -283,7 +293,10 @@ export default function Home() {
 }
 
 const AREAS = [
-  { name: '전체' },
-  { name: '성산·구좌' },
-  { name: '서귀포·남원' },
+  { name: '전체', keywords: [] },
+  { name: '성산·구좌', keywords: ['성산읍', '구좌읍', '우도면'] },
+  { name: '서귀포·남원', keywords: ['남원읍', '표선면'] },
+  { name: '한림·애월', keywords: ['한림읍', '애월읍', '한경면'] },
+  { name: '대정·안덕', keywords: ['대정읍', '안덕면'] },
+  { name: '조천·추자', keywords: ['조천읍', '추자면'] },
 ];
