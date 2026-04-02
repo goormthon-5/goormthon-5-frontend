@@ -1,9 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import BottomActionBar from '@/components/BottomActionBar';
+import Splash from '@/components/Splash';
 
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcBack from '@/assets/icons/back-icon.svg';
@@ -27,12 +28,35 @@ const ONBOARDING_DATA = [
 ];
 
 export default function OnboardingPage() {
+  const [showSplash, setShowSplash] = useState(true);
+  const [isSplashFading, setIsSplashFading] = useState(false);
   const [step, setStep] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+
   const router = useRouter();
   const isLastStep = step === ONBOARDING_DATA.length - 1;
 
+  // 방문 여부 체크 (새로고침 시 온보딩 건너뛰기)
+  useEffect(() => {
+    const hasVisited = localStorage.getItem('hasVisitedOnboarding');
+    if (hasVisited) {
+      router.replace('/');
+    } else {
+      setIsLoading(false);
+    }
+  }, [router]);
+
+  // 스플래시 종료 핸들러
+  const handleSplashFinish = () => {
+    setIsSplashFading(true); // 사라지는 애니메이션
+    setTimeout(() => {
+      setShowSplash(false);
+    }, 600);
+  };
+
   const handleNext = () => {
     if (isLastStep) {
+      localStorage.setItem('hasVisitedOnboarding', 'true'); // 방문 기록 저장
       router.push('/');
     } else {
       setStep(step + 1);
@@ -44,68 +68,84 @@ export default function OnboardingPage() {
     if (step > 0) setStep(step - 1);
   };
 
+  if (isLoading) return null;
+
   return (
     <div style={S.layout} onClick={!isLastStep ? handleNext : undefined}>
-      {/* 상단 헤더 */}
-      <header style={S.header}>
-        {step > 0 && (
-          <button onClick={handleBack} style={S.backBtn}>
-            <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
-          </button>
-        )}
-      </header>
+      {/* 스플래시 영역 */}
+      {showSplash && (
+        <div
+          style={{
+            ...S.splashOverlay,
+            opacity: isSplashFading ? 0 : 1,
+          }}
+        >
+          <Splash onFinish={handleSplashFinish} />
+        </div>
+      )}
 
-      {/* 가로 슬라이드 컨테이너 */}
-      <div
-        style={{
-          ...S.slideContainer,
-          transform: `translateX(-${step * 100}%)`,
-        }}
-      >
-        {ONBOARDING_DATA.map((item) => (
-          <div key={item.id} style={S.slidePage}>
-            <main style={S.main}>
-              <div style={S.logoWrapper}>
-                <Image
-                  src={ImgLogo}
-                  alt="로고"
-                  width={143.29}
-                  height={40.53}
-                  priority
-                />
+      {/* 온보딩 */}
+      {!showSplash && (
+        <div style={S.contentFadeIn}>
+          <header style={S.header}>
+            {step > 0 && (
+              <button onClick={handleBack} style={S.backBtn}>
+                <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
+              </button>
+            )}
+          </header>
+
+          <div
+            style={{
+              ...S.slideContainer,
+              transform: `translateX(-${step * 100}%)`,
+            }}
+          >
+            {ONBOARDING_DATA.map((item) => (
+              <div key={item.id} style={S.slidePage}>
+                <main style={S.main}>
+                  <div style={S.logoWrapper}>
+                    <Image
+                      src={ImgLogo}
+                      alt="로고"
+                      width={143.29}
+                      height={40.53}
+                      priority
+                    />
+                  </div>
+                  <p style={S.title}>{item.title}</p>
+                  <div style={S.indicatorWrapper}>
+                    {ONBOARDING_DATA.map((_, idx) => (
+                      <div
+                        key={idx}
+                        style={{
+                          ...S.dot,
+                          backgroundColor: idx === step ? '#6DBFFF' : '#E1E1E1',
+                        }}
+                      />
+                    ))}
+                  </div>
+                </main>
+                <footer style={S.footer}>
+                  <div style={S.imageBox}>
+                    <Image
+                      src={item.img}
+                      alt="onboarding"
+                      fill
+                      style={{ objectFit: 'cover', objectPosition: 'bottom' }}
+                      priority
+                    />
+                  </div>
+                </footer>
               </div>
-
-              <p style={S.title}>{item.title}</p>
-
-              <div style={S.indicatorWrapper}>
-                {ONBOARDING_DATA.map((_, idx) => (
-                  <div
-                    key={idx}
-                    style={{
-                      ...S.dot,
-                      backgroundColor: idx === step ? '#6DBFFF' : '#E1E1E1',
-                    }}
-                  />
-                ))}
-              </div>
-            </main>
-
-            <footer style={S.footer}>
-              <div style={S.imageBox}>
-                <Image
-                  src={item.img}
-                  alt="onboarding"
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'bottom' }}
-                  priority
-                />
-              </div>
-            </footer>
+            ))}
           </div>
-        ))}
-      </div>
 
-      {isLastStep && <BottomActionBar label="시작하기" onClick={handleNext} />}
+          {isLastStep && (
+            <BottomActionBar label="시작하기" onClick={handleNext} />
+          )}
+        </div>
+      )}
     </div>
   );
 }
@@ -121,6 +161,20 @@ const S = {
     backgroundColor: '#fff',
     overflow: 'hidden',
     position: 'relative' as const,
+  },
+  splashOverlay: {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    width: '100%',
+    height: '100%',
+    zIndex: 100,
+    transition: 'opacity 0.6s ease-in-out',
+  },
+  contentFadeIn: {
+    width: '100%',
+    height: '100%',
+    animation: 'fadeIn 0.5s ease-in',
   },
   header: {
     position: 'absolute' as const,
@@ -138,8 +192,6 @@ const S = {
     background: 'none',
     cursor: 'pointer',
     padding: 0,
-    display: 'flex',
-    alignItems: 'center',
   },
   slideContainer: {
     display: 'flex',
@@ -161,9 +213,7 @@ const S = {
     textAlign: 'center' as const,
     paddingTop: '100px',
   },
-  logoWrapper: {
-    marginBottom: '42.47px',
-  },
+  logoWrapper: { marginBottom: '42.47px' },
   title: {
     fontSize: '20px',
     fontWeight: '700',
@@ -172,11 +222,7 @@ const S = {
     color: '#2B343B',
     margin: 0,
   },
-  indicatorWrapper: {
-    display: 'flex',
-    gap: '8px',
-    marginTop: '46px',
-  },
+  indicatorWrapper: { display: 'flex', gap: '8px', marginTop: '46px' },
   dot: {
     width: '8px',
     height: '8px',
@@ -189,9 +235,5 @@ const S = {
     display: 'flex',
     alignItems: 'flex-end',
   },
-  imageBox: {
-    width: '100%',
-    height: '100%',
-    position: 'relative' as const,
-  },
+  imageBox: { width: '100%', height: '100%', position: 'relative' as const },
 };
