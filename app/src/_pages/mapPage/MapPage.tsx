@@ -21,6 +21,8 @@ const FILTERS = ['가까운 거리', '인기', '후기 많은', '오늘 가능',
 type SheetMode = 'hidden' | 'list' | 'detail';
 
 export default function MapPage() {
+  const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
+  
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
@@ -99,7 +101,7 @@ export default function MapPage() {
       return;
     }
 
-    const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
+    // const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
     console.log('[KakaoMap] KAKAO_MAP_KEY:', appKey ? `${appKey.slice(0, 6)}...` : 'undefined');
 
     if (!appKey) {
