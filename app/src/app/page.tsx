@@ -10,6 +10,9 @@ import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
+import Spinner from '@/components/Spinner';
+import Modal from '@/components/Modal';
+import ActionButton from '@/components/ActionButton';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
@@ -19,9 +22,11 @@ export default function Home() {
   const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isListLoading, setIsListLoading] = useState(true);
   const [accommodations, setAccommodations] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const name: string = '제주좋아';
 
@@ -59,13 +64,17 @@ export default function Home() {
 
   // 숙소 목록 API 호출
   useEffect(() => {
+    setIsListLoading(true);
     accommodationApi
       .getAll()
       .then((res) => setAccommodations(res.data))
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setIsListLoading(false));
   }, []);
 
   return (
+    <>
+    <Spinner loading={isListLoading} />
     <VStack
       $css={{
         width: '100%',
@@ -107,10 +116,10 @@ export default function Home() {
           </VStack>
 
           <HStack $css={{ gap: '7px', alignItems: 'center' }}>
-            <IconButton aria-label="메뉴 열기" size="md" variant="ghost">
+            <IconButton aria-label="메뉴 열기" size="md" variant="ghost" onClick={() => setIsModalOpen(true)}>
               <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
             </IconButton>
-            <IconButton aria-label="알림" size="md" variant="ghost">
+            <IconButton aria-label="알림" size="md" variant="ghost" onClick={() => setIsModalOpen(true)}>
               <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
             </IconButton>
           </HStack>
@@ -252,7 +261,7 @@ export default function Home() {
                 삼춘 목록
               </Text>
 
-              {filteredAccommodations.length === 0 && searchQuery.trim() && (
+              {!isListLoading && filteredAccommodations.length === 0 && searchQuery.trim() && (
                 <Text
                   $css={{
                     textAlign: 'center',
@@ -300,6 +309,29 @@ export default function Home() {
       </main>
       <BottomNavBar />
     </VStack>
+
+    <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+      <VStack $css={{ alignItems: 'center', gap: '30px', width: '100%' }}>
+        <Text
+          style={{
+            fontSize: '20px',
+            fontWeight: 600,
+            color: '#2B343B',
+            textAlign: 'center',
+            marginTop: '10px',
+          }}
+        >
+          오픈 예정입니다!
+        </Text>
+        <ActionButton
+          label="확인"
+          variant="dark"
+          showPlus={false}
+          onClick={() => setIsModalOpen(false)}
+        />
+      </VStack>
+    </Modal>
+    </>
   );
 }
 
