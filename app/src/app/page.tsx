@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import { IconButton } from '@vapor-ui/core';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
@@ -18,12 +19,26 @@ export default function Home() {
 
   return (
     <div style={S.layout}>
-      {/* 1. Header (HStack) */}
       <header style={S.header}>
         <Image src={ImgLogo} alt="메인 로고" width={83.5} height={23.62} />
         <div style={S.headerIcons}>
-          <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
-          <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
+          {/* IconButton 사용, 배경색 없는 ghost variant, colorPalette은 primary/secondary 등만 사용 가능, 커서 포인터 추가 */}
+          <IconButton
+            aria-label="메뉴 열기"
+            size="md"
+            variant="ghost"
+            style={{ cursor: 'pointer' }}
+          >
+            <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
+          </IconButton>
+          <IconButton
+            aria-label="알림"
+            size="md"
+            variant="ghost"
+            style={{ cursor: 'pointer' }}
+          >
+            <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
+          </IconButton>
         </div>
       </header>
 
@@ -38,8 +53,16 @@ export default function Home() {
 
         {/* Search (VStack) */}
         <section style={S.searchSection}>
-          <div style={S.inputBox}>언제 도착하시나요?</div>
-          <div style={S.inputBox}>마을 이름, 어르신 이름으로 검색</div>
+          <input
+            type="text"
+            placeholder="언제 도착하시나요?"
+            style={S.inputBox}
+          />
+          <input
+            type="text"
+            placeholder="마을 이름, 어르신 이름으로 검색"
+            style={S.inputBox}
+          />
         </section>
 
         {/* Category Tabs (HStack) */}
@@ -73,14 +96,6 @@ export default function Home() {
           <div style={S.cardPlaceholder}>Card 4</div>
         </section>
       </main>
-
-      {/* 3. Bottom Nav */}
-      <footer style={S.bottomNav}>
-        <div>홈</div>
-        <div style={{ color: '#9CA3AF' }}>지도</div>
-        <div style={{ color: '#9CA3AF' }}>예약</div>
-        <div style={{ color: '#9CA3AF' }}>마이</div>
-      </footer>
     </div>
   );
 }
@@ -134,10 +149,18 @@ const S = {
     gap: '10px',
   },
   inputBox: {
-    padding: '14px',
-    border: '1px solid #E1E1E1',
-    color: '#989898',
+    display: 'flex',
+    alignItems: 'center',
+    width: '350px',
+    height: '48px',
+    padding: '0 14px',
     fontSize: '14.4px',
+    color: '#989898',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    border: '1px solid #E1E1E1',
+    outline: 'none',
+    boxSizing: 'border-box' as const,
   },
   tabContainer: {
     display: 'flex',
@@ -186,18 +209,5 @@ const S = {
     alignItems: 'center',
     justifyContent: 'center',
     border: '1px solid #F3F4F6',
-  },
-  bottomNav: {
-    position: 'fixed' as const,
-    bottom: 0,
-    width: '100%',
-    maxWidth: 'inherit',
-    display: 'flex',
-    justifyContent: 'space-around',
-    padding: '16px 0 32px 0',
-    borderTop: '1px solid #F3F4F6',
-    backgroundColor: '#ffffff',
-    fontSize: '12px',
-    fontWeight: '500',
   },
 };
