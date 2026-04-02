@@ -104,7 +104,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
         <Box style={styles.divider} />
 
         {/* 여행객들의 메세지 */}
-        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
+        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$150' }}>
           <Text style={styles.sectionTitle}>여행객들의 메세지</Text>
 
           <VStack
@@ -213,7 +213,6 @@ const styles = {
     fontWeight: 500,
     lineHeight: '21.6px',
     color: '#262626',
-    margin: 0,
   },
   description: {
     fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
