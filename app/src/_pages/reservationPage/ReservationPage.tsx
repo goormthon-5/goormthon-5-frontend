@@ -11,6 +11,7 @@ import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
 import { reservationApi } from '@/apis/reservationApi';
 import { accommodationApi } from '@/apis/accommodationApi';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 export default function ReservationPage() {
   const router = useRouter();
@@ -51,13 +52,15 @@ export default function ReservationPage() {
 
       {/* 예약 카드 목록 */}
       <VStack style={styles.cardList} $css={{ paddingInline: '$250' }}>
-        {reservations.map((item: any) => (
+        {reservations.map((item: any) => {
+          const accStyle = getAccommodationStyle(item.accommodationId);
+          return (
           <VStack
             key={item.reservationId}
             style={styles.card}
             onClick={() => router.push(`/detail/${item.accommodationId}`)}
           >
-            <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
+            <HouseCard imageUrl={accStyle.houseImage} bgColor={accStyle.bgColor} size="card" />
 
             <VStack style={styles.cardContent}>
               <HStack
@@ -71,8 +74,8 @@ export default function ReservationPage() {
                   {item.accommodation?.address?.address_short || ''}
                 </Text>
                 <RatingBadge
-                  rating={item.averageRating || 0}
-                  reviewCount={item.guestBookCount || 0}
+                  rating={item.accommodation?.averageRating || 0}
+                  reviewCount={item.accommodation?.guestBookCount || 0}
                 />
               </HStack>
 
@@ -84,7 +87,7 @@ export default function ReservationPage() {
                 <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                   <CategoryTag
                     label={item.accommodation.options[0]?.name || item.accommodation.options[0]}
-                    color="#6DBFFF"
+                    color={accStyle.tagColor}
                   />
                 </Box>
               )}
@@ -102,7 +105,8 @@ export default function ReservationPage() {
               </HStack>
             </VStack>
           </VStack>
-        ))}
+          );
+        })}
 
         {/* 예약 추가 버튼 */}
         <ActionButton label="예약 추가" onClick={() => router.push('/')} />
