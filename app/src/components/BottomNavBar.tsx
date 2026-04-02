@@ -53,16 +53,21 @@ const styles = {
   nav: {
     position: 'fixed' as const,
     bottom: 0,
-    left: 0,
-    right: 0,
+    left: '50%',
+    transform: 'translateX(-50%)',
+
+    width: '100%',
+    maxWidth: '390px',
+    height: '80px',
+
     display: 'flex',
-    padding: '0 20px',
-    flexDirection: 'column' as const,
-    alignItems: 'flex-start',
-    gap: '10px',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+
+    backgroundColor: '#ffffff',
     borderTop: '1px solid #F3F3F3',
-    backgroundColor: '#fff',
-    zIndex: 100,
+    zIndex: 1000,
+    boxSizing: 'border-box' as const,
   },
   wrapper: {
     display: 'flex',

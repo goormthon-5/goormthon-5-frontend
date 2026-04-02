@@ -21,6 +21,10 @@ body {
   overflow-x: hidden;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   font-family:
     'Pretendard Variable',

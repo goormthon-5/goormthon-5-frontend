@@ -5,11 +5,10 @@ import Image from 'next/image';
 import { IconButton } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
 import DataSearch from '@/components/main/DataSearch';
-
+import BottomNavBar from '@/components/BottomNavBar';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
-import IcCalendar from '@/assets/icons/calendar-icon.svg';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 export default function Home() {
@@ -104,6 +103,7 @@ export default function Home() {
           <div style={S.cardPlaceholder}>Card 3</div>
         </section>
       </main>
+      <BottomNavBar />
     </div>
   );
 }
@@ -120,6 +120,8 @@ const AREAS = [
 const S = {
   layout: {
     display: 'flex',
+    maxWidth: '390px',
+    margin: '0 auto',
     flexDirection: 'column' as const,
     width: '100%',
     minHeight: '100vh',
