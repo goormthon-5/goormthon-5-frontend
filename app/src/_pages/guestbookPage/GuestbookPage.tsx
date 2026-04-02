@@ -112,6 +112,7 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
                 }
                 imageUrl={item.imageUrl}
                 message={item.content || item.message}
+                index={index}
               />
             ))}
           </Box>
