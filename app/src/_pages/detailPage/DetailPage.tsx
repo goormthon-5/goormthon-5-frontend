@@ -147,7 +147,10 @@ export default function DetailPage() {
 
       {/* 하단 예약하기 */}
       <div style={styles.bottomBar}>
-        <div style={styles.reserveBar}>
+        <div
+          style={styles.reserveBar}
+          onClick={() => router.push('/reservation-complete')}
+        >
           <span style={styles.reserveText}>예약하기</span>
         </div>
         <div style={styles.homeBar}>
