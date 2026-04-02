@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IconButton } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
@@ -13,6 +14,7 @@ import IcBell from '@/assets/icons/bell-icon.svg';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 export default function Home() {
+  const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const name: string = '조영찬';
 
@@ -98,6 +100,7 @@ export default function Home() {
             rating={4.9}
             reviewCount={47}
             tags={[{ label: '식사', color: TAG_COLORS.blue }]}
+            onClick={() => router.push('/detail')}
           />
           <SamchonCard
             imageUrl="/images/house-2.png"
@@ -107,6 +110,7 @@ export default function Home() {
             rating={3.9}
             reviewCount={12}
             tags={[{ label: '동백꽃 산책', color: TAG_COLORS.orange }]}
+            onClick={() => router.push('/detail')}
           />
           <SamchonCard
             imageUrl="/images/house-3.png"
@@ -116,6 +120,7 @@ export default function Home() {
             rating={5.0}
             reviewCount={20}
             tags={[{ label: '바닷가 투어', color: TAG_COLORS.green }]}
+            onClick={() => router.push('/detail')}
           />
         </section>
       </main>
