@@ -38,13 +38,22 @@ export default function OnboardingPage() {
 
   // 방문 여부 체크 (새로고침 시 온보딩 건너뛰기)
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisitedOnboarding');
-    if (hasVisited) {
+    const hasSeen = localStorage.getItem('hasSeenOnboarding');
+    if (hasSeen) {
       router.replace('/');
     } else {
       setIsLoading(false);
     }
   }, [router]);
+
+  const handleNext = () => {
+    if (isLastStep) {
+      localStorage.setItem('hasSeenOnboarding', 'true');
+      router.replace('/');
+    } else {
+      setStep(step + 1);
+    }
+  };
 
   // 스플래시 종료 핸들러
   const handleSplashFinish = () => {
@@ -52,15 +61,6 @@ export default function OnboardingPage() {
     setTimeout(() => {
       setShowSplash(false);
     }, 600);
-  };
-
-  const handleNext = () => {
-    if (isLastStep) {
-      localStorage.setItem('hasVisitedOnboarding', 'true'); // 방문 기록 저장
-      router.push('/');
-    } else {
-      setStep(step + 1);
-    }
   };
 
   const handleBack = (e: React.MouseEvent) => {
