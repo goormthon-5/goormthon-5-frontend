@@ -43,7 +43,7 @@ export default function GuestBookItem({
 
 const S = {
   card: {
-    width: '165px',
+    width: '100%',
     backgroundColor: '#FBFBFB',
     borderRadius: '8px',
     overflow: 'hidden',
@@ -57,8 +57,8 @@ const S = {
   },
   imageWrapper: {
     position: 'relative' as const,
-    width: '147px',
-    height: '147px',
+    width: 'calc(100% - 18px)',
+    aspectRatio: '1',
     overflow: 'hidden',
   },
   textWrapper: {
