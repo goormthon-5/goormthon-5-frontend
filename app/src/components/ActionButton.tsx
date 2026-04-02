@@ -3,18 +3,28 @@
 interface ActionButtonProps {
   label: string;
   showPlus?: boolean;
+  variant?: 'light' | 'dark';
   onClick?: () => void;
 }
 
 export default function ActionButton({
   label,
   showPlus = true,
+  variant = 'light',
   onClick,
 }: ActionButtonProps) {
+  const isDark = variant === 'dark';
+
   return (
-    <button type="button" style={styles.button} onClick={onClick}>
-      {showPlus && <span style={styles.plus}>+</span>}
-      <span style={styles.label}>{label}</span>
+    <button
+      type="button"
+      style={isDark ? styles.buttonDark : styles.button}
+      onClick={onClick}
+    >
+      {showPlus && (
+        <span style={isDark ? styles.plusDark : styles.plus}>+</span>
+      )}
+      <span style={isDark ? styles.labelDark : styles.label}>{label}</span>
     </button>
   );
 }
@@ -34,14 +44,40 @@ const styles = {
     cursor: 'pointer',
     fontFamily: 'Pretendard, sans-serif',
   },
+  buttonDark: {
+    display: 'flex',
+    width: '100%',
+    height: 'var(--dimension-600, 48px)',
+    padding: `0 var(--vapor-size-space-150)`,
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 'var(--vapor-size-space-050)',
+    borderRadius: 'var(--vapor-size-borderRadius-300, 8px)',
+    border: 'none',
+    backgroundColor: '#2B343B',
+    cursor: 'pointer',
+    fontFamily: 'Pretendard, sans-serif',
+  },
   plus: {
     color: 'var(--vapor-color-gray-900, #333)',
     fontSize: '18px',
     fontWeight: 400,
     lineHeight: 'normal',
   },
+  plusDark: {
+    color: '#fff',
+    fontSize: '18px',
+    fontWeight: 400,
+    lineHeight: 'normal',
+  },
   label: {
     color: 'var(--vapor-color-gray-900, #333)',
+    fontSize: '14px',
+    fontWeight: 500,
+    lineHeight: 'normal',
+  },
+  labelDark: {
+    color: '#fff',
     fontSize: '14px',
     fontWeight: 500,
     lineHeight: 'normal',

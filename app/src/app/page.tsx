@@ -39,7 +39,7 @@ export default function Home() {
           $css={{
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingBlock: '$150',
+            paddingBlock: '$250',
             paddingInline: '$000',
             width: '100%',
           }}
@@ -103,11 +103,9 @@ export default function Home() {
                 maxWidth: '350px',
                 height: '48px',
                 paddingInline: '$175',
-                paddingBlock: '$000',
-                backgroundColor: '#ffffff',
                 borderRadius: '8px',
                 border: '1px solid #E1E1E1',
-                boxSizing: 'border-box',
+                gap: '$100',
               }}
             >
               <Image src={IcSearch} alt="" width={18} height={18} />
@@ -219,7 +217,7 @@ export default function Home() {
                     label: t.label,
                     color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
                   }))}
-                  onClick={() => router.push(`/detail`)}
+                  onClick={() => router.push(`/reservation/detail/${s.id}`)}
                 />
               ))}
             </VStack>

@@ -1,0 +1,88 @@
+'use client';
+
+import { Box, Text, VStack } from '@vapor-ui/core';
+
+interface BottomActionBarProps {
+  label: string;
+  onClick: () => void;
+  buttonWidth?: string;
+  buttonHeight?: string;
+  labelFontSize?: string;
+  labelFontWeight?: number;
+}
+
+export default function BottomActionBar({
+  label,
+  onClick,
+  buttonWidth = '350px',
+  buttonHeight = '48px',
+  labelFontSize = '16px',
+  labelFontWeight = 500,
+}: BottomActionBarProps) {
+  return (
+    <VStack
+      style={{
+        alignItems: 'center',
+        position: 'fixed',
+        bottom: 0,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '100%',
+        maxWidth: '390px',
+        zIndex: 1000,
+      }}
+    >
+      <VStack
+        style={{
+          width: buttonWidth,
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <button
+          type="button"
+          onClick={onClick}
+          style={{
+            width: '100%',
+            height: buttonHeight,
+            borderRadius: '8px',
+            border: 'none',
+            backgroundColor: '#2B343B',
+            cursor: 'pointer',
+            padding: 0,
+          }}
+        >
+          <Text
+            style={{
+              display: 'block',
+              fontSize: labelFontSize,
+              fontWeight: labelFontWeight,
+              color: '#fff',
+              textAlign: 'center',
+              lineHeight: '100%',
+              margin: 0,
+            }}
+          >
+            {label}
+          </Text>
+        </button>
+      </VStack>
+
+      <VStack
+        style={{
+          width: '100%',
+          justifyContent: 'flex-end',
+          alignItems: 'center',
+          paddingBottom: 'var(--vapor-size-space-100)',
+        }}
+      >
+        <Box
+          style={{
+            height: '5px',
+            backgroundColor: '#fff',
+          }}
+        />
+      </VStack>
+    </VStack>
+  );
+}
