@@ -3,11 +3,12 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 import GuestBookItem from '@/components/GuestBookItem';
+import Spinner from '@/components/Spinner';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { accommodationApi } from '@/apis/accommodationApi';
 import IcBack from '@/assets/icons/back-icon.svg';
-import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 interface GuestbookPageProps {
   accommodationId: number;
@@ -17,108 +18,114 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
   const router = useRouter();
   const [guestbookList, setGuestbookList] = useState<any[]>([]);
   const [data, setData] = useState<any>(null);
-  const accStyle = getAccommodationStyle(accommodationId);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // 1. 숙소 상세 데이터 호출
-    accommodationApi.getById(accommodationId).then((res) => {
-      setData(res.data);
-    });
-
-    // 2. 방명록 리스트 호출
-    guestBookApi.getByAccommodation(accommodationId).then((res) => {
-      setGuestbookList(res.data);
-    });
+    setIsLoading(true);
+    Promise.allSettled([
+      accommodationApi.getById(accommodationId),
+      guestBookApi.getByAccommodation(accommodationId),
+    ])
+      .then((results) => {
+        const acc = results[0];
+        const gb = results[1];
+        if (acc.status === 'fulfilled') setData(acc.value.data);
+        if (gb.status === 'fulfilled') setGuestbookList(gb.value.data);
+      })
+      .finally(() => setIsLoading(false));
   }, [accommodationId]);
 
-  if (!data) return null;
-
   return (
-    <div style={S.container}>
-      {/* 상단 헤더 */}
-      <header style={S.header}>
-        <button onClick={() => router.back()} style={S.backButton}>
-          <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
-        </button>
-      </header>
+    <>
+      <Spinner loading={isLoading} />
 
-      {/* 상단 프로필 */}
-      <div style={S.profileSection}>
-        <div style={{ ...S.avatarWrapper, backgroundColor: accStyle.bgColor }}>
-          <Image
-            src={accStyle.houseImage}
-            alt="숙소 프로필"
-            width={100}
-            height={100}
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
-        <h1 style={S.profileName}>{data.name}</h1>
-      </div>
+      {!isLoading && data && (
+        <VStack
+          style={{ margin: '0 auto', paddingBottom: '120px' }}
+          $css={{
+            width: '100%',
+            maxWidth: '390px',
+            minHeight: '100vh',
+            backgroundColor: '#fff',
+            position: 'relative',
+          }}
+        >
+          <header style={{ padding: '16px 20px' }}>
+            <button
+              type="button"
+              onClick={() => router.back()}
+              style={styles.backButton}
+            >
+              <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
+            </button>
+          </header>
 
-      {/* 2열 그리드 리스트 */}
-      <div style={S.gridContainer}>
-        {guestbookList.map((item, index) => (
-          <GuestBookItem
-            key={
-              item.guestBookId ??
-              item.id ??
-              `guestbook-${accommodationId}-${index}`
-            }
-            imageUrl={item.imageUrl}
-            message={item.content || item.message}
-            index={index}
-          />
-        ))}
-      </div>
-    </div>
+          <VStack
+            style={{ marginBottom: '40px' }}
+            $css={{ alignItems: 'center', width: '100%' }}
+          >
+            <Box
+              style={{
+                position: 'relative',
+                width: '140px',
+                height: '140px',
+                marginBottom: '16px',
+                borderRadius: '50%',
+                backgroundColor: '#E6F4FF',
+                overflow: 'hidden',
+              }}
+            >
+              <Image
+                src={data.imageUrl || '/images/house-2.png'}
+                alt="숙소 프로필"
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </Box>
+            <Text
+              render={<h1 />}
+              style={{ margin: 0 }}
+              $css={{
+                fontSize: '18px',
+                fontWeight: 600,
+                color: '#121212',
+              }}
+            >
+              {data.name}
+            </Text>
+          </VStack>
+
+          <Box
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(2, 1fr)',
+              gap: '16px',
+              padding: '0 20px',
+            }}
+          >
+            {guestbookList.map((item, index) => (
+              <GuestBookItem
+                key={
+                  item.guestBookId ??
+                  item.id ??
+                  `guestbook-${accommodationId}-${index}`
+                }
+                imageUrl={item.imageUrl}
+                message={item.content || item.message}
+              />
+            ))}
+          </Box>
+        </VStack>
+      )}
+    </>
   );
 }
 
-const S = {
-  container: {
-    width: '100%',
-    maxWidth: '390px',
-    margin: '0 auto',
-    backgroundColor: '#fff',
-    minHeight: '100vh',
-    paddingBottom: '120px',
-    position: 'relative' as const,
-  },
-  header: { padding: '16px 20px' },
+const styles = {
   backButton: {
     background: 'none',
     border: 'none',
     cursor: 'pointer',
     padding: 0,
   },
-  profileSection: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    marginBottom: '40px',
-  },
-  avatarWrapper: {
-    width: '140px',
-    height: '140px',
-    borderRadius: '50%',
-    backgroundColor: '#E6F4FF',
-    marginBottom: '16px',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profileName: {
-    fontSize: '18px',
-    fontWeight: 600,
-    color: '#121212',
-    margin: 0,
-  },
-  gridContainer: {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(2, 1fr)',
-    gap: '16px',
-    padding: '0 20px',
-  },
-};
+} as const;
