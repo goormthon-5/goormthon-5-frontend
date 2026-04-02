@@ -3,8 +3,9 @@ import guestBook1 from '@/assets/images/guest-book-1.png';
 import guestBook2 from '@/assets/images/guest-book-2.png';
 import guestBook3 from '@/assets/images/guest-book-3.png';
 import guestBook4 from '@/assets/images/guest-book-4.png';
+import guestBook5 from '@/assets/images/guest-book-5.png';
 
-const DEFAULT_IMAGES = [guestBook1, guestBook2, guestBook3, guestBook4];
+const DEFAULT_IMAGES = [guestBook1, guestBook2, guestBook3, guestBook4, guestBook5];
 
 interface GuestBookItemProps {
   imageUrl?: string | null;
