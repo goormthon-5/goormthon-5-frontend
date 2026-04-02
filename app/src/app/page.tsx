@@ -74,8 +74,8 @@ export default function Home() {
               <span
                 style={{
                   ...S.tabText,
-                  fontWeight: idx === selectedIdx ? '700' : '500',
-                  color: idx === selectedIdx ? '#6DBFFF' : '#9CA3AF',
+                  fontWeight: '500',
+                  color: idx === selectedIdx ? '#6DBFFF' : '#555555',
                 }}
               >
                 {area.name}
@@ -156,7 +156,7 @@ const S = {
     lineHeight: '1.4',
     whiteSpace: 'pre-line' as const,
     margin: 0,
-    color: '#1F1F1F',
+    color: '#2B343B',
   },
   searchSection: {
     display: 'flex',
@@ -179,7 +179,6 @@ const S = {
     flex: 1,
     marginLeft: '8px',
     fontSize: '14.4px',
-    color: '#989898',
   },
   inputInner: {
     flex: 1,
@@ -187,7 +186,6 @@ const S = {
     border: 'none',
     outline: 'none',
     fontSize: '14.4px',
-    color: '#333',
     backgroundColor: 'transparent',
     marginLeft: '8px',
     display: 'flex',
@@ -208,7 +206,7 @@ const S = {
     position: 'relative' as const,
   },
   tabText: {
-    fontSize: '15px',
+    fontSize: '14px',
     transition: 'color 0.2s',
   },
   activeBar: {
