@@ -9,7 +9,7 @@ import ActionButton from '@/components/ActionButton';
 
 // 임시 더미데이터
 const DUMMY = {
-  imageUrl: '',
+  imageUrl: '/images/house-2.png',
   location: '성산읍 시흥리',
   name: '손맛 좋은 옥자 할망',
   rating: 4.9,
@@ -51,29 +51,51 @@ export default function DetailPage() {
             style={styles.backButton}
             onClick={() => router.back()}
           >
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 6L9 12L15 18"
-                stroke="#2B343B"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <Image
+              src="/icons/arrow.svg"
+              alt="뒤로가기"
+              width={24}
+              height={24}
+            />
           </button>
         </div>
+        <Image
+          src="/icons/sam-text.svg"
+          alt=""
+          width={90}
+          height={93}
+          style={{
+            position: 'absolute',
+            left: '27px',
+            top: '88px',
+            transform: 'rotate(14.39deg)',
+          }}
+        />
+        <Image
+          src="/icons/chun-text.svg"
+          alt=""
+          width={80}
+          height={93}
+          style={{
+            position: 'absolute',
+            right: '27px',
+            top: '120px',
+            transform: 'rotate(-10deg)',
+          }}
+        />
         {DUMMY.imageUrl && (
           <Image
             src={DUMMY.imageUrl}
             alt={DUMMY.name}
-            fill
-            style={{ objectFit: 'cover' }}
+            width={326}
+            height={235}
+            style={{
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              transform: 'translate(-50%, -45%)',
+              objectFit: 'contain',
+            }}
           />
         )}
       </div>
