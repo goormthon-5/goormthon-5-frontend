@@ -1,5 +1,6 @@
 'use client';
 
+import { HStack, Text, VStack } from '@vapor-ui/core';
 import RatingBadge from './RatingBadge';
 import CategoryTag from './CategoryTag';
 import HouseCard from './HouseCard';
@@ -26,51 +27,46 @@ export default function SamchonCard({
   onClick,
 }: SamchonCardProps) {
   return (
-    <div style={styles.card} onClick={onClick}>
+    <VStack
+      onClick={onClick}
+      $css={{ cursor: 'pointer', width: '100%', maxWidth: '350px' }}
+    >
       <HouseCard imageUrl={imageUrl} bgColor={bgColor} />
-      <div style={styles.content}>
-        <div style={styles.topRow}>
-          <span style={styles.location}>{location}</span>
+      <VStack
+        style={{
+          padding: '17px',
+          height: '113px',
+          gap: '5px',
+        }}
+        $css={{
+          border: '1px solid #E1E1E1',
+          borderRadius: '0 0 8px 8px',
+          overflow: 'hidden',
+        }}
+      >
+        <HStack
+          $css={{
+            width: '100%',
+            justifyContent: 'space-between',
+            alignItems: 'flex-start',
+          }}
+        >
+          <Text style={styles.location}>{location}</Text>
           <RatingBadge rating={rating} reviewCount={reviewCount} />
-        </div>
-        <h3 style={styles.name}>{name}</h3>
-        <div style={styles.tags}>
+        </HStack>
+        <Text style={styles.name}>{name}</Text>
+        <HStack style={{ gap: '6px' }}>
           {tags.map((tag) => (
             <CategoryTag key={tag.label} label={tag.label} color={tag.color} />
           ))}
-        </div>
-      </div>
-    </div>
+        </HStack>
+      </VStack>
+    </VStack>
   );
 }
 
 const styles = {
-  card: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    cursor: 'pointer',
-    width: '100%',
-    maxWidth: '350px',
-  },
-  content: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '5px',
-    padding: '17px',
-    height: '113px',
-    border: '1px solid #E1E1E1',
-    borderRadius: '0 0 8px 8px',
-    overflow: 'hidden',
-  },
-  topRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: '100%',
-  },
   location: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-050, 12px)',
     fontWeight: 500,
     lineHeight: 'var(--vapor-typography-lineHeight-050, 18px)',
@@ -78,17 +74,12 @@ const styles = {
     color: '#A1A1A1',
   },
   name: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-200, 18px)',
     fontWeight: 700,
     lineHeight: 'var(--vapor-typography-lineHeight-200, 26px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: 'var(--vapor-color-foreground-normal-200, #262626)',
-    margin: 0,
-  },
-  tags: {
-    display: 'flex',
-    gap: '6px',
+    marginBlock: 0,
+    marginInline: 0,
   },
 } as const;

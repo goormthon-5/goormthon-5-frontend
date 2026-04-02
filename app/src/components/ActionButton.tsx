@@ -1,5 +1,7 @@
 'use client';
 
+import { Button, Text } from '@vapor-ui/core';
+
 interface ActionButtonProps {
   label: string;
   showPlus?: boolean;
@@ -16,70 +18,67 @@ export default function ActionButton({
   const isDark = variant === 'dark';
 
   return (
-    <button
+    <Button
       type="button"
-      style={isDark ? styles.buttonDark : styles.button}
+      variant={isDark ? 'fill' : 'outline'}
+      colorPalette={isDark ? 'contrast' : 'secondary'}
+      size="xl"
       onClick={onClick}
+      $css={isDark ? styles.buttonDark : styles.buttonLight}
     >
       {showPlus && (
-        <span style={isDark ? styles.plusDark : styles.plus}>+</span>
+        <Text
+          render={<span />}
+          $css={{
+            fontSize: '18px',
+            fontWeight: 400,
+            lineHeight: 'normal',
+            color: isDark ? '#fff' : 'var(--vapor-color-gray-900, #333)',
+          }}
+        >
+          +
+        </Text>
       )}
-      <span style={isDark ? styles.labelDark : styles.label}>{label}</span>
-    </button>
+      <Text
+        render={<span />}
+        $css={{
+          fontSize: '14px',
+          fontWeight: 500,
+          lineHeight: 'normal',
+          color: isDark ? '#fff' : 'var(--vapor-color-gray-900, #333)',
+        }}
+      >
+        {label}
+      </Text>
+    </Button>
   );
 }
 
 const styles = {
-  button: {
-    display: 'flex',
+  buttonLight: {
     width: '100%',
     height: 'var(--dimension-600, 48px)',
-    padding: `0 var(--vapor-size-space-150)`,
+    paddingInline: '$150',
+    paddingBlock: '$000',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 'var(--vapor-size-space-050)',
-    borderRadius: 'var(--vapor-size-borderRadius-300, 8px)',
+    gap: '$050',
+    borderRadius: '$300',
     border: '1px solid #E1E1E1',
     backgroundColor: 'var(--vapor-color-background-normal, #fff)',
     cursor: 'pointer',
-    fontFamily: 'Pretendard, sans-serif',
   },
   buttonDark: {
-    display: 'flex',
     width: '100%',
     height: 'var(--dimension-600, 48px)',
-    padding: `0 var(--vapor-size-space-150)`,
+    paddingInline: '$150',
+    paddingBlock: '$000',
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 'var(--vapor-size-space-050)',
-    borderRadius: 'var(--vapor-size-borderRadius-300, 8px)',
+    gap: '$050',
+    borderRadius: '$300',
     border: 'none',
     backgroundColor: '#2B343B',
     cursor: 'pointer',
-    fontFamily: 'Pretendard, sans-serif',
-  },
-  plus: {
-    color: 'var(--vapor-color-gray-900, #333)',
-    fontSize: '18px',
-    fontWeight: 400,
-    lineHeight: 'normal',
-  },
-  plusDark: {
-    color: '#fff',
-    fontSize: '18px',
-    fontWeight: 400,
-    lineHeight: 'normal',
-  },
-  label: {
-    color: 'var(--vapor-color-gray-900, #333)',
-    fontSize: '14px',
-    fontWeight: 500,
-    lineHeight: 'normal',
-  },
-  labelDark: {
-    color: '#fff',
-    fontSize: '14px',
-    fontWeight: 500,
-    lineHeight: 'normal',
   },
 } as const;

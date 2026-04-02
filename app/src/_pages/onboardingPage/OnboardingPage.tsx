@@ -74,11 +74,11 @@ export default function OnboardingPage() {
   return (
     <VStack
       onClick={!isLastStep ? handleNext : undefined}
+      style={{ margin: '0 auto' }}
       $css={{
         width: '100%',
         maxWidth: '390px',
         height: '100vh',
-        margin: '0 auto',
         backgroundColor: '#fff',
         overflow: 'hidden',
         position: 'relative',
@@ -136,14 +136,14 @@ export default function OnboardingPage() {
               <VStack key={item.id} $css={{ minWidth: '100%', height: '100%' }}>
                 <main style={styles.main}>
                   <VStack
+                    style={{ paddingTop: '100px' }}
                     $css={{
                       flex: 1,
                       alignItems: 'center',
                       textAlign: 'center',
-                      paddingTop: '100px',
                     }}
                   >
-                    <Box $css={{ marginBottom: '42.47px' }}>
+                    <Box style={{ marginBottom: '42.47px' }}>
                       <Image
                         src={ImgLogo}
                         alt="로고"
@@ -154,21 +154,21 @@ export default function OnboardingPage() {
                     </Box>
                     <Text
                       render={<p />}
+                      style={{ marginBlock: 0, marginInline: 0 }}
                       $css={{
                         fontSize: '20px',
                         fontWeight: 700,
                         lineHeight: '1.4',
                         whiteSpace: 'pre-line',
                         color: '#2B343B',
-                        margin: 0,
                       }}
                     >
                       {item.title}
                     </Text>
                     <HStack
+                      style={{ marginTop: '46px' }}
                       $css={{
                         gap: '$100',
-                        marginTop: '46px',
                         alignItems: 'center',
                         justifyContent: 'center',
                       }}
@@ -201,7 +201,7 @@ export default function OnboardingPage() {
                       src={item.img}
                       alt="onboarding"
                       fill
-                      style={{ objectFit: 'cover', objectPosition: 'bottom' }}
+                      style={{ objectFit: 'contain', objectPosition: 'bottom' }}
                       priority
                     />
                   </Box>

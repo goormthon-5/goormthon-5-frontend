@@ -1,8 +1,9 @@
 'use client';
 
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { HStack, Text, VStack } from '@vapor-ui/core';
 
 const NAV_ITEMS = [
   { label: '홈', href: '/', icon: '/icons/home-icon.svg' },
@@ -16,35 +17,66 @@ export default function BottomNavBar() {
 
   return (
     <nav style={styles.nav}>
-      <div style={styles.wrapper}>
+      <HStack
+        $css={{
+          width: '100%',
+          height: '100%',
+          alignItems: 'center',
+          justifyContent: 'space-around',
+          backgroundColor: '#ffffff',
+          borderTop: '1px solid #F3F3F3',
+          boxSizing: 'border-box',
+        }}
+      >
         {NAV_ITEMS.map((item) => {
           const isActive = pathname === item.href;
           return (
-            <Link key={item.href} href={item.href} style={styles.item}>
-              <Image
-                src={item.icon}
-                alt={item.label}
-                width={23}
-                height={23}
-                style={{
-                  filter: isActive
-                    ? 'brightness(0)'
-                    : 'brightness(0) opacity(0.4)',
-                }}
-              />
-              <span
-                style={{
-                  ...styles.label,
-                  color: isActive ? '#111' : '#989898',
-                  fontWeight: isActive ? 600 : 400,
+            <Link
+              key={item.href}
+              href={item.href}
+              style={{ textDecoration: 'none' }}
+            >
+              <VStack
+                style={styles.itemPadding}
+                $css={{
+                  width: '80px',
+                  height: '80px',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
               >
-                {item.label}
-              </span>
+                <Image
+                  src={item.icon}
+                  alt={item.label}
+                  width={23}
+                  height={23}
+                  style={{
+                    filter: isActive
+                      ? 'brightness(0)'
+                      : 'brightness(0) opacity(0.4)',
+                  }}
+                />
+                <Text
+                  style={{
+                    color: isActive ? '#111' : '#989898',
+                    fontWeight: isActive ? 600 : 400,
+                  }}
+                  $css={{
+                    textAlign: 'center',
+                    fontFamily: 'Preendard, sans-serif',
+                    fontSize: '12px',
+                    fontStyle: 'normal',
+                    lineHeight: 'normal',
+                    textTransform: 'capitalize',
+                  }}
+                >
+                  {item.label}
+                </Text>
+              </VStack>
             </Link>
           );
         })}
-      </div>
+      </HStack>
     </nav>
   );
 }
@@ -55,45 +87,15 @@ const styles = {
     bottom: 0,
     left: '50%',
     transform: 'translateX(-50%)',
-
     width: '100%',
     maxWidth: '390px',
     height: '80px',
-
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-
-    backgroundColor: '#ffffff',
-    borderTop: '1px solid #F3F3F3',
     zIndex: 1000,
-    boxSizing: 'border-box' as const,
   },
-  wrapper: {
-    display: 'flex',
-    width: '100%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  item: {
-    display: 'flex',
-    width: '80px',
-    height: '80px',
-    padding:
-      'var(--vapor-size-space-250) 29px var(--vapor-size-space-225) 28px',
-    flexDirection: 'column' as const,
-    justifyContent: 'center',
-    alignItems: 'center',
-    textDecoration: 'none',
-  },
-  label: {
-    color: '#989898',
-    textAlign: 'center' as const,
-    fontFamily: 'Pretendard, sans-serif',
-    fontSize: '12px',
-    fontStyle: 'normal',
-    fontWeight: 400,
-    lineHeight: 'normal',
-    textTransform: 'capitalize' as const,
+  itemPadding: {
+    paddingTop: 'var(--vapor-size-space-250)',
+    paddingRight: '29px',
+    paddingBottom: 'var(--vapor-size-space-225)',
+    paddingLeft: '28px',
   },
 } as const;
