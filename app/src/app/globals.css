@@ -5,7 +5,6 @@
   max-width: 390px;
   margin: 0 auto;
   min-height: 100vh;
-  background-color: #e2fcfd; /* 임시 */
 }
 
 * {
@@ -16,6 +15,7 @@
 
 html,
 body {
+  background-color: #e1feff; /* 임시 */
   height: 100%;
   max-width: 100vw;
   overflow-x: hidden;

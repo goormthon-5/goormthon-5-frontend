@@ -1,6 +1,10 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
+import ImgLogo from '@/assets/images/main-logo.svg';
+import IcMenu from '@/assets/icons/menu-icon.svg';
+import IcBell from '@/assets/icons/bell-icon.svg';
 
 const AREAS = [
   { name: '전체' },
@@ -10,16 +14,16 @@ const AREAS = [
 
 export default function Home() {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const name: string = '지영';
+  const name: string = '조영찬';
 
   return (
     <div style={S.layout}>
       {/* 1. Header (HStack) */}
       <header style={S.header}>
-        <div style={S.logo}>LOGO</div>
+        <Image src={ImgLogo} alt="메인 로고" width={83.5} height={23.62} />
         <div style={S.headerIcons}>
-          <span>Menu</span>
-          <span>Bell</span>
+          <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
+          <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
         </div>
       </header>
 
@@ -65,6 +69,8 @@ export default function Home() {
           <h2 style={S.sectionTitle}>삼춘 목록</h2>
           <div style={S.cardPlaceholder}>Card 1</div>
           <div style={S.cardPlaceholder}>Card 2</div>
+          <div style={S.cardPlaceholder}>Card 3</div>
+          <div style={S.cardPlaceholder}>Card 4</div>
         </section>
       </main>
 
@@ -95,25 +101,25 @@ const S = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '16px 20px',
+    padding: '12px 20px',
   },
   logo: {
-    fontWeight: 'bold',
     fontSize: '18px',
   },
   headerIcons: {
     display: 'flex',
-    gap: '16px',
+    gap: '7px',
   },
   main: {
     display: 'flex',
     flexDirection: 'column' as const,
-    padding: '24px 20px',
-    gap: '32px',
+    padding: '20px',
+    gap: '26px',
   },
   welcomeSection: {
     display: 'flex',
     flexDirection: 'column' as const,
+    marginBottom: '5px',
   },
   welcomeText: {
     fontSize: '24px',
@@ -129,10 +135,9 @@ const S = {
   },
   inputBox: {
     padding: '14px',
-    border: '1px solid #E5E7EB',
-    borderRadius: '12px',
-    color: '#9CA3AF',
-    fontSize: '15px',
+    border: '1px solid #E1E1E1',
+    color: '#989898',
+    fontSize: '14.4px',
   },
   tabContainer: {
     display: 'flex',
@@ -145,11 +150,12 @@ const S = {
     flexDirection: 'column' as const,
     alignItems: 'center',
     cursor: 'pointer',
-    paddingBottom: '10px',
+    paddingBottom: '5px',
     position: 'relative' as const,
   },
   tabText: {
-    fontSize: '16px',
+    fontSize: '14px',
+    fontWeight: '500',
     transition: 'color 0.2s',
   },
   activeBar: {
@@ -163,16 +169,17 @@ const S = {
   listSection: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '20px',
-    paddingBottom: '80px', // Bottom Nav 공간 확보
+    gap: '17px',
+    paddingBottom: '80px',
   },
   sectionTitle: {
     fontSize: '18px',
     fontWeight: '700',
-    margin: 0,
+    color: '#1F1F1F',
+    marginBottom: '4px',
   },
   cardPlaceholder: {
-    height: '200px',
+    height: '254px',
     backgroundColor: '#F9FAFB',
     borderRadius: '16px',
     display: 'flex',
@@ -184,7 +191,7 @@ const S = {
     position: 'fixed' as const,
     bottom: 0,
     width: '100%',
-    maxWidth: 'inherit', // Container가 있을 경우 대비
+    maxWidth: 'inherit',
     display: 'flex',
     justifyContent: 'space-around',
     padding: '16px 0 32px 0',
