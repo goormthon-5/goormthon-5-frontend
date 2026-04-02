@@ -7,6 +7,7 @@ import GuestBookItem from '@/components/GuestBookItem';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { accommodationApi } from '@/apis/accommodationApi';
 import IcBack from '@/assets/icons/back-icon.svg';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 interface GuestbookPageProps {
   accommodationId: number;
@@ -16,6 +17,7 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
   const router = useRouter();
   const [guestbookList, setGuestbookList] = useState<any[]>([]);
   const [data, setData] = useState<any>(null);
+  const accStyle = getAccommodationStyle(accommodationId);
 
   useEffect(() => {
     // 1. 숙소 상세 데이터 호출
@@ -42,12 +44,13 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
 
       {/* 상단 프로필 */}
       <div style={S.profileSection}>
-        <div style={S.avatarWrapper}>
+        <div style={{ ...S.avatarWrapper, backgroundColor: accStyle.bgColor }}>
           <Image
-            src={data.imageUrl || '/images/house-2.png'}
+            src={accStyle.houseImage}
             alt="숙소 프로필"
-            fill
-            style={{ objectFit: 'cover' }}
+            width={100}
+            height={100}
+            style={{ objectFit: 'contain' }}
           />
         </div>
         <h1 style={S.profileName}>{data.name}</h1>
@@ -64,6 +67,7 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
             }
             imageUrl={item.imageUrl}
             message={item.content || item.message}
+            index={index}
           />
         ))}
       </div>
@@ -95,13 +99,15 @@ const S = {
     marginBottom: '40px',
   },
   avatarWrapper: {
-    position: 'relative' as const,
     width: '140px',
     height: '140px',
     borderRadius: '50%',
     backgroundColor: '#E6F4FF',
     marginBottom: '16px',
     overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   profileName: {
     fontSize: '18px',
