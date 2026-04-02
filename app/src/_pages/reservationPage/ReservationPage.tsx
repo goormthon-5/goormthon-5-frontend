@@ -11,7 +11,7 @@ import Image from 'next/image';
 // 임시 더미데이터
 const DUMMY_RESERVATIONS = [
   {
-    imageUrl: '/images/house-1.png',
+    imageUrl: '/images/house-2.png',
     location: '성산읍 시흥리',
     name: '손맛 좋은 옥자 할망',
     rating: 4.9,
@@ -26,22 +26,6 @@ export default function ReservationPage() {
 
   return (
     <div style={styles.layout}>
-      {/* 뒤로가기 */}
-      <div style={styles.header}>
-        <button
-          type="button"
-          style={styles.backButton}
-          onClick={() => router.back()}
-        >
-          <Image
-              src="/icons/arrow.svg"
-              alt="뒤로가기"
-              width={24}
-              height={24}
-            />
-        </button>
-      </div>
-
       {/* 제목 */}
       <h1 style={styles.title}>나의 예약 내역</h1>
 
@@ -118,21 +102,6 @@ const styles = {
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#fff',
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 16px',
-    marginTop: '14px',
-    overflow: 'hidden',
-  },
-  backButton: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
   },
   title: {
     fontFamily:
