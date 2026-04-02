@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "/images/house-1.png",
+    "bgColor": "#E0F4FF",
+    "location": "성산읍 시흥리",
+    "name": "손맛 좋은 옥자 할망",
+    "rating": 4.9,
+    "reviewCount": 47,
+    "description": "성산일출봉이 내다보이는 돌담집에서, 40년 넘게 손수 담근 된장과 직접 키운 채소로 아침밥을 차려드립니다. 할망의 밥 한 그릇에 담긴 정성이 여행의 따뜻한 추억이 될 거예요.",
+    "tags": [
+      { "label": "식사", "color": "blue" },
+      { "label": "감귤 텃밭 체험", "color": "blue" },
+      { "label": "해녀 체험", "color": "blue" }
+    ],
+    "messages": [
+      "할망, 된장찌개 잊을 수가 없어요. 꼭 다시 올게요!",
+      "돌담길 걷다가 할망이랑 사진 찍은 거 보물이에요."
+    ],
+    "area": "성산·구좌"
+  },
+  {
+    "id": 2,
+    "imageUrl": "/images/house-2.png",
+    "bgColor": "#FFC061",
+    "location": "남원읍 위미리",
+    "name": "올레 1코스 정원사 인태 삼춘",
+    "rating": 3.9,
+    "reviewCount": 12,
+    "description": "올레길 1코스 옆 아늑한 정원에서, 제주 토종 꽃과 나무 이야기를 들려드립니다. 직접 가꾼 정원을 걸으며 제주의 자연을 느껴보세요.",
+    "tags": [
+      { "label": "동백꽃 산책", "color": "orange" }
+    ],
+    "messages": [],
+    "area": "서귀포·남원"
+  },
+  {
+    "id": 3,
+    "imageUrl": "/images/house-3.png",
+    "bgColor": "#D2FAE8",
+    "location": "구좌읍 세화리",
+    "name": "바닷가 뷰 순자 할멈",
+    "rating": 5.0,
+    "reviewCount": 20,
+    "description": "세화 바다가 한눈에 보이는 돌담집에서, 갓 잡은 해산물로 만든 뚝배기를 대접합니다. 파도 소리와 함께하는 식사를 즐겨보세요.",
+    "tags": [
+      { "label": "바닷가 투어", "color": "green" }
+    ],
+    "messages": [],
+    "area": "성산·구좌"
+  }
+]

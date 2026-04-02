@@ -7,19 +7,7 @@ import ActionButton from '@/components/ActionButton';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
-
-// 임시 더미데이터
-const DUMMY_RESERVATIONS = [
-  {
-    imageUrl: '/images/house-1.png',
-    location: '성산읍 시흥리',
-    name: '손맛 좋은 옥자 할망',
-    rating: 4.9,
-    reviewCount: 47,
-    tag: { label: '해녀 출신', color: TAG_COLORS.blue },
-    date: '2026.02.10 -2026.02.12',
-  },
-];
+import reservations from '@/mocks/reservations.json';
 
 export default function ReservationPage() {
   const router = useRouter();
@@ -47,7 +35,7 @@ export default function ReservationPage() {
 
       {/* 예약 카드 목록 */}
       <div style={styles.cardList}>
-        {DUMMY_RESERVATIONS.map((item, idx) => (
+        {reservations.map((item, idx) => (
           <div key={idx} style={styles.card}>
             {/* 카드 이미지 */}
             <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
@@ -62,7 +50,7 @@ export default function ReservationPage() {
               </div>
               <h2 style={styles.cardName}>{item.name}</h2>
               <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                <CategoryTag label={item.tag.label} color={item.tag.color} />
+                <CategoryTag label={item.tag.label} color={TAG_COLORS[item.tag.color as keyof typeof TAG_COLORS]} />
               </div>
               <div style={styles.dateRow}>
                 <Image
@@ -71,7 +59,7 @@ export default function ReservationPage() {
                   width={12}
                   height={13}
                 />
-                <span style={styles.dateText}>{item.date}</span>
+                <span style={styles.dateText}>{item.startDate} -{item.endDate}</span>
               </div>
             </div>
           </div>
