@@ -53,3 +53,8 @@ a {
   color: inherit;
   text-decoration: none;
 }
+
+input::placeholder {
+  color: #989898;
+  opacity: 1;
+}

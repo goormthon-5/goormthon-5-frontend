@@ -7,29 +7,12 @@ import ActionButton from '@/components/ActionButton';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
-import reservations from '@/mocks/reservations.json';
 
 export default function ReservationPage() {
   const router = useRouter();
 
   return (
     <div style={styles.layout}>
-      {/* 뒤로가기 */}
-      <div style={styles.header}>
-        <button
-          type="button"
-          style={styles.backButton}
-          onClick={() => router.back()}
-        >
-          <Image
-              src="/icons/arrow.svg"
-              alt="뒤로가기"
-              width={24}
-              height={24}
-            />
-        </button>
-      </div>
-
       {/* 제목 */}
       <h1 style={styles.title}>나의 예약 내역</h1>
 
@@ -82,21 +65,6 @@ const styles = {
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#fff',
-  },
-  header: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 16px',
-    marginTop: '14px',
-    overflow: 'hidden',
-  },
-  backButton: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '10px',
-    background: 'none',
-    border: 'none',
-    cursor: 'pointer',
   },
   title: {
     fontFamily:

@@ -43,11 +43,7 @@ export default function DetailPage() {
             />
           </button>
         </div>
-        <HouseCard
-          imageUrl={DUMMY.imageUrl}
-          bgColor="#E0F4FF"
-          size="detail"
-        />
+        <HouseCard imageUrl={DUMMY.imageUrl} bgColor="#E0F4FF" size="detail" />
       </div>
 
       {/* 정보 영역 */}
@@ -56,10 +52,7 @@ export default function DetailPage() {
         <div style={styles.infoBlock}>
           <span style={styles.location}>{DUMMY.location}</span>
           <h1 style={styles.name}>{DUMMY.name}</h1>
-          <RatingBadge
-            rating={DUMMY.rating}
-            reviewCount={DUMMY.reviewCount}
-          />
+          <RatingBadge rating={DUMMY.rating} reviewCount={DUMMY.reviewCount} />
         </div>
 
         {/* 소개 */}
@@ -171,7 +164,7 @@ const styles = {
   // 컨텐츠
   contentSection: {
     display: 'flex',
-    width: '350px',
+    width: '100%',
     flexDirection: 'column' as const,
     alignItems: 'flex-start',
     gap: '30px',

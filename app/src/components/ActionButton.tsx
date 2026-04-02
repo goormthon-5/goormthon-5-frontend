@@ -28,7 +28,7 @@ const styles = {
     justifyContent: 'center',
     alignItems: 'center',
     gap: 'var(--space-100, 4px)',
-    borderRadius: 'var(--vapor-size-borderRadius-300, 12px)',
+    borderRadius: 'var(--vapor-size-borderRadius-300, 8px)',
     border: '1px solid #E1E1E1',
     backgroundColor: 'var(--vapor-color-background-normal, #fff)',
     cursor: 'pointer',
