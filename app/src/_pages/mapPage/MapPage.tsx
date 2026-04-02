@@ -169,6 +169,9 @@ export default function MapPage() {
             if (!e.target.value.trim()) {
               setSheetMode('hidden');
               setSelectedId(null);
+            } else {
+              setSelectedId(null);
+              setSheetMode('list');
             }
           }}
           onKeyDown={handleSearch}
@@ -197,7 +200,7 @@ export default function MapPage() {
       )}
 
       {/* 오버레이 */}
-      {sheetMode === 'detail' && (
+      {sheetMode !== 'hidden' && (
         <div
           style={styles.overlay}
           onClick={() => {
@@ -216,14 +219,15 @@ export default function MapPage() {
             sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
         }}
       >
-        <div
-          style={styles.handleBar}
-          onClick={() => {
-            setSheetMode('hidden');
-            setSelectedId(null);
-          }}
-        >
-          <div style={styles.handle} />
+        <div style={styles.handleBar}>
+          <div
+            style={styles.handle}
+            onClick={() => {
+              setSheetMode('hidden');
+              setSelectedId(null);
+              setSearchQuery('');
+            }}
+          />
         </div>
 
         {/* 검색 결과 리스트 */}
@@ -424,8 +428,9 @@ const styles = {
   },
   resultCard: {
     display: 'flex',
+    flexDirection: 'row' as const,
     position: 'relative' as const,
-    height: '103px',
+    minHeight: '103px',
     border: '1px solid #E1E1E1',
     borderRadius: '8px',
     overflow: 'hidden',
@@ -433,37 +438,37 @@ const styles = {
     backgroundColor: '#fff',
   },
   resultImage: {
-    width: '132px',
-    height: '103px',
+    width: '120px',
+    minHeight: '103px',
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     overflow: 'hidden',
     borderRadius: '8px 0 0 8px',
-    borderRight: '1px solid #E1E1E1',
   },
   resultInfo: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '7px',
-    padding: '16px 12px',
+    gap: '6px',
+    padding: '14px 12px',
     flex: 1,
+    minWidth: 0,
     overflow: 'hidden',
   },
   resultLocation: {
     fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '9.72px',
+    fontSize: '12px',
     fontWeight: 500,
-    lineHeight: '14.58px',
+    lineHeight: '18px',
     color: '#A1A1A1',
   },
   resultName: {
     fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '14.58px',
+    fontSize: '15px',
     fontWeight: 700,
-    lineHeight: '21.06px',
-    letterSpacing: '-0.081px',
+    lineHeight: '22px',
+    letterSpacing: '-0.08px',
     color: '#262626',
   },
   starButton: {
