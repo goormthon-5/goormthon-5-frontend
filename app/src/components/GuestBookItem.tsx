@@ -9,6 +9,7 @@ export default function GuestBookItem({
   imageUrl,
   message,
 }: GuestBookItemProps) {
+  // 기본 이미지
   const displayImg =
     imageUrl && imageUrl.trim() !== '' ? imageUrl : '/images/default-img.png';
 
@@ -22,6 +23,7 @@ export default function GuestBookItem({
           style={{ objectFit: 'cover' }}
         />
       </div>
+
       <div style={S.textWrapper}>
         <p style={S.message}>{message}</p>
       </div>
@@ -31,33 +33,38 @@ export default function GuestBookItem({
 
 const S = {
   card: {
+    width: '165px',
+    backgroundColor: '#FBFBFB',
+    borderRadius: '8px',
+    overflow: 'hidden',
     display: 'flex',
     flexDirection: 'column' as const,
-    backgroundColor: '#FBFBFB',
-    borderRadius: '16px',
-    overflow: 'hidden',
+    alignItems: 'center',
+    paddingTop: '9px',
+    paddingBottom: '12px',
+    boxSizing: 'border-box' as const,
     border: '1px solid #F1F1F1',
   },
   imageWrapper: {
     position: 'relative' as const,
-    width: '100%',
-    aspectRatio: '1 / 1',
-    backgroundColor: '#f5f5f5',
+    width: '147px',
+    height: '147px',
+    overflow: 'hidden',
   },
   textWrapper: {
-    padding: '14px 12px',
+    width: '100%',
+    padding: '10px 9px 0 9px',
+    boxSizing: 'border-box' as const,
     textAlign: 'center' as const,
-    minHeight: '54px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   message: {
-    fontSize: '13px',
-    fontWeight: 600,
-    lineHeight: '1.5',
-    color: '#333',
+    fontFamily: '"BM HANNA 11yrs old", "BMHANNA11yrsold", sans-serif',
+    fontSize: '11px',
+    fontWeight: 400,
+    lineHeight: '1.4',
+    color: '#262626',
     margin: 0,
     wordBreak: 'keep-all' as const,
+    whiteSpace: 'pre-line' as const,
   },
 };

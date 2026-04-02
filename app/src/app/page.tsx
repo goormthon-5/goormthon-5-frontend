@@ -102,7 +102,6 @@ export default function Home() {
         >
           <VStack $css={{ marginBottom: '5px', width: '100%' }}>
             <Text
-              render={<h1 />}
               typography="heading3"
               $css={{
                 color: '#2B343B',
