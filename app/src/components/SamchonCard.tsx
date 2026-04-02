@@ -1,11 +1,12 @@
 'use client';
 
-import Image from 'next/image';
 import RatingBadge from './RatingBadge';
 import CategoryTag from './CategoryTag';
+import HouseCard from './HouseCard';
 
 interface SamchonCardProps {
   imageUrl: string;
+  bgColor?: string;
   location: string;
   name: string;
   rating: number;
@@ -16,6 +17,7 @@ interface SamchonCardProps {
 
 export default function SamchonCard({
   imageUrl,
+  bgColor = '#E0F4FF',
   location,
   name,
   rating,
@@ -25,9 +27,7 @@ export default function SamchonCard({
 }: SamchonCardProps) {
   return (
     <div style={styles.card} onClick={onClick}>
-      <div style={styles.imageWrapper}>
-        <Image src={imageUrl} alt={name} fill style={{ objectFit: 'cover' }} />
-      </div>
+      <HouseCard imageUrl={imageUrl} bgColor={bgColor} />
       <div style={styles.content}>
         <div style={styles.topRow}>
           <span style={styles.location}>{location}</span>
@@ -48,49 +48,46 @@ const styles = {
   card: {
     display: 'flex',
     flexDirection: 'column' as const,
-    borderRadius: '8px',
-    border: '1px solid #E1E1E1',
-    overflow: 'hidden',
     cursor: 'pointer',
-    backgroundColor: '#fff',
-  },
-  imageWrapper: {
-    position: 'relative' as const,
-    width: '100%',
-    height: '141px',
-    backgroundColor: '#DCF4FF',
+    width: '350px',
   },
   content: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '4px',
-    padding: '12px 16px 16px',
+    gap: '5px',
+    padding: '17px',
+    height: '113px',
+    border: '1px solid #E1E1E1',
+    borderRadius: '0 0 8px 8px',
+    overflow: 'hidden',
   },
   topRow: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'flex-start',
+    width: '312px',
   },
   location: {
-    color: '#A1A1A1',
-    fontFamily: 'var(--vapor-typography-fontFamily-sans)',
-    fontSize: 'var(--vapor-typography-fontSize-050)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: 'var(--vapor-typography-fontSize-050, 12px)',
     fontWeight: 500,
-    lineHeight: 'var(--vapor-typography-lineHeight-050)',
-    letterSpacing: 'var(--vapor-typography-letterSpacing-000)',
+    lineHeight: 'var(--vapor-typography-lineHeight-050, 18px)',
+    letterSpacing: 'var(--vapor-typography-letterSpacing-000, 0px)',
+    color: '#A1A1A1',
   },
   name: {
-    color: 'var(--vapor-color-foreground-normal-200)',
-    fontFamily: 'var(--vapor-typography-fontFamily-sans)',
-    fontSize: 'var(--vapor-typography-fontSize-200)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: 'var(--vapor-typography-fontSize-200, 18px)',
     fontWeight: 700,
-    lineHeight: 'var(--vapor-typography-lineHeight-200)',
-    letterSpacing: 'var(--vapor-typography-letterSpacing-100)',
+    lineHeight: 'var(--vapor-typography-lineHeight-200, 26px)',
+    letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
+    color: 'var(--vapor-color-foreground-normal-200, #262626)',
     margin: 0,
   },
   tags: {
     display: 'flex',
     gap: '6px',
-    marginTop: '4px',
   },
 } as const;
