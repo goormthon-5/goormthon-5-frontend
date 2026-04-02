@@ -37,10 +37,7 @@ export default function ReservationCompletePage() {
 
       {/* 하단 완료하기 */}
       <div style={styles.bottomBar}>
-        <div
-          style={styles.completeBar}
-          onClick={() => router.push('/')}
-        >
+        <div style={styles.completeBar} onClick={() => router.push('/')}>
           <span style={styles.completeText}>완료하기</span>
         </div>
         <div style={styles.homeBar}>
@@ -141,7 +138,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'flex-end',
-    paddingBottom: '8px',
+    paddingBottom: 'var(--vapor-size-space-100)',
   },
   homeIndicator: {
     width: '134px',
