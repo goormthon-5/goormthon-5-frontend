@@ -227,7 +227,10 @@ export default function OnboardingPage() {
                     </HStack>
                   </VStack>
                 </main>
-                <footer style={styles.footer}>
+                <footer style={{
+                  ...styles.footer,
+                  ...(item.id === 1 ? { marginTop: '30px' } : {}),
+                }}>
                   <Box
                     $css={{
                       width: '100%',
