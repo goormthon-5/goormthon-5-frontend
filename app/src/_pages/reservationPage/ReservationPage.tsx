@@ -92,7 +92,8 @@ const styles = {
   },
   cardImage: {
     position: 'relative' as const,
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px',
     height: '141px',
     backgroundColor: '#E0F4FF',
     borderRadius: '8px 8px 0 0',
@@ -106,9 +107,11 @@ const styles = {
     flexDirection: 'column' as const,
     gap: '11px',
     padding: '16px 17px',
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px',
     height: '153px',
     border: '1px solid #E1E1E1',
+    boxSizing: 'border-box' as const,
     borderRadius: '0 0 8px 8px',
     overflow: 'hidden',
   },
@@ -116,7 +119,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    width: '312px',
+    width: '100%',
   },
   cardLocation: {
     fontFamily:
