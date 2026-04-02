@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { IconButton } from '@vapor-ui/core';
+import { HStack, IconButton, Text, TextInput, VStack } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
 import { TAG_COLORS } from '@/components/CategoryTag';
 import samchons from '@/mocks/samchons.json';
@@ -20,99 +20,214 @@ export default function Home() {
   const name: string = '조영찬';
 
   return (
-    <div style={S.layout}>
-      {/* 1. Header */}
-      <header style={S.header}>
-        <div style={{ width: 84, height: 24, position: 'relative' }}>
-          <Image
-            src={ImgLogo}
-            alt="메인 로고"
-            fill
-            style={{ objectFit: 'contain' }}
-          />
-        </div>
+    <VStack
+      $css={{
+        width: '100%',
+        maxWidth: '390px',
+        margin: '0 auto',
+        minHeight: '100vh',
+        paddingBlock: '$250',
+        paddingInline: '$250',
+        boxSizing: 'border-box',
+        backgroundColor: '#ffffff',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      }}
+    >
+      <header>
+        <HStack
+          $css={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingBlock: '$150',
+            paddingInline: '$000',
+            width: '100%',
+          }}
+        >
+          <VStack
+            $css={{
+              width: '84px',
+              height: '24px',
+              position: 'relative',
+              flexShrink: 0,
+            }}
+          >
+            <Image
+              src={ImgLogo}
+              alt="메인 로고"
+              fill
+              style={{ objectFit: 'contain' }}
+            />
+          </VStack>
 
-        <div style={S.headerIcons}>
-          <IconButton aria-label="메뉴 열기" size="md" variant="ghost">
-            <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
-          </IconButton>
-          <IconButton aria-label="알림" size="md" variant="ghost">
-            <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
-          </IconButton>
-        </div>
+          <HStack $css={{ gap: '7px', alignItems: 'center' }}>
+            <IconButton aria-label="메뉴 열기" size="md" variant="ghost">
+              <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
+            </IconButton>
+            <IconButton aria-label="알림" size="md" variant="ghost">
+              <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
+            </IconButton>
+          </HStack>
+        </HStack>
       </header>
 
-      {/* 2. Main Body */}
-      <main style={S.main}>
-        {/* Welcome Section */}
-        <section style={S.welcomeSection}>
-          <h1 style={S.welcomeText}>
-            {`안녕하세요! ${name}님\n같이 삼춘네로 가볼까요?`}
-          </h1>
-        </section>
-
-        {/* Search Section */}
-        <section style={S.searchSection}>
-          {/* 첫 번째: 캘린더 */}
-          <DataSearch />
-
-          {/* 두 번째: 검색 */}
-          <div style={S.inputWrapper}>
-            <Image src={IcSearch} alt="검색" width={18} height={18} />
-            <input
-              type="text"
-              placeholder="마을 이름, 어르신 이름으로 검색"
-              style={S.inputInner}
-            />
-          </div>
-        </section>
-
-        {/* Category Tabs */}
-        <nav style={S.tabContainer}>
-          {AREAS.map((area, idx) => (
-            <div
-              key={area.name}
-              onClick={() => setSelectedIdx(idx)}
-              style={S.tabItem}
+      <main>
+        <VStack
+          $css={{
+            gap: '26px',
+            width: '100%',
+          }}
+        >
+          <VStack $css={{ marginBottom: '5px', width: '100%' }}>
+            <Text
+              render={<h1 />}
+              typography="heading3"
+              $css={{
+                color: '#2B343B',
+                whiteSpace: 'pre-line',
+                margin: 0,
+                lineHeight: 1.4,
+              }}
             >
-              <span
-                style={{
-                  ...S.tabText,
-                  fontWeight: '500',
-                  color: idx === selectedIdx ? '#6DBFFF' : '#555555',
+              {`안녕하세요! ${name}님\n같이 삼춘네로 가볼까요?`}
+            </Text>
+          </VStack>
+
+          <VStack $css={{ gap: '10px', width: '100%' }}>
+            <DataSearch />
+
+            <HStack
+              $css={{
+                alignItems: 'center',
+                width: '100%',
+                maxWidth: '350px',
+                height: '48px',
+                paddingInline: '$175',
+                paddingBlock: '$000',
+                backgroundColor: '#ffffff',
+                borderRadius: '8px',
+                border: '1px solid #E1E1E1',
+                boxSizing: 'border-box',
+              }}
+            >
+              <Image src={IcSearch} alt="" width={18} height={18} />
+              <TextInput
+                type="search"
+                placeholder="마을 이름, 어르신 이름으로 검색"
+                aria-label="마을 이름, 어르신 이름으로 검색"
+                $css={{
+                  flex: 1,
+                  minWidth: 0,
+                  height: '100%',
+                  alignSelf: 'stretch',
+                  border: 'none',
+                  borderRadius: 0,
+                  boxShadow: 'none',
+                  backgroundColor: 'transparent',
+                  paddingBlock: '$000',
+                  paddingInline: '$000',
+                  marginLeft: '8px',
+                  fontSize: '14.4px',
+                  outline: 'none',
+                }}
+              />
+            </HStack>
+          </VStack>
+
+          <nav>
+            <HStack
+              $css={{
+                gap: '24px',
+                borderBottom: '1px solid #F3F4F6',
+                position: 'relative',
+                width: '100%',
+              }}
+            >
+              {AREAS.map((area, idx) => (
+                <VStack
+                  key={area.name}
+                  role="button"
+                  tabIndex={0}
+                  onClick={() => setSelectedIdx(idx)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setSelectedIdx(idx);
+                    }
+                  }}
+                  $css={{
+                    alignItems: 'center',
+                    cursor: 'pointer',
+                    paddingBlock: '$100',
+                    paddingInline: '$050',
+                    position: 'relative',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Text
+                    typography="subtitle1"
+                    $css={{
+                      fontWeight: 500,
+                      color: idx === selectedIdx ? '#6DBFFF' : '#555555',
+                      transition: 'color 0.2s',
+                    }}
+                  >
+                    {area.name}
+                  </Text>
+                  {idx === selectedIdx ? (
+                    <VStack
+                      $css={{
+                        height: '2px',
+                        backgroundColor: '#6DBFFF',
+                        width: '100%',
+                        position: 'absolute',
+                        bottom: '-1px',
+                        zIndex: 1,
+                      }}
+                    />
+                  ) : null}
+                </VStack>
+              ))}
+            </HStack>
+          </nav>
+
+          <section>
+            <VStack
+              $css={{ gap: '17px', paddingBottom: '80px', width: '100%' }}
+            >
+              <Text
+                render={<h2 />}
+                typography="heading5"
+                $css={{
+                  color: '#1F1F1F',
+                  margin: '0 0 4px 0',
                 }}
               >
-                {area.name}
-              </span>
-              {idx === selectedIdx && <div style={S.activeBar} />}
-            </div>
-          ))}
-        </nav>
+                삼춘 목록
+              </Text>
 
-        {/* List Section */}
-        <section style={S.listSection}>
-          <h2 style={S.sectionTitle}>삼춘 목록</h2>
-
-          {samchons.map((s) => (
-            <SamchonCard
-              key={s.id}
-              imageUrl={s.imageUrl}
-              bgColor={s.bgColor}
-              location={s.location}
-              name={s.name}
-              rating={s.rating}
-              reviewCount={s.reviewCount}
-              tags={s.tags.map((t) => ({
-                label: t.label,
-                color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
-              }))}
-              onClick={() => router.push(`/detail`)}
-            />
-          ))}
-        </section>
+              {samchons.map((s) => (
+                <SamchonCard
+                  key={s.id}
+                  imageUrl={s.imageUrl}
+                  bgColor={s.bgColor}
+                  location={s.location}
+                  name={s.name}
+                  rating={s.rating}
+                  reviewCount={s.reviewCount}
+                  tags={s.tags.map((t) => ({
+                    label: t.label,
+                    color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
+                  }))}
+                  onClick={() => router.push(`/detail`)}
+                />
+              ))}
+            </VStack>
+          </section>
+        </VStack>
       </main>
       <BottomNavBar />
-    </div>
+    </VStack>
   );
 }
 
@@ -121,130 +236,3 @@ const AREAS = [
   { name: '성산·구좌' },
   { name: '서귀포·남원' },
 ];
-
-/**
- * 스타일 정의 (S)
- */
-const S = {
-  layout: {
-    display: 'flex',
-    maxWidth: '390px',
-    margin: '0 auto',
-    flexDirection: 'column' as const,
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#ffffff',
-    fontFamily:
-      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    padding: '12px 20px',
-  },
-  headerIcons: {
-    display: 'flex',
-    gap: '7px',
-  },
-  main: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    padding: '20px',
-    gap: '26px',
-  },
-  welcomeSection: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    marginBottom: '5px',
-  },
-  welcomeText: {
-    fontSize: '24px',
-    fontWeight: '700',
-    lineHeight: '1.4',
-    whiteSpace: 'pre-line' as const,
-    margin: 0,
-    color: '#2B343B',
-  },
-  searchSection: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '10px',
-  },
-  inputWrapper: {
-    display: 'flex',
-    alignItems: 'center',
-    width: '100%',
-    maxWidth: '350px',
-    height: '48px',
-    padding: '0 14px',
-    backgroundColor: '#ffffff',
-    borderRadius: '8px',
-    border: '1px solid #E1E1E1',
-    boxSizing: 'border-box' as const,
-  },
-  inputPlaceholder: {
-    flex: 1,
-    marginLeft: '8px',
-    fontSize: '14.4px',
-  },
-  inputInner: {
-    flex: 1,
-    height: '100%',
-    border: 'none',
-    outline: 'none',
-    fontSize: '14.4px',
-    backgroundColor: 'transparent',
-    marginLeft: '8px',
-    display: 'flex',
-    alignItems: 'center',
-  },
-  tabContainer: {
-    display: 'flex',
-    gap: '24px',
-    borderBottom: '1px solid #F3F4F6',
-    position: 'relative' as const,
-  },
-  tabItem: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    alignItems: 'center',
-    cursor: 'pointer',
-    padding: '8px 4px',
-    position: 'relative' as const,
-  },
-  tabText: {
-    fontSize: '14px',
-    transition: 'color 0.2s',
-  },
-  activeBar: {
-    height: '2px',
-    backgroundColor: '#6DBFFF',
-    width: '100%',
-    position: 'absolute' as const,
-    bottom: '-1px',
-    zIndex: 1,
-  },
-  listSection: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '17px',
-    paddingBottom: '80px',
-  },
-  sectionTitle: {
-    fontSize: '18px',
-    fontWeight: '700',
-    color: '#1F1F1F',
-    margin: '0 0 4px 0',
-  },
-  cardPlaceholder: {
-    height: '254px',
-    backgroundColor: '#F9FAFB',
-    borderRadius: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    border: '1px solid #F3F4F6',
-    color: '#9CA3AF',
-  },
-};
