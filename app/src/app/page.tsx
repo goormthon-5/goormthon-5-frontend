@@ -17,7 +17,7 @@ import IcSearch from '@/assets/icons/search-icon.svg';
 export default function Home() {
   const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const name: string = '조영찬';
+  const name: string = '제주좋아';
 
   return (
     <VStack
