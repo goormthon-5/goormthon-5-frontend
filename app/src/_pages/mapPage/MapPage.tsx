@@ -5,8 +5,8 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
-import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
-import samchons from '@/mocks/samchons.json';
+import CategoryTag from '@/components/CategoryTag';
+import { accommodationApi } from '@/apis/accommodationApi';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 declare global {
@@ -23,20 +23,23 @@ export default function MapPage() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
+  const [accommodations, setAccommodations] = useState<any[]>([]);
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [sheetMode, setSheetMode] = useState<SheetMode>('hidden');
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
 
-  const selectedSamchon = samchons.find((s) => s.id === selectedId);
+  const selected = accommodations.find(
+    (s: any) => s.accommodationId === selectedId,
+  );
 
-  const searchResults = samchons.filter(
-    (s) =>
+  const searchResults = accommodations.filter(
+    (s: any) =>
       s.name.includes(searchQuery) ||
-      s.location.includes(searchQuery) ||
-      s.area.includes(searchQuery) ||
-      s.tags.some((t) => t.label.includes(searchQuery)),
+      (s.address?.address_short || '').includes(searchQuery) ||
+      (s.address?.address_group || '').includes(searchQuery) ||
+      (s.options || []).some((opt: any) => (opt.name || opt).includes(searchQuery)),
   );
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
@@ -57,23 +60,32 @@ export default function MapPage() {
     setSelectedId(id);
     setSheetMode('detail');
     if (kakaoMapRef.current) {
-      kakaoMapRef.current.panTo(
-        new window.kakao.maps.LatLng(lat, lng),
-      );
+      kakaoMapRef.current.panTo(new window.kakao.maps.LatLng(lat, lng));
     }
   };
 
-  const handleCardClick = (s: (typeof samchons)[0]) => {
-    setSelectedId(s.id);
+  const handleCardClick = (s: any) => {
+    setSelectedId(s.accommodationId);
     setSheetMode('detail');
-    if (kakaoMapRef.current) {
+    if (kakaoMapRef.current && s.address) {
       kakaoMapRef.current.panTo(
-        new window.kakao.maps.LatLng(s.latitude, s.longitude),
+        new window.kakao.maps.LatLng(s.address.latitude, s.address.longitude),
       );
     }
   };
 
+  // API 호출
   useEffect(() => {
+    accommodationApi
+      .getAll()
+      .then((res) => setAccommodations(res.data))
+      .catch(() => {});
+  }, []);
+
+  // 카카오맵
+  useEffect(() => {
+    if (accommodations.length === 0) return;
+
     const script = document.createElement('script');
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false`;
     script.async = true;
@@ -89,19 +101,31 @@ export default function MapPage() {
         });
         kakaoMapRef.current = map;
 
-        samchons.forEach((s) => {
+        accommodations.forEach((s: any) => {
+          if (!s.address) return;
           const position = new window.kakao.maps.LatLng(
-            s.latitude,
-            s.longitude,
+            s.address.latitude,
+            s.address.longitude,
           );
 
           const wrapper = document.createElement('div');
           wrapper.style.cursor = 'pointer';
           wrapper.innerHTML = `
-            <img src="${s.markerIcon}" width="46" height="57" style="display:block;" />
+            <div style="position:relative;width:46px;height:57px;">
+              <svg width="46" height="57" viewBox="0 0 46 57" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M23 0C10.3 0 0 10.3 0 23C0 35.7 23 57 23 57C23 57 46 35.7 46 23C46 10.3 35.7 0 23 0Z" fill="#6DBFFF"/>
+              </svg>
+              <div style="position:absolute;top:5px;left:50%;transform:translateX(-50%);width:35px;height:35px;border-radius:50%;overflow:hidden;background:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#333;">
+                🏠
+              </div>
+            </div>
           `;
           wrapper.addEventListener('click', () => {
-            handleMarkerClick(s.id, s.latitude, s.longitude);
+            handleMarkerClick(
+              s.accommodationId,
+              s.address.latitude,
+              s.address.longitude,
+            );
           });
 
           new window.kakao.maps.CustomOverlay({
@@ -132,7 +156,7 @@ export default function MapPage() {
       document.head.removeChild(script);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [accommodations]);
 
   return (
     <div style={styles.layout}>
@@ -177,7 +201,7 @@ export default function MapPage() {
         </div>
       )}
 
-      {/* 어두운 오버레이 (상세 모드) */}
+      {/* 오버레이 */}
       {sheetMode === 'detail' && (
         <div
           style={styles.overlay}
@@ -210,47 +234,41 @@ export default function MapPage() {
         {/* 검색 결과 리스트 */}
         {sheetMode === 'list' && (
           <div style={styles.resultList}>
-            {searchResults.map((s) => (
+            {searchResults.map((s: any) => (
               <div
-                key={s.id}
+                key={s.accommodationId}
                 style={styles.resultCard}
                 onClick={() => handleCardClick(s)}
               >
                 <div
                   style={{
                     ...styles.resultImage,
-                    backgroundColor: s.bgColor,
+                    backgroundColor: '#E0F4FF',
                   }}
                 >
-                  <Image
-                    src={s.imageUrl}
-                    alt={s.name}
-                    width={120}
-                    height={86}
-                    style={{ objectFit: 'contain' }}
-                  />
+                  <span style={{ fontSize: '32px' }}>🏠</span>
                 </div>
                 <div style={styles.resultInfo}>
-                  <span style={styles.resultLocation}>{s.location}</span>
+                  <span style={styles.resultLocation}>
+                    {s.address?.address_short || ''}
+                  </span>
                   <span style={styles.resultName}>{s.name}</span>
-                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                    <CategoryTag
-                      label={s.tags[0].label}
-                      color={
-                        TAG_COLORS[
-                          s.tags[0].color as keyof typeof TAG_COLORS
-                        ]
-                      }
-                    />
-                  </div>
+                  {(s.options || []).length > 0 && (
+                    <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                      <CategoryTag
+                        label={s.options[0]?.name || s.options[0]}
+                        color="#6DBFFF"
+                      />
+                    </div>
+                  )}
                 </div>
                 <div
                   style={styles.starButton}
-                  onClick={(e) => toggleFavorite(s.id, e)}
+                  onClick={(e) => toggleFavorite(s.accommodationId, e)}
                 >
                   <img
                     src={
-                      favorites.includes(s.id)
+                      favorites.includes(s.accommodationId)
                         ? '/icons/active-star.svg'
                         : '/icons/non-active-star.svg'
                     }
@@ -268,40 +286,31 @@ export default function MapPage() {
         )}
 
         {/* 상세 미리보기 */}
-        {sheetMode === 'detail' && selectedSamchon && (
+        {sheetMode === 'detail' && selected && (
           <div style={styles.detailContent}>
-            <HouseCard
-              imageUrl={selectedSamchon.imageUrl}
-              bgColor={selectedSamchon.bgColor}
-              size="card"
-            />
+            <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
             <div style={styles.detailInfo}>
               <div style={styles.detailInfoInner}>
                 <span style={styles.detailLocation}>
-                  {selectedSamchon.location}
+                  {selected.address?.address_short || ''}
                 </span>
-                <span style={styles.detailName}>
-                  {selectedSamchon.name}
-                </span>
-                <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                  <CategoryTag
-                    label={selectedSamchon.tags[0].label}
-                    color={
-                      TAG_COLORS[
-                        selectedSamchon.tags[0]
-                          .color as keyof typeof TAG_COLORS
-                      ]
-                    }
-                  />
-                </div>
+                <span style={styles.detailName}>{selected.name}</span>
+                {(selected.options || []).length > 0 && (
+                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                    <CategoryTag
+                      label={selected.options[0]?.name || selected.options[0]}
+                      color="#6DBFFF"
+                    />
+                  </div>
+                )}
                 <p style={styles.detailDescription}>
-                  {selectedSamchon.description}
+                  {selected.description}
                 </p>
               </div>
               <button
                 style={styles.detailButton}
                 onClick={() =>
-                  router.push(`/detail/${selectedSamchon.id}`)
+                  router.push(`/detail/${selected.accommodationId}`)
                 }
               >
                 자세히 보기
@@ -323,10 +332,7 @@ const styles = {
     height: '100vh',
     overflow: 'hidden',
   },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
+  map: { width: '100%', height: '100%' },
   searchBar: {
     position: 'absolute' as const,
     top: '20px',
@@ -348,8 +354,7 @@ const styles = {
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '14.4px',
     fontWeight: 500,
     color: '#333',
@@ -369,8 +374,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '12px',
     fontWeight: 500,
     cursor: 'pointer',
@@ -409,7 +413,6 @@ const styles = {
     borderRadius: '4px',
     backgroundColor: '#DEDEDE',
   },
-  // 검색 결과 리스트
   resultList: {
     display: 'flex',
     flexDirection: 'column' as const,
@@ -448,16 +451,14 @@ const styles = {
     overflow: 'hidden',
   },
   resultLocation: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '9.72px',
     fontWeight: 500,
     lineHeight: '14.58px',
     color: '#A1A1A1',
   },
   resultName: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '14.58px',
     fontWeight: 700,
     lineHeight: '21.06px',
@@ -483,7 +484,6 @@ const styles = {
     color: '#989898',
     fontSize: '14px',
   },
-  // 상세 미리보기
   detailContent: {
     display: 'flex',
     flexDirection: 'column' as const,
@@ -503,16 +503,14 @@ const styles = {
     width: '100%',
   },
   detailLocation: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '9.72px',
     fontWeight: 500,
     lineHeight: '14.58px',
     color: '#A1A1A1',
   },
   detailName: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-200, 18px)',
     fontWeight: 700,
     lineHeight: 'var(--vapor-typography-lineHeight-200, 26px)',
@@ -520,8 +518,7 @@ const styles = {
     color: '#262626',
   },
   detailDescription: {
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
     fontWeight: 400,
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
@@ -536,8 +533,7 @@ const styles = {
     color: '#fff',
     border: 'none',
     borderRadius: '8px',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
     fontWeight: 500,
     cursor: 'pointer',

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import BottomActionBar from '@/components/BottomActionBar';
@@ -68,6 +68,29 @@ export default function OnboardingPage() {
     if (step > 0) setStep(step - 1);
   };
 
+  // 스와이프
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) < 50) return;
+
+    if (diff > 0 && step < ONBOARDING_DATA.length - 1) {
+      setStep(step + 1);
+    } else if (diff < 0 && step > 0) {
+      setStep(step - 1);
+    }
+  };
+
   if (isLoading) return null;
 
   return (
@@ -100,6 +123,9 @@ export default function OnboardingPage() {
               ...S.slideContainer,
               transform: `translateX(-${step * 100}%)`,
             }}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
             {ONBOARDING_DATA.map((item) => (
               <div key={item.id} style={S.slidePage}>
@@ -132,7 +158,7 @@ export default function OnboardingPage() {
                       src={item.img}
                       alt="onboarding"
                       fill
-                      style={{ objectFit: 'cover', objectPosition: 'bottom' }}
+                      style={{ objectFit: 'contain', objectPosition: 'bottom' }}
                       priority
                     />
                   </div>
@@ -206,14 +232,14 @@ const S = {
     flexDirection: 'column' as const,
   },
   main: {
-    flex: 1,
     display: 'flex',
     flexDirection: 'column' as const,
     alignItems: 'center',
     textAlign: 'center' as const,
-    paddingTop: '100px',
+    paddingTop: 'min(100px, 12vh)',
+    flex: '0 0 auto',
   },
-  logoWrapper: { marginBottom: '42.47px' },
+  logoWrapper: { marginBottom: 'min(42px, 5vh)' },
   title: {
     fontSize: '20px',
     fontWeight: '700',
@@ -222,7 +248,7 @@ const S = {
     color: '#2B343B',
     margin: 0,
   },
-  indicatorWrapper: { display: 'flex', gap: '8px', marginTop: '46px' },
+  indicatorWrapper: { display: 'flex', gap: '8px', marginTop: 'min(46px, 5vh)' },
   dot: {
     width: '8px',
     height: '8px',
@@ -231,9 +257,10 @@ const S = {
   },
   footer: {
     width: '100%',
-    height: '45vh',
+    flex: 1,
     display: 'flex',
     alignItems: 'flex-end',
+    overflow: 'hidden',
   },
   imageBox: { width: '100%', height: '100%', position: 'relative' as const },
 };
