@@ -15,6 +15,12 @@ RUN pnpm install --frozen-lockfile
 # 전체 앱 소스 복사
 COPY app/ .
 
+# 빌드 시 환경변수 주입
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_KAKAO_MAP_KEY
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_KAKAO_MAP_KEY=$NEXT_PUBLIC_KAKAO_MAP_KEY
+
 # 앱 빌드
 RUN pnpm build
 
