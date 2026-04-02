@@ -1,44 +1,69 @@
 'use client';
 
 import { useState } from 'react';
-
-const AREAS = [
-  { name: '전체' },
-  { name: '성산·구좌' },
-  { name: '서귀포·남원' },
-];
+import Image from 'next/image';
+import { IconButton } from '@vapor-ui/core';
+import SamchonCard from '@/components/SamchonCard';
+import DataSearch from '@/components/main/DataSearch';
+import BottomNavBar from '@/components/BottomNavBar';
+import ImgLogo from '@/assets/images/main-logo.svg';
+import IcMenu from '@/assets/icons/menu-icon.svg';
+import IcBell from '@/assets/icons/bell-icon.svg';
+import IcSearch from '@/assets/icons/search-icon.svg';
 
 export default function Home() {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
-  const name: string = '지영';
+  const name: string = '조영찬';
 
   return (
     <div style={S.layout}>
-      {/* 1. Header (HStack) */}
+      {/* 1. Header */}
       <header style={S.header}>
-        <div style={S.logo}>LOGO</div>
+        <div style={{ width: 84, height: 24, position: 'relative' }}>
+          <Image
+            src={ImgLogo}
+            alt="메인 로고"
+            fill
+            style={{ objectFit: 'contain' }}
+          />
+        </div>
+
         <div style={S.headerIcons}>
-          <span>Menu</span>
-          <span>Bell</span>
+          <IconButton aria-label="메뉴 열기" size="md" variant="ghost">
+            <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
+          </IconButton>
+          <IconButton aria-label="알림" size="md" variant="ghost">
+            <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
+          </IconButton>
         </div>
       </header>
 
-      {/* 2. Main Body (VStack) */}
+      {/* 2. Main Body */}
       <main style={S.main}>
-        {/* Welcome */}
+        {/* Welcome Section */}
         <section style={S.welcomeSection}>
           <h1 style={S.welcomeText}>
             {`안녕하세요! ${name}님\n같이 삼춘네로 가볼까요?`}
           </h1>
         </section>
 
-        {/* Search (VStack) */}
+        {/* Search Section */}
         <section style={S.searchSection}>
-          <div style={S.inputBox}>언제 도착하시나요?</div>
-          <div style={S.inputBox}>마을 이름, 어르신 이름으로 검색</div>
+          {/* 첫 번째: 캘린더 */}
+          <DataSearch />
+
+          {/* 두 번째: 검색 */}
+          <div style={S.inputWrapper}>
+            <Image src={IcSearch} alt="검색" width={18} height={18} />
+            <input
+              type="text"
+              placeholder="마을 이름, 어르신 이름으로 검색"
+              style={S.inputInner}
+            />
+          </div>
         </section>
 
-        {/* Category Tabs (HStack) */}
+        {/* Category Tabs */}
         <nav style={S.tabContainer}>
           {AREAS.map((area, idx) => (
             <div
@@ -63,57 +88,67 @@ export default function Home() {
         {/* List Section */}
         <section style={S.listSection}>
           <h2 style={S.sectionTitle}>삼춘 목록</h2>
+
+          <SamchonCard
+            imageUrl="/sample-image.jpg"
+            location="제주시"
+            name="손맛 좋은 옥자 할망"
+            rating={4.9}
+            reviewCount={47}
+            tags={[{ label: '식사', color: '#6DBFFF' }]}
+          />
+
           <div style={S.cardPlaceholder}>Card 1</div>
           <div style={S.cardPlaceholder}>Card 2</div>
+          <div style={S.cardPlaceholder}>Card 3</div>
         </section>
       </main>
-
-      {/* 3. Bottom Nav */}
-      <footer style={S.bottomNav}>
-        <div>홈</div>
-        <div style={{ color: '#9CA3AF' }}>지도</div>
-        <div style={{ color: '#9CA3AF' }}>예약</div>
-        <div style={{ color: '#9CA3AF' }}>마이</div>
-      </footer>
+      <BottomNavBar />
     </div>
   );
 }
 
+const AREAS = [
+  { name: '전체' },
+  { name: '성산·구좌' },
+  { name: '서귀포·남원' },
+];
+
 /**
- * 스타일 모음 (S)
+ * 스타일 정의 (S)
  */
 const S = {
   layout: {
     display: 'flex',
+    maxWidth: '390px',
+    margin: '0 auto',
     flexDirection: 'column' as const,
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#ffffff',
-    fontFamily: 'sans-serif',
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: '16px 20px',
-  },
-  logo: {
-    fontWeight: 'bold',
-    fontSize: '18px',
+    padding: '12px 20px',
   },
   headerIcons: {
     display: 'flex',
-    gap: '16px',
+    gap: '7px',
   },
   main: {
     display: 'flex',
     flexDirection: 'column' as const,
-    padding: '24px 20px',
-    gap: '32px',
+    padding: '20px',
+    gap: '26px',
   },
   welcomeSection: {
     display: 'flex',
     flexDirection: 'column' as const,
+    marginBottom: '5px',
   },
   welcomeText: {
     fontSize: '24px',
@@ -121,18 +156,42 @@ const S = {
     lineHeight: '1.4',
     whiteSpace: 'pre-line' as const,
     margin: 0,
+    color: '#1F1F1F',
   },
   searchSection: {
     display: 'flex',
     flexDirection: 'column' as const,
     gap: '10px',
   },
-  inputBox: {
-    padding: '14px',
-    border: '1px solid #E5E7EB',
-    borderRadius: '12px',
-    color: '#9CA3AF',
-    fontSize: '15px',
+  inputWrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    maxWidth: '350px',
+    height: '48px',
+    padding: '0 14px',
+    backgroundColor: '#ffffff',
+    borderRadius: '8px',
+    border: '1px solid #E1E1E1',
+    boxSizing: 'border-box' as const,
+  },
+  inputPlaceholder: {
+    flex: 1,
+    marginLeft: '8px',
+    fontSize: '14.4px',
+    color: '#989898',
+  },
+  inputInner: {
+    flex: 1,
+    height: '100%',
+    border: 'none',
+    outline: 'none',
+    fontSize: '14.4px',
+    color: '#333',
+    backgroundColor: 'transparent',
+    marginLeft: '8px',
+    display: 'flex',
+    alignItems: 'center',
   },
   tabContainer: {
     display: 'flex',
@@ -145,11 +204,11 @@ const S = {
     flexDirection: 'column' as const,
     alignItems: 'center',
     cursor: 'pointer',
-    paddingBottom: '10px',
+    padding: '8px 4px',
     position: 'relative' as const,
   },
   tabText: {
-    fontSize: '16px',
+    fontSize: '15px',
     transition: 'color 0.2s',
   },
   activeBar: {
@@ -163,34 +222,23 @@ const S = {
   listSection: {
     display: 'flex',
     flexDirection: 'column' as const,
-    gap: '20px',
-    paddingBottom: '80px', // Bottom Nav 공간 확보
+    gap: '17px',
+    paddingBottom: '80px',
   },
   sectionTitle: {
     fontSize: '18px',
     fontWeight: '700',
-    margin: 0,
+    color: '#1F1F1F',
+    margin: '0 0 4px 0',
   },
   cardPlaceholder: {
-    height: '200px',
+    height: '254px',
     backgroundColor: '#F9FAFB',
     borderRadius: '16px',
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
     border: '1px solid #F3F4F6',
-  },
-  bottomNav: {
-    position: 'fixed' as const,
-    bottom: 0,
-    width: '100%',
-    maxWidth: 'inherit', // Container가 있을 경우 대비
-    display: 'flex',
-    justifyContent: 'space-around',
-    padding: '16px 0 32px 0',
-    borderTop: '1px solid #F3F4F6',
-    backgroundColor: '#ffffff',
-    fontSize: '12px',
-    fontWeight: '500',
+    color: '#9CA3AF',
   },
 };
