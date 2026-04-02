@@ -79,23 +79,52 @@ export default function MapPage() {
 
   // API 호출
   useEffect(() => {
+    console.log('[MapPage] API 호출 시작');
     accommodationApi
       .getAll()
-      .then((res) => setAccommodations(res.data))
-      .catch(() => {});
+      .then((res) => {
+        console.log('[MapPage] ✅ API 응답:', res.data?.length, '개');
+        setAccommodations(res.data);
+      })
+      .catch((err) => {
+        console.error('[MapPage] ❌ API 실패:', err);
+      });
   }, []);
 
   // 카카오맵
   useEffect(() => {
-    if (accommodations.length === 0) return;
+    console.log('[KakaoMap] useEffect 시작, accommodations:', accommodations.length);
+    if (accommodations.length === 0) {
+      console.log('[KakaoMap] accommodations 비어있음 — 스킵');
+      return;
+    }
+
+    const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
+    console.log('[KakaoMap] KAKAO_MAP_KEY:', appKey ? `${appKey.slice(0, 6)}...` : 'undefined');
+
+    if (!appKey) {
+      console.error('[KakaoMap] ❌ NEXT_PUBLIC_KAKAO_MAP_KEY 환경변수 없음!');
+      return;
+    }
 
     const script = document.createElement('script');
-    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_KEY}&autoload=false`;
+    script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${appKey}&autoload=false`;
     script.async = true;
     document.head.appendChild(script);
+    console.log('[KakaoMap] 스크립트 태그 추가:', script.src);
+
+    script.onerror = (e) => {
+      console.error('[KakaoMap] ❌ 스크립트 로드 실패:', e);
+    };
 
     script.onload = () => {
+      console.log('[KakaoMap] ✅ 스크립트 로드 완료');
+      console.log('[KakaoMap] window.kakao 존재:', !!window.kakao);
+      console.log('[KakaoMap] window.kakao.maps 존재:', !!window.kakao?.maps);
+
       window.kakao.maps.load(() => {
+        console.log('[KakaoMap] ✅ kakao.maps.load 콜백 실행');
+        console.log('[KakaoMap] mapRef.current 존재:', !!mapRef.current);
         if (!mapRef.current) return;
 
         const map = new window.kakao.maps.Map(mapRef.current, {
@@ -103,6 +132,7 @@ export default function MapPage() {
           level: 10,
         });
         kakaoMapRef.current = map;
+        console.log('[KakaoMap] ✅ 지도 생성 완료');
 
         accommodations.forEach((s: any) => {
           if (!s.address) return;
