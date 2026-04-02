@@ -367,9 +367,13 @@ export default function MapPage({ appKey }: MapPageProps) {
                   </div>
                   <button
                     style={styles.detailButton}
-                    onClick={() =>
-                      router.push(`/detail/${selected.accommodationId}`)
-                    }
+                    onClick={() => {
+                      const accId = Number(
+                        selected.accommodationId ?? selected.id,
+                      );
+                      if (!Number.isFinite(accId)) return;
+                      router.push(`/reservation/detail/${accId}`);
+                    }}
                   >
                     자세히 보기
                   </button>
