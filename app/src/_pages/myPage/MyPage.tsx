@@ -48,7 +48,7 @@ export default function MyPage() {
           }}
         >
           <Image
-            src="/images/profile.png"
+            src="/images/main_profile.png"
             alt="프로필"
             width={106}
             height={106}
