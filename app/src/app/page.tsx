@@ -10,6 +10,7 @@ import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
+import Spinner from '@/components/Spinner';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
@@ -19,6 +20,7 @@ export default function Home() {
   const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [isListLoading, setIsListLoading] = useState(true);
   const [accommodations, setAccommodations] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
@@ -59,14 +61,18 @@ export default function Home() {
 
   // 숙소 목록 API 호출
   useEffect(() => {
+    setIsListLoading(true);
     accommodationApi
       .getAll()
       .then((res) => setAccommodations(res.data))
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setIsListLoading(false));
   }, []);
 
   return (
-    <VStack
+    <>
+      <Spinner loading={isListLoading} />
+      <VStack
       $css={{
         width: '100%',
         maxWidth: '390px',
@@ -252,7 +258,9 @@ export default function Home() {
                 삼춘 목록
               </Text>
 
-              {filteredAccommodations.length === 0 && searchQuery.trim() && (
+              {!isListLoading &&
+                filteredAccommodations.length === 0 &&
+                searchQuery.trim() && (
                 <Text
                   $css={{
                     textAlign: 'center',
@@ -298,6 +306,7 @@ export default function Home() {
       </main>
       <BottomNavBar />
     </VStack>
+    </>
   );
 }
 
