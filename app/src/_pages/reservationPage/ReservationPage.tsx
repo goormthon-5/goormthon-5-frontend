@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
@@ -13,56 +14,85 @@ export default function ReservationPage() {
   const router = useRouter();
 
   return (
-    <div style={styles.layout}>
+    <VStack $css={styles.layout}>
       {/* 제목 */}
-      <h1 style={styles.title}>나의 예약 내역</h1>
+      <Text
+        render={<h1 />}
+        $css={{
+          paddingInline: '$250',
+          paddingBottom: '$250',
+        }}
+        style={styles.title}
+      >
+        나의 예약 내역
+      </Text>
 
       {/* 예약 카드 목록 */}
-      <div style={styles.cardList}>
+      <VStack style={styles.cardList} $css={{ paddingInline: '$250' }}>
         {reservations.map((item, idx) => (
-          <div key={idx} style={styles.card}>
+          <VStack key={idx} style={styles.card}>
             {/* 카드 이미지 */}
             <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
+
             {/* 카드 정보 */}
-            <div style={styles.cardContent}>
-              <div style={styles.cardTopRow}>
-                <span style={styles.cardLocation}>{item.location}</span>
+            <VStack style={styles.cardContent}>
+              <HStack
+                $css={{
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  width: '100%',
+                }}
+              >
+                <Text style={styles.cardLocation}>{item.location}</Text>
                 <RatingBadge
                   rating={item.rating}
                   reviewCount={item.reviewCount}
                 />
-              </div>
-              <h2 style={styles.cardName}>{item.name}</h2>
-              <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                <CategoryTag label={item.tag.label} color={TAG_COLORS[item.tag.color as keyof typeof TAG_COLORS]} />
-              </div>
-              <div style={styles.dateRow}>
+              </HStack>
+
+              <Text render={<h2 />} style={styles.cardName}>
+                {item.name}
+              </Text>
+
+              <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                <CategoryTag
+                  label={item.tag.label}
+                  color={TAG_COLORS[item.tag.color as keyof typeof TAG_COLORS]}
+                />
+              </Box>
+
+              <HStack
+                $css={{
+                  gap: '$100',
+                  alignItems: 'center',
+                }}
+              >
                 <Image
                   src="/icons/calendar-icon.svg"
                   alt="날짜"
                   width={12}
                   height={13}
                 />
-                <span style={styles.dateText}>{item.startDate} -{item.endDate}</span>
-              </div>
-            </div>
-          </div>
+                <Text style={styles.dateText}>
+                  {item.startDate} -{item.endDate}
+                </Text>
+              </HStack>
+            </VStack>
+          </VStack>
         ))}
 
         {/* 예약 추가 버튼 */}
         <ActionButton label="예약 추가" onClick={() => router.push('/')} />
-      </div>
+      </VStack>
 
       {/* 하단 네비게이션 */}
       <BottomNavBar />
-    </div>
+    </VStack>
   );
 }
 
 const styles = {
   layout: {
-    display: 'flex',
-    flexDirection: 'column' as const,
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#fff',
@@ -76,36 +106,17 @@ const styles = {
     letterSpacing: 'var(--vapor-typography-letterSpacing-300, -0.3px)',
     color: '#2B343B',
     margin: 0,
-    padding: '10px 20px 20px',
+    paddingTop: '10px',
   },
   cardList: {
-    display: 'flex',
-    flexDirection: 'column' as const,
     gap: '10px',
-    padding: '0 20px',
     paddingBottom: '120px',
   },
   card: {
-    display: 'flex',
-    flexDirection: 'column' as const,
     borderRadius: '8px',
     overflow: 'visible',
   },
-  cardImage: {
-    position: 'relative' as const,
-    width: '100%',
-    maxWidth: '350px',
-    height: '141px',
-    backgroundColor: '#E0F4FF',
-    borderRadius: '8px 8px 0 0',
-    borderTop: '1px solid #E1E1E1',
-    borderLeft: '1px solid #E1E1E1',
-    borderRight: '1px solid #E1E1E1',
-    overflow: 'hidden',
-  },
   cardContent: {
-    display: 'flex',
-    flexDirection: 'column' as const,
     gap: '11px',
     padding: '16px 17px',
     width: '100%',
@@ -115,12 +126,6 @@ const styles = {
     boxSizing: 'border-box' as const,
     borderRadius: '0 0 8px 8px',
     overflow: 'hidden',
-  },
-  cardTopRow: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'flex-start',
-    width: '100%',
   },
   cardLocation: {
     fontFamily:
