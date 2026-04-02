@@ -85,6 +85,46 @@ export default function GuestbookModal({
         }}
       />
 
+      {/* 이미지 미리보기 */}
+      {selectedFile && (
+        <Box
+          $css={{
+            position: 'relative',
+            width: '100%',
+            marginBottom: '$150',
+          }}
+        >
+          <img
+            src={URL.createObjectURL(selectedFile)}
+            alt="미리보기"
+            style={{
+              width: '100%',
+              maxHeight: '160px',
+              objectFit: 'cover',
+              borderRadius: '8px',
+            }}
+          />
+          <Box
+            onClick={() => setSelectedFile(null)}
+            $css={{
+              position: 'absolute',
+              top: '$100',
+              right: '$100',
+              width: '24px',
+              height: '24px',
+              borderRadius: '50%',
+              backgroundColor: 'rgba(0,0,0,0.5)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              cursor: 'pointer',
+            }}
+          >
+            <Text $css={{ color: '#fff', fontSize: '14px', fontWeight: 700, lineHeight: '1' }}>✕</Text>
+          </Box>
+        </Box>
+      )}
+
       <HStack $css={S.bottomSection}>
         <Box
           onClick={() => fileInputRef.current?.click()}

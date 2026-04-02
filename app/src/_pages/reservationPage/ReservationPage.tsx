@@ -13,26 +13,37 @@ import GuestbookModal from '@/components/reservation/GuestbookModal';
 
 import { reservationApi } from '@/apis/reservationApi';
 import { accommodationApi } from '@/apis/accommodationApi';
+import { guestBookApi } from '@/apis/guestBookApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 export default function ReservationPage() {
   const router = useRouter();
   const [reservations, setReservations] = useState<any[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedSamchon, setSelectedSamchon] = useState<string>(''); // 어떤 삼춘네인지 표시용
+  const [selectedSamchon, setSelectedSamchon] = useState<string>('');
+  const [selectedAccId, setSelectedAccId] = useState<number | null>(null);
 
-  const handleOpenModal = (name: string) => {
+  const handleOpenModal = (name: string, accId: number) => {
     setSelectedSamchon(name);
+    setSelectedAccId(accId);
     setIsModalOpen(true);
   };
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleSaveGuestbook = (data: {
+  const handleSaveGuestbook = async (data: {
     rating: number;
     content: string;
     file: File | null;
   }) => {
-    console.log('저장할 데이터:', data);
+    if (!selectedAccId) return;
+    try {
+      await guestBookApi.create(selectedAccId, {
+        content: data.content,
+      });
+      alert('방명록이 등록되었습니다!');
+    } catch {
+      alert('방명록 등록에 실패했습니다.');
+    }
     handleCloseModal();
   };
 
@@ -100,7 +111,7 @@ export default function ReservationPage() {
                   // 클릭 시 해당 삼춘 이름을 넘겨줌
                   onClick={(e) => {
                     e.stopPropagation(); // 카드 클릭 이벤트 전파 방지
-                    handleOpenModal(samchonName);
+                    handleOpenModal(samchonName, accId);
                   }}
                 >
                   방명록 쓰기
