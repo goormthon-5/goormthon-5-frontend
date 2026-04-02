@@ -39,7 +39,7 @@ export default function Home() {
           $css={{
             justifyContent: 'space-between',
             alignItems: 'center',
-            paddingBlock: '$150',
+            paddingBlock: '$250',
             paddingInline: '$000',
             width: '100%',
           }}
@@ -217,7 +217,7 @@ export default function Home() {
                     label: t.label,
                     color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
                   }))}
-                  onClick={() => router.push(`/detail`)}
+                  onClick={() => router.push(`/reservation/detail/${s.id}`)}
                 />
               ))}
             </VStack>

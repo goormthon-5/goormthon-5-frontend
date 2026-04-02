@@ -8,7 +8,7 @@ import HouseCard from '@/components/HouseCard';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
-import BottomActionBar from '@/components/main/BottomActionBar';
+import BottomActionBar from '@/components/BottomActionBar';
 import samchons from '@/mocks/samchons.json';
 
 const DUMMY = samchons[0];

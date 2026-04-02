@@ -30,7 +30,11 @@ export default function ReservationPage() {
       {/* 예약 카드 목록 */}
       <VStack style={styles.cardList} $css={{ paddingInline: '$250' }}>
         {reservations.map((item, idx) => (
-          <VStack key={idx} style={styles.card}>
+          <VStack
+            key={idx}
+            style={styles.card}
+            onClick={() => router.push(`/reservation/detail/${item.samchonId}`)}
+          >
             {/* 카드 이미지 */}
             <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
 

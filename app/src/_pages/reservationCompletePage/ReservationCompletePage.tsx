@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Text, VStack } from '@vapor-ui/core';
 import ImgHareubang from '@/assets/images/hareubang.svg';
-import BottomActionBar from '@/components/main/BottomActionBar';
+import BottomActionBar from '@/components/BottomActionBar';
 
 export default function ReservationCompletePage() {
   const router = useRouter();
