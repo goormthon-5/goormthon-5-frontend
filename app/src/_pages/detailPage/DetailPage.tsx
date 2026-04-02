@@ -1,34 +1,61 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { Box, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
 import HouseCard from '@/components/HouseCard';
-import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
+import CategoryTag from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
 import BottomActionBar from '@/components/BottomActionBar';
-import samchons from '@/mocks/samchons.json';
+import { accommodationApi } from '@/apis/accommodationApi';
+import { guestBookApi } from '@/apis/guestBookApi';
+import { reservationApi } from '@/apis/reservationApi';
 
 interface DetailPageProps {
   id?: number;
 }
 
 export default function DetailPage({ id = 1 }: DetailPageProps) {
-  const DUMMY = samchons.find((s) => s.id === id) || samchons[0];
   const router = useRouter();
-  const [messages, setMessages] = useState<string[]>(DUMMY.messages);
+  const [data, setData] = useState<any>(null);
+  const [messages, setMessages] = useState<string[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [showInput, setShowInput] = useState(false);
 
+  useEffect(() => {
+    accommodationApi
+      .getById(id)
+      .then((res) => setData(res.data))
+      .catch(() => {});
+
+    guestBookApi
+      .getByAccommodation(id)
+      .then((res) =>
+        setMessages(res.data.map((g: any) => g.content || g.message || '')),
+      )
+      .catch(() => {});
+  }, [id]);
+
   const handleAddMessage = () => {
     if (newMessage.trim()) {
-      setMessages([...messages, newMessage.trim()]);
-      setNewMessage('');
-      setShowInput(false);
+      guestBookApi
+        .create(id, { content: newMessage.trim() })
+        .then(() => {
+          setMessages([...messages, newMessage.trim()]);
+          setNewMessage('');
+          setShowInput(false);
+        })
+        .catch(() => {
+          setMessages([...messages, newMessage.trim()]);
+          setNewMessage('');
+          setShowInput(false);
+        });
     }
   };
+
+  if (!data) return null;
 
   return (
     <VStack
@@ -60,7 +87,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
           </button>
         </Box>
 
-        <HouseCard imageUrl={DUMMY.imageUrl} bgColor={DUMMY.bgColor} size="detail" />
+        <HouseCard imageUrl={data.imageUrl || ''} bgColor="#E0F4FF" size="detail" />
       </Box>
 
       {/* 정보 영역 */}
@@ -70,15 +97,15 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
       >
         {/* 위치 + 이름 + 별점 */}
         <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
-          <Text style={styles.location}>{DUMMY.location}</Text>
-          <Text style={styles.name}>{DUMMY.name}</Text>
-          <RatingBadge rating={DUMMY.rating} reviewCount={DUMMY.reviewCount} />
+          <Text style={styles.location}>{data.address?.address_short || ''}</Text>
+          <Text style={styles.name}>{data.name}</Text>
+          <RatingBadge rating={data.averageRating || 0} reviewCount={data.guestBookCount || 0} />
         </VStack>
 
         {/* 소개 */}
         <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
           <Text style={styles.sectionTitle}>소개</Text>
-          <Text style={styles.description}>{DUMMY.description}</Text>
+          <Text style={styles.description}>{data.description}</Text>
         </VStack>
 
         <Box style={styles.divider} />
@@ -91,11 +118,11 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
             $css={{ alignItems: 'center', width: '100%' }}
             style={styles.tagRow}
           >
-            {DUMMY.tags.map((tag) => (
+            {(data.options || []).map((opt: string) => (
               <CategoryTag
-                key={tag.label}
-                label={tag.label}
-                color={TAG_COLORS[tag.color as keyof typeof TAG_COLORS]}
+                key={opt}
+                label={opt}
+                color="#6DBFFF"
               />
             ))}
           </HStack>
@@ -150,7 +177,21 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
       {/* 하단 예약하기 */}
       <BottomActionBar
         label="예약하기"
-        onClick={() => router.push('/reservation/complete')}
+        onClick={() => {
+          const today = new Date();
+          const tomorrow = new Date(today);
+          tomorrow.setDate(tomorrow.getDate() + 1);
+          reservationApi
+            .create({
+              accommodationId: id,
+              userId: 51,
+              guestCount: 1,
+              startDate: today.toISOString().split('T')[0],
+              endDate: tomorrow.toISOString().split('T')[0],
+            })
+            .then(() => router.push('/reservation/complete'))
+            .catch(() => router.push('/reservation/complete'));
+        }}
       />
     </VStack>
   );

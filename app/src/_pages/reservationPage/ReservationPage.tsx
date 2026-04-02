@@ -1,17 +1,39 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Box, HStack, Text, VStack } from '@vapor-ui/core';
-import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
+import CategoryTag from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
-import reservations from '@/mocks/reservations.json';
+import { reservationApi } from '@/apis/reservationApi';
+import { accommodationApi } from '@/apis/accommodationApi';
 
 export default function ReservationPage() {
   const router = useRouter();
+  const [reservations, setReservations] = useState<any[]>([]);
+
+  useEffect(() => {
+    reservationApi
+      .getAll()
+      .then(async (res) => {
+        const reservationsWithDetails = await Promise.all(
+          res.data.map(async (r: any) => {
+            try {
+              const accRes = await accommodationApi.getById(r.accommodationId);
+              return { ...r, accommodation: accRes.data };
+            } catch {
+              return { ...r, accommodation: null };
+            }
+          }),
+        );
+        setReservations(reservationsWithDetails);
+      })
+      .catch(() => {});
+  }, []);
 
   return (
     <VStack $css={styles.layout}>
@@ -29,16 +51,14 @@ export default function ReservationPage() {
 
       {/* 예약 카드 목록 */}
       <VStack style={styles.cardList} $css={{ paddingInline: '$250' }}>
-        {reservations.map((item, idx) => (
+        {reservations.map((item: any) => (
           <VStack
-            key={idx}
+            key={item.reservationId}
             style={styles.card}
-            onClick={() => router.push(`/reservation/detail/${item.samchonId}`)}
+            onClick={() => router.push(`/detail/${item.accommodationId}`)}
           >
-            {/* 카드 이미지 */}
-            <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
+            <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
 
-            {/* 카드 정보 */}
             <VStack style={styles.cardContent}>
               <HStack
                 $css={{
@@ -47,30 +67,29 @@ export default function ReservationPage() {
                   width: '100%',
                 }}
               >
-                <Text style={styles.cardLocation}>{item.location}</Text>
+                <Text style={styles.cardLocation}>
+                  {item.accommodation?.address?.address_short || ''}
+                </Text>
                 <RatingBadge
-                  rating={item.rating}
-                  reviewCount={item.reviewCount}
+                  rating={item.averageRating || 0}
+                  reviewCount={item.guestBookCount || 0}
                 />
               </HStack>
 
               <Text render={<h2 />} style={styles.cardName}>
-                {item.name}
+                {item.accommodation?.name || ''}
               </Text>
 
-              <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                <CategoryTag
-                  label={item.tag.label}
-                  color={TAG_COLORS[item.tag.color as keyof typeof TAG_COLORS]}
-                />
-              </Box>
+              {(item.accommodation?.options || []).length > 0 && (
+                <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                  <CategoryTag
+                    label={item.accommodation.options[0]}
+                    color="#6DBFFF"
+                  />
+                </Box>
+              )}
 
-              <HStack
-                $css={{
-                  gap: '$100',
-                  alignItems: 'center',
-                }}
-              >
+              <HStack $css={{ gap: '$100', alignItems: 'center' }}>
                 <Image
                   src="/icons/calendar-icon.svg"
                   alt="날짜"
@@ -78,7 +97,7 @@ export default function ReservationPage() {
                   height={13}
                 />
                 <Text style={styles.dateText}>
-                  {item.startDate} -{item.endDate}
+                  {item.startDate} - {item.endDate}
                 </Text>
               </HStack>
             </VStack>

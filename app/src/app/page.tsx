@@ -5,8 +5,7 @@ import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { HStack, IconButton, Text, TextInput, VStack } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
-import { TAG_COLORS } from '@/components/CategoryTag';
-import samchons from '@/mocks/samchons.json';
+import { accommodationApi } from '@/apis/accommodationApi';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
 import ImgLogo from '@/assets/images/main-logo.svg';
@@ -18,6 +17,7 @@ export default function Home() {
   const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
+  const [accommodations, setAccommodations] = useState<any[]>([]);
 
   const name: string = '제주좋아';
 
@@ -31,6 +31,14 @@ export default function Home() {
       setIsLoading(false);
     }
   }, [router]);
+
+  // 숙소 목록 API 호출
+  useEffect(() => {
+    accommodationApi
+      .getAll()
+      .then((res) => setAccommodations(res.data))
+      .catch(() => {});
+  }, []);
 
   return (
     <VStack
@@ -217,20 +225,20 @@ export default function Home() {
                 삼춘 목록
               </Text>
 
-              {samchons.map((s) => (
+              {accommodations.map((s: any) => (
                 <SamchonCard
-                  key={s.id}
-                  imageUrl={s.imageUrl}
-                  bgColor={s.bgColor}
-                  location={s.location}
+                  key={s.accommodationId}
+                  imageUrl={s.imageUrl || ''}
+                  bgColor="#E0F4FF"
+                  location={s.address?.address_short || ''}
                   name={s.name}
-                  rating={s.rating}
-                  reviewCount={s.reviewCount}
-                  tags={s.tags.map((t) => ({
-                    label: t.label,
-                    color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
+                  rating={s.averageRating || 0}
+                  reviewCount={s.guestBookCount || 0}
+                  tags={(s.options || []).slice(0, 1).map((opt: string) => ({
+                    label: opt,
+                    color: '#6DBFFF',
                   }))}
-                  onClick={() => router.push(`/reservation/detail/${s.id}`)}
+                  onClick={() => router.push(`/detail/${s.accommodationId}`)}
                 />
               ))}
             </VStack>
