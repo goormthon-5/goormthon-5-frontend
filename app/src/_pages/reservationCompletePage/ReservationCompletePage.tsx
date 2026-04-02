@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Text, VStack } from '@vapor-ui/core';
 import ImgHareubang from '@/assets/images/hareubang.svg';
 import BottomActionBar from '@/components/main/BottomActionBar';
 
@@ -9,40 +10,46 @@ export default function ReservationCompletePage() {
   const router = useRouter();
 
   return (
-    <div style={styles.layout}>
+    <VStack
+      $css={{
+        width: '100%',
+        minHeight: '100vh',
+        backgroundColor: '#fff',
+        position: 'relative',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
       {/* 중앙 콘텐츠 */}
-      <div style={styles.content}>
+      <VStack
+        style={styles.content}
+        $css={{ alignItems: 'center', justifyContent: 'center' }}
+      >
         <Image src={ImgHareubang} alt="돌하르방" width={174} height={125} />
-        <h1 style={styles.title}>예약이 완료되었습니다!</h1>
-        <p style={styles.description}>
+
+        <Text render={<h1 />} style={styles.title}>
+          예약이 완료되었습니다!
+        </Text>
+
+        <Text render={<p />} style={styles.description}>
           방문 일정과 장소를 다시 한번 확인해 주세요.
           <br />
           삼춘이 기다리고 있을게요!
-        </p>
-      </div>
+        </Text>
+      </VStack>
 
       {/* 하단 완료하기 */}
-      <BottomActionBar label="완료" onClick={() => router.push('/')} />
-    </div>
+      <BottomActionBar
+        label="완료"
+        onClick={() => router.push('/reservation')}
+      />
+    </VStack>
   );
 }
 
 const styles = {
-  layout: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    width: '100%',
-    minHeight: '100vh',
-    backgroundColor: '#fff',
-    position: 'relative' as const,
-  },
   content: {
-    display: 'flex',
-    flexDirection: 'column' as const,
     gap: '17px',
-    alignItems: 'center',
-    flex: 1,
-    justifyContent: 'center',
     width: '100%',
     maxWidth: '251px',
     alignSelf: 'center',
@@ -102,7 +109,6 @@ const styles = {
     cursor: 'pointer',
   },
   completeText: {
-    fontFamily: 'Pretendard, sans-serif',
     fontSize: '18px',
     fontWeight: 700,
     color: '#fff',
