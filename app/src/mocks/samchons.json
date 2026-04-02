@@ -17,7 +17,11 @@
       "할망, 된장찌개 잊을 수가 없어요. 꼭 다시 올게요!",
       "돌담길 걷다가 할망이랑 사진 찍은 거 보물이에요."
     ],
-    "area": "성산·구좌"
+    "area": "성산·구좌",
+    "latitude": 33.4501,
+    "longitude": 126.9101,
+    "markerIcon": "/icons/vector1.svg",
+    "markerColor": "#2B343B"
   },
   {
     "id": 2,
@@ -32,7 +36,11 @@
       { "label": "동백꽃 산책", "color": "orange" }
     ],
     "messages": [],
-    "area": "서귀포·남원"
+    "area": "서귀포·남원",
+    "latitude": 33.2778,
+    "longitude": 126.6668,
+    "markerIcon": "/icons/vector2.svg",
+    "markerColor": "#6DBFFF"
   },
   {
     "id": 3,
@@ -47,6 +55,10 @@
       { "label": "바닷가 투어", "color": "green" }
     ],
     "messages": [],
-    "area": "성산·구좌"
+    "area": "성산·구좌",
+    "latitude": 33.4627,
+    "longitude": 126.8528,
+    "markerIcon": "/icons/vector3.svg",
+    "markerColor": "#FFB632"
   }
 ]
