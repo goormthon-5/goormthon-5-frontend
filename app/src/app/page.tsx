@@ -266,10 +266,12 @@ export default function Home() {
               )}
 
               {filteredAccommodations.map((s: any) => {
-                const style = getAccommodationStyle(s.accommodationId);
+                const accId = Number(s.accommodationId ?? s.id);
+                if (!Number.isFinite(accId)) return null;
+                const style = getAccommodationStyle(accId);
                 return (
                   <SamchonCard
-                    key={s.accommodationId}
+                    key={accId}
                     imageUrl={style.houseImage}
                     bgColor={style.bgColor}
                     location={s.address?.address_short || ''}
@@ -284,7 +286,9 @@ export default function Home() {
                       label: opt.name || opt,
                       color: style.tagColor,
                     }))}
-                    onClick={() => router.push(`/detail/${s.accommodationId}`)}
+                    onClick={() =>
+                      router.push(`/reservation/detail/${accId}`)
+                    }
                   />
                 );
               })}

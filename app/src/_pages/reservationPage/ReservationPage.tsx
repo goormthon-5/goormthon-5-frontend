@@ -71,7 +71,11 @@ export default function ReservationPage() {
       {/* 예약 카드 목록 */}
       <VStack style={styles.cardList} $css={{ paddingInline: '$250' }}>
         {reservations.map((item: any) => {
-          const accStyle = getAccommodationStyle(item.accommodationId);
+          const accId = Number(
+            item.accommodationId ?? item.accommodation?.id,
+          );
+          if (!Number.isFinite(accId)) return null;
+          const accStyle = getAccommodationStyle(accId);
           const samchonName = item.accommodation?.name || '';
 
           return (
@@ -87,7 +91,9 @@ export default function ReservationPage() {
                   label: opt.name || opt,
                   color: accStyle.tagColor,
                 }))}
-              onClick={() => router.push(`/detail/${item.accommodationId}`)}
+              onClick={() =>
+                router.push(`/reservation/detail/${accId}`)
+              }
               renderRightTop={
                 <button
                   style={styles.guestbookBtn}

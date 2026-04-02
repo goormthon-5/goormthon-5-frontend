@@ -8,6 +8,7 @@ import HouseCard from '@/components/HouseCard';
 import CategoryTag from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import BottomActionBar from '@/components/BottomActionBar';
+import Spinner from '@/components/Spinner';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { reservationApi } from '@/apis/reservationApi';
@@ -21,12 +22,17 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
   const router = useRouter();
   const [data, setData] = useState<any>(null);
   const [messages, setMessages] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
+    setData(null);
+    setMessages([]);
     accommodationApi
       .getById(id)
       .then((res) => setData(res.data))
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setIsLoading(false));
 
     guestBookApi
       .getByAccommodation(id)
@@ -35,6 +41,10 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
       )
       .catch(() => {});
   }, [id]);
+
+  if (isLoading) {
+    return <Spinner loading />;
+  }
 
   if (!data) return null;
 
