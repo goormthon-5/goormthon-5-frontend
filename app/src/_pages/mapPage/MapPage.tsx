@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Box, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
+import { Box, Button, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import CategoryTag from '@/components/CategoryTag';
@@ -339,38 +339,81 @@ export default function MapPage() {
 
         {/* 검색 결과 리스트 */}
         {sheetMode === 'list' && (
-          <div style={styles.resultList}>
+          <VStack
+            style={{ maxHeight: '430px', paddingTop: '10px' }}
+            $css={{
+              gap: '10px',
+              paddingInline: '$250',
+              paddingBottom: '$250',
+              overflowY: 'auto',
+            }}
+          >
             {searchResults.map((s: any) => (
-              <div
+              <HStack
                 key={s.accommodationId}
-                style={styles.resultCard}
                 onClick={() => handleCardClick(s)}
+                $css={{
+                  position: 'relative',
+                  height: '103px',
+                  border: '1px solid #E1E1E1',
+                  borderRadius: '$300',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  backgroundColor: '#fff',
+                }}
               >
-                <div
-                  style={{
-                    ...styles.resultImage,
+                <HStack
+                  $css={{
+                    width: '132px',
+                    height: '103px',
+                    flexShrink: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    borderRadius: '8px 0 0 8px',
+                    borderRight: '1px solid #E1E1E1',
                     backgroundColor: '#E0F4FF',
                   }}
                 >
-                  <span style={{ fontSize: '32px' }}>🏠</span>
-                </div>
-                <div style={styles.resultInfo}>
-                  <span style={styles.resultLocation}>
+                  <Text style={{ fontSize: '32px' }}>🏠</Text>
+                </HStack>
+                <VStack
+                  $css={{
+                    gap: '7px',
+                    paddingBlock: '$200',
+                    paddingInline: '$150',
+                    flex: 1,
+                    overflow: 'hidden',
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <Text style={styles.resultLocation}>
                     {s.address?.address_short || ''}
-                  </span>
-                  <span style={styles.resultName}>{s.name}</span>
+                  </Text>
+                  <Text style={styles.resultName}>{s.name}</Text>
                   {(s.options || []).length > 0 && (
-                    <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                    <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                       <CategoryTag
                         label={s.options[0]?.name || s.options[0]}
                         color="#6DBFFF"
                       />
-                    </div>
+                    </Box>
                   )}
-                </div>
-                <div
-                  style={styles.starButton}
+                </VStack>
+                <HStack
                   onClick={(e) => toggleFavorite(s.accommodationId, e)}
+                  $css={{
+                    position: 'absolute',
+                    top: '$200',
+                    right: '$200',
+                    width: '18px',
+                    height: '17px',
+                    borderRadius: '$500',
+                    backgroundColor: '#E0F4FF',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
                 >
                   <img
                     src={
@@ -382,14 +425,13 @@ export default function MapPage() {
                     width={11}
                     height={11}
                   />
-                </div>
-              </div>
+                </HStack>
+              </HStack>
             ))}
             {searchResults.length === 0 && (
               <Text
+                style={{ paddingBlock: '40px', paddingInline: 0 }}
                 $css={{
-                  paddingBlock: '40px',
-                  paddingInline: '$000',
                   textAlign: 'center',
                   color: '#989898',
                   fontSize: '14px',
@@ -398,40 +440,74 @@ export default function MapPage() {
                 검색 결과가 없습니다.
               </Text>
             )}
-          </div>
+          </VStack>
         )}
 
         {/* 상세 미리보기 */}
         {sheetMode === 'detail' && selected && (
-          <div style={styles.detailContent}>
+          <VStack
+            style={{ gap: '22px' }}
+            $css={{
+              paddingInline: '$250',
+              paddingBottom: '$250',
+            }}
+          >
             <HouseCard imageUrl="" bgColor="#E0F4FF" size="card" />
-            <div style={styles.detailInfo}>
-              <div style={styles.detailInfoInner}>
-                <span style={styles.detailLocation}>
+            <VStack $css={{ gap: '$250', width: '100%' }}>
+              <VStack
+                $css={{
+                  gap: '11px',
+                  width: '100%',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Text style={styles.detailLocation}>
                   {selected.address?.address_short || ''}
-                </span>
-                <span style={styles.detailName}>{selected.name}</span>
+                </Text>
+                <Text style={styles.detailName}>{selected.name}</Text>
                 {(selected.options || []).length > 0 && (
-                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                  <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                     <CategoryTag
                       label={selected.options[0]?.name || selected.options[0]}
                       color="#6DBFFF"
                     />
-                  </div>
+                  </Box>
                 )}
-                <p style={styles.detailDescription}>{selected.description}</p>
-              </div>
-              <button
+                <Text render={<p />} style={styles.detailDescription}>
+                  {selected.description}
+                </Text>
+              </VStack>
+              <Button
                 type="button"
-                style={styles.detailButton}
+                variant="fill"
+                colorPalette="contrast"
+                size="xl"
                 onClick={() =>
                   router.push(`/detail/${selected.accommodationId}`)
                 }
+                style={{ width: '100%', height: '48px' }}
+                $css={{
+                  paddingBlock: '$000',
+                  paddingInline: '$000',
+                  borderRadius: '$300',
+                  border: 'none',
+                  backgroundColor: '#2B343B',
+                  cursor: 'pointer',
+                  width: '100%',
+                }}
               >
-                자세히 보기
-              </button>
-            </div>
-          </div>
+                <Text
+                  $css={{
+                    color: '#fff',
+                    fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
+                    fontWeight: 500,
+                  }}
+                >
+                  자세히 보기
+                </Text>
+              </Button>
+            </VStack>
+          </VStack>
         )}
       </VStack>
 
@@ -441,132 +517,6 @@ export default function MapPage() {
 }
 
 const styles = {
-  layout: {
-    position: 'relative' as const,
-    width: '100%',
-    height: '100vh',
-    overflow: 'hidden',
-  },
-  map: { width: '100%', height: '100%' },
-  searchBar: {
-    position: 'absolute' as const,
-    top: '20px',
-    left: '20px',
-    right: '20px',
-    maxWidth: '350px',
-    height: '48px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '7px',
-    padding: '0 16px',
-    backgroundColor: '#fff',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    zIndex: 10,
-  },
-  searchInput: {
-    flex: 1,
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '14.4px',
-    fontWeight: 500,
-    color: '#333',
-  },
-  filterRow: {
-    position: 'absolute' as const,
-    top: '78px',
-    left: '20px',
-    display: 'flex',
-    gap: '8px',
-    zIndex: 10,
-  },
-  filterBadge: {
-    height: '24px',
-    padding: '0 8px',
-    borderRadius: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '12px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    whiteSpace: 'nowrap' as const,
-  },
-  overlay: {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    zIndex: 15,
-  },
-  bottomSheet: {
-    position: 'absolute' as const,
-    bottom: '80px',
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    zIndex: 20,
-    transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
-  },
-  handleBar: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '10px 0',
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    cursor: 'pointer',
-  },
-  handle: {
-    width: '44px',
-    height: '4px',
-    borderRadius: '4px',
-    backgroundColor: '#DEDEDE',
-  },
-  resultList: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '10px',
-    padding: '10px 20px 20px',
-    overflowY: 'auto' as const,
-    maxHeight: '430px',
-  },
-  resultCard: {
-    display: 'flex',
-    position: 'relative' as const,
-    height: '103px',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    backgroundColor: '#fff',
-  },
-  resultImage: {
-    width: '132px',
-    height: '103px',
-    flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: '8px 0 0 8px',
-    borderRight: '1px solid #E1E1E1',
-  },
-  resultInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '7px',
-    padding: '16px 12px',
-    flex: 1,
-    overflow: 'hidden',
-  },
   resultLocation: {
     fontFamily:
       'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
@@ -583,43 +533,6 @@ const styles = {
     lineHeight: '21.06px',
     letterSpacing: '-0.081px',
     color: '#262626',
-  },
-  starButton: {
-    position: 'absolute' as const,
-    top: '16px',
-    right: '16px',
-    width: '18px',
-    height: '17px',
-    borderRadius: '16px',
-    backgroundColor: '#E0F4FF',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-  },
-  noResult: {
-    padding: '40px 0',
-    textAlign: 'center' as const,
-    color: '#989898',
-    fontSize: '14px',
-  },
-  detailContent: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '22px',
-    padding: '0 20px 20px',
-  },
-  detailInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '20px',
-    width: '100%',
-  },
-  detailInfoInner: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '11px',
-    width: '100%',
   },
   detailLocation: {
     fontFamily:
@@ -646,19 +559,7 @@ const styles = {
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: '#5D5D5D',
-    margin: 0,
-  },
-  detailButton: {
-    width: '100%',
-    height: '48px',
-    backgroundColor: '#2B343B',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '8px',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
-    fontWeight: 500,
-    cursor: 'pointer',
+    marginBlock: 0,
+    marginInline: 0,
   },
 } as const;
