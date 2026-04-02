@@ -8,19 +8,6 @@ import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import Image from 'next/image';
 
-// 임시 더미데이터
-const DUMMY_RESERVATIONS = [
-  {
-    imageUrl: '/images/house-2.png',
-    location: '성산읍 시흥리',
-    name: '손맛 좋은 옥자 할망',
-    rating: 4.9,
-    reviewCount: 47,
-    tag: { label: '해녀 출신', color: TAG_COLORS.blue },
-    date: '2026.02.10 -2026.02.12',
-  },
-];
-
 export default function ReservationPage() {
   const router = useRouter();
 
@@ -31,7 +18,7 @@ export default function ReservationPage() {
 
       {/* 예약 카드 목록 */}
       <div style={styles.cardList}>
-        {DUMMY_RESERVATIONS.map((item, idx) => (
+        {reservations.map((item, idx) => (
           <div key={idx} style={styles.card}>
             {/* 카드 이미지 */}
             <HouseCard imageUrl={item.imageUrl} bgColor="#E0F4FF" size="card" />
@@ -46,40 +33,16 @@ export default function ReservationPage() {
               </div>
               <h2 style={styles.cardName}>{item.name}</h2>
               <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                <CategoryTag label={item.tag.label} color={item.tag.color} />
+                <CategoryTag label={item.tag.label} color={TAG_COLORS[item.tag.color as keyof typeof TAG_COLORS]} />
               </div>
               <div style={styles.dateRow}>
-                <svg
-                  width="12"
-                  height="13"
-                  viewBox="0 0 12 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="1"
-                    y="2"
-                    width="10"
-                    height="9"
-                    rx="1.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                  />
-                  <path d="M1 5H11" stroke="#989898" strokeWidth="1.2" />
-                  <path
-                    d="M3.5 0.5V2.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M8.5 0.5V2.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                <span style={styles.dateText}>{item.date}</span>
+                <Image
+                  src="/icons/calendar-icon.svg"
+                  alt="날짜"
+                  width={12}
+                  height={13}
+                />
+                <span style={styles.dateText}>{item.startDate} -{item.endDate}</span>
               </div>
             </div>
           </div>

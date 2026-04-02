@@ -1,9 +1,12 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { IconButton } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
+import { TAG_COLORS } from '@/components/CategoryTag';
+import samchons from '@/mocks/samchons.json';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
 import ImgLogo from '@/assets/images/main-logo.svg';
@@ -12,6 +15,7 @@ import IcBell from '@/assets/icons/bell-icon.svg';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 export default function Home() {
+  const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const name: string = '조영찬';
 
@@ -89,18 +93,22 @@ export default function Home() {
         <section style={S.listSection}>
           <h2 style={S.sectionTitle}>삼춘 목록</h2>
 
-          <SamchonCard
-            imageUrl="/sample-image.jpg"
-            location="제주시"
-            name="손맛 좋은 옥자 할망"
-            rating={4.9}
-            reviewCount={47}
-            tags={[{ label: '식사', color: '#6DBFFF' }]}
-          />
-
-          <div style={S.cardPlaceholder}>Card 1</div>
-          <div style={S.cardPlaceholder}>Card 2</div>
-          <div style={S.cardPlaceholder}>Card 3</div>
+          {samchons.map((s) => (
+            <SamchonCard
+              key={s.id}
+              imageUrl={s.imageUrl}
+              bgColor={s.bgColor}
+              location={s.location}
+              name={s.name}
+              rating={s.rating}
+              reviewCount={s.reviewCount}
+              tags={s.tags.map((t) => ({
+                label: t.label,
+                color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
+              }))}
+              onClick={() => router.push(`/detail`)}
+            />
+          ))}
         </section>
       </main>
       <BottomNavBar />

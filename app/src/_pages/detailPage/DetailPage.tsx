@@ -7,26 +7,9 @@ import HouseCard from '@/components/HouseCard';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
 import ActionButton from '@/components/ActionButton';
+import samchons from '@/mocks/samchons.json';
 
-// 임시 더미데이터
-const DUMMY = {
-  imageUrl: '/images/house-2.png',
-  location: '성산읍 시흥리',
-  name: '손맛 좋은 옥자 할망',
-  rating: 4.9,
-  reviewCount: 47,
-  description:
-    '성산일출봉이 내다보이는 돌담집에서, 40년 넘게 손수 담근 된장과 직접 키운 채소로 아침밥을 차려드립니다. 할망의 밥 한 그릇에 담긴 정성이 여행의 따뜻한 추억이 될 거예요.',
-  tags: [
-    { label: '식사', color: TAG_COLORS.blue },
-    { label: '감귤 텃밭 체험', color: TAG_COLORS.blue },
-    { label: '해녀 체험', color: TAG_COLORS.blue },
-  ],
-  messages: [
-    '할망, 된장찌개 잊을 수가 없어요. 꼭 다시 올게요!',
-    '돌담길 걷다가 할망이랑 사진 찍은 거 보물이에요.',
-  ],
-};
+const DUMMY = samchons[0];
 
 export default function DetailPage() {
   const router = useRouter();
@@ -88,7 +71,7 @@ export default function DetailPage() {
               <CategoryTag
                 key={tag.label}
                 label={tag.label}
-                color={tag.color}
+                color={TAG_COLORS[tag.color as keyof typeof TAG_COLORS]}
               />
             ))}
           </div>
