@@ -174,7 +174,11 @@ export default function Home() {
                   $css={{
                     flex: 1,
                     border: 'none',
+                    borderRadius: 0,
+                    boxShadow: 'none',
                     backgroundColor: 'transparent',
+                    paddingBlock: '$000',
+                    paddingInline: '$000',
                     fontSize: '14.4px',
                     outline: 'none',
                   }}
