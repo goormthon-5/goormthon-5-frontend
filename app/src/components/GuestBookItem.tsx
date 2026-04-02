@@ -26,8 +26,8 @@ export default function GuestBookItem({
 
   return (
     <VStack
-      style={{ width: '165px' }}
       $css={{
+        width: '100%',
         backgroundColor: '#FBFBFB',
         borderRadius: '$300',
         overflow: 'hidden',
@@ -41,8 +41,8 @@ export default function GuestBookItem({
       <Box
         style={{
           position: 'relative',
-          width: '147px',
-          height: '147px',
+          width: 'calc(100% - 18px)',
+          aspectRatio: '1',
           overflow: 'hidden',
         }}
       >
