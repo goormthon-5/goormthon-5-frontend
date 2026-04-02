@@ -325,6 +325,171 @@ export default function MapPage() {
               setSelectedId(null);
               setSearchQuery('');
             }}
+          />
+        </div>
+
+        {/* 검색 결과 리스트 */}
+        {sheetMode === 'list' && (
+          <div style={styles.resultList}>
+            {searchResults.map((s: any) => {
+              const cardStyle = getAccommodationStyle(s.accommodationId);
+              return (
+                <div
+                  key={s.accommodationId}
+                  style={styles.resultCard}
+                  onClick={() => handleCardClick(s)}
+                >
+                  <div
+                    style={{
+                      ...styles.resultImage,
+                      backgroundColor: cardStyle.bgColor,
+                    }}
+                  >
+                    <img
+                      src={cardStyle.houseImage}
+                      alt=""
+                      width={100}
+                      height={72}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div style={styles.resultInfo}>
+                    <span style={styles.resultLocation}>
+                      {s.address?.address_short || ''}
+                    </span>
+                    <span style={styles.resultName}>{s.name}</span>
+                    {s.cost != null && (
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#2B343B' }}>
+                        {s.cost.toLocaleString()}원<span style={{ fontSize: '10px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+                      </span>
+                    )}
+                    {s.accommodationHostInfo && (
+                      <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                        {s.accommodationHostInfo.personality && (
+                          <span style={styles.infoTag}>{s.accommodationHostInfo.personality}</span>
+                        )}
+                        {s.accommodationHostInfo.trait && (
+                          <span style={styles.infoTag}>{s.accommodationHostInfo.trait}</span>
+                        )}
+                        {s.accommodationHostInfo.hasWifi != null && (
+                          <span style={{
+                            ...styles.infoTag,
+                            backgroundColor: '#F5F5F5',
+                            padding: '2px 5px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                          }}>
+                            <img
+                              src={s.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                              alt={s.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
+                              width={14}
+                              height={14}
+                            />
+                          </span>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    style={styles.starButton}
+                    onClick={(e) => toggleFavorite(s.accommodationId, e)}
+                  >
+                    <img
+                      src={
+                        favorites.includes(s.accommodationId)
+                          ? '/icons/active-star.svg'
+                          : '/icons/non-active-star.svg'
+                      }
+                      alt="즐겨찾기"
+                      width={11}
+                      height={11}
+                    />
+                  </div>
+                </div>
+              );
+            })}
+            {searchResults.length === 0 && (
+              <div style={styles.noResult}>검색 결과가 없습니다.</div>
+            )}
+          </div>
+        )}
+
+        {/* 상세 미리보기 */}
+        {sheetMode === 'detail' &&
+          selected &&
+          (() => {
+            const detailStyle = getAccommodationStyle(selected.accommodationId);
+            return (
+              <div style={styles.detailContent}>
+                <HouseCard
+                  imageUrl={detailStyle.houseImage}
+                  bgColor={detailStyle.bgColor}
+                  size="card"
+                />
+                <div style={styles.detailInfo}>
+                  <div style={styles.detailInfoInner}>
+                    <span style={styles.detailLocation}>
+                      {selected.address?.address_short || ''}
+                    </span>
+                    <span style={styles.detailName}>{selected.name}</span>
+                    {selected.cost != null && (
+                      <span style={{ fontSize: '16px', fontWeight: 700, color: '#2B343B' }}>
+                        {selected.cost.toLocaleString()}원<span style={{ fontSize: '12px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+                      </span>
+                    )}
+                    {(selected.options || []).length > 0 && (
+                      <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                        <CategoryTag
+                          label={
+                            selected.options[0]?.name || selected.options[0]
+                          }
+                          color={detailStyle.tagColor}
+                        />
+                      </div>
+                    )}
+                    {selected.accommodationHostInfo && (
+                      <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+                        {selected.accommodationHostInfo.personality && (
+                          <span style={styles.infoTag}>{selected.accommodationHostInfo.personality}</span>
+                        )}
+                        {selected.accommodationHostInfo.trait && (
+                          <span style={styles.infoTag}>{selected.accommodationHostInfo.trait}</span>
+                        )}
+                        {selected.accommodationHostInfo.cleanlinessLevel && (
+                          <span style={styles.infoTag}>
+                            {({ LV1: '보통', LV2: '깔끔', LV3: '매우 깔끔' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
+                          </span>
+                        )}
+                        {selected.accommodationHostInfo.hasWifi != null && (
+                          <span style={{
+                            ...styles.infoTag,
+                            backgroundColor: '#F5F5F5',
+                            padding: '2px 5px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                          }}>
+                            <img
+                              src={selected.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                              alt={selected.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
+                              width={16}
+                              height={16}
+                            />
+                          </span>
+                        )}
+                      </div>
+                    )}
+                    <p style={styles.detailDescription}>
+                      {selected.description}
+                    </p>
+                  </div>
+                  <button
+                    style={styles.detailButton}
+                    onClick={() => {
+                      const accId = Number(
+                        selected.accommodationId ?? selected.id,
+                      );
+                      if (!Number.isFinite(accId)) return;
+                      router.push(`/reservation/detail/${accId}`);
             $css={{
               justifyContent: 'center',
               paddingBlock: '$100',
@@ -598,5 +763,14 @@ const styles = {
     color: '#5D5D5D',
     marginBlock: 0,
     marginInline: 0,
+  },
+  infoTag: {
+    fontSize: '10px',
+    fontWeight: 500,
+    color: '#666',
+    backgroundColor: '#F5F5F5',
+    borderRadius: '10px',
+    padding: '2px 6px',
+    whiteSpace: 'nowrap' as const,
   },
 } as const;

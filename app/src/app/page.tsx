@@ -26,6 +26,7 @@ export default function Home() {
   const [accommodations, setAccommodations] = useState<any[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -72,6 +73,32 @@ export default function Home() {
 
   return (
     <>
+    <Spinner loading={isListLoading} />
+    <VStack
+      $css={{
+        width: '100%',
+        maxWidth: '390px',
+        margin: '0 auto',
+        minHeight: '100vh',
+        paddingBlock: '$250',
+        paddingInline: '$250',
+        boxSizing: 'border-box',
+        backgroundColor: '#ffffff',
+        fontFamily:
+          '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+      }}
+    >
+      <header>
+        <HStack
+          $css={{
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingBlock: '$250',
+            paddingInline: '$000',
+            width: '100%',
+          }}
+        >
+          <VStack
       <Spinner loading={isListLoading} />
 
       <VStack
