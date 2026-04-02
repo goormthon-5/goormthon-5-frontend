@@ -13,17 +13,17 @@ const ONBOARDING_DATA = [
   {
     id: 0,
     title: '제주 삼춘과 함께하는\n여행을 경험해봐요!',
-    img: '/images/onboarding-1.png',
+    img: '/images/onboarding-1.svg',
   },
   {
     id: 1,
     title: '삼춘네 방명록에,\n여행의 한 줄을 남겨보세요!',
-    img: '/images/onboarding-2.png',
+    img: '/images/onboarding-2.svg',
   },
   {
     id: 2,
     title: '제주좋아님 이제\n삼춘네로 가볼까요?',
-    img: '/images/onboarding-3.png',
+    img: '/images/onboarding-3.svg',
   },
 ];
 
@@ -38,13 +38,22 @@ export default function OnboardingPage() {
 
   // 방문 여부 체크 (새로고침 시 온보딩 건너뛰기)
   useEffect(() => {
-    const hasVisited = localStorage.getItem('hasVisitedOnboarding');
-    if (hasVisited) {
+    const hasSeen = localStorage.getItem('hasSeenOnboarding');
+    if (hasSeen) {
       router.replace('/');
     } else {
       setIsLoading(false);
     }
   }, [router]);
+
+  const handleNext = () => {
+    if (isLastStep) {
+      localStorage.setItem('hasSeenOnboarding', 'true');
+      router.replace('/');
+    } else {
+      setStep(step + 1);
+    }
+  };
 
   // 스플래시 종료 핸들러
   const handleSplashFinish = () => {
@@ -52,15 +61,6 @@ export default function OnboardingPage() {
     setTimeout(() => {
       setShowSplash(false);
     }, 600);
-  };
-
-  const handleNext = () => {
-    if (isLastStep) {
-      localStorage.setItem('hasVisitedOnboarding', 'true'); // 방문 기록 저장
-      router.push('/');
-    } else {
-      setStep(step + 1);
-    }
   };
 
   const handleBack = (e: React.MouseEvent) => {
