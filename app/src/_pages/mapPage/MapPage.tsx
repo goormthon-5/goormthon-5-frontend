@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Box, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import CategoryTag, { TAG_COLORS } from '@/components/CategoryTag';
@@ -46,7 +47,7 @@ export default function MapPage() {
     );
   };
 
-  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
       setSelectedId(null);
       setSheetMode('list');
@@ -57,9 +58,7 @@ export default function MapPage() {
     setSelectedId(id);
     setSheetMode('detail');
     if (kakaoMapRef.current) {
-      kakaoMapRef.current.panTo(
-        new window.kakao.maps.LatLng(lat, lng),
-      );
+      kakaoMapRef.current.panTo(new window.kakao.maps.LatLng(lat, lng));
     }
   };
 
@@ -135,52 +134,132 @@ export default function MapPage() {
   }, []);
 
   return (
-    <div style={styles.layout}>
-      <div ref={mapRef} style={styles.map} />
+    <Box
+      $css={{
+        position: 'relative',
+        width: '100%',
+        height: '100vh',
+        overflow: 'hidden',
+      }}
+    >
+      <Box ref={mapRef} $css={{ width: '100%', height: '100%' }} />
 
       {/* 검색바 */}
-      <div style={styles.searchBar}>
+      <HStack
+        style={{
+          position: 'absolute',
+          top: 'var(--vapor-size-space-250)',
+          left: 'var(--vapor-size-space-250)',
+          right: 'var(--vapor-size-space-250)',
+          maxWidth: '350px',
+          height: '48px',
+          zIndex: 10,
+        }}
+        $css={{
+          alignItems: 'center',
+          gap: '7px',
+          paddingInline: '$200',
+          paddingBlock: '$000',
+          backgroundColor: '#fff',
+          border: '1px solid #E1E1E1',
+          borderRadius: '$300',
+        }}
+      >
         <Image src={IcSearch} alt="검색" width={18} height={18} />
-        <input
+        <TextInput
           type="text"
           placeholder="마을 이름, 어르신 이름으로 검색"
+          aria-label="마을 이름, 어르신 이름으로 검색"
           value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-            if (!e.target.value.trim()) {
+          onValueChange={(value) => {
+            setSearchQuery(value);
+            if (!value.trim()) {
               setSheetMode('hidden');
               setSelectedId(null);
             }
           }}
           onKeyDown={handleSearch}
-          style={styles.searchInput}
+          $css={{
+            flex: 1,
+            minWidth: 0,
+            height: '100%',
+            alignSelf: 'stretch',
+            border: 'none',
+            borderRadius: 0,
+            boxShadow: 'none',
+            backgroundColor: 'transparent',
+            paddingBlock: '$000',
+            paddingInline: '$000',
+            fontSize: '14.4px',
+            fontWeight: 500,
+            color: '#333',
+            outline: 'none',
+          }}
         />
-      </div>
+      </HStack>
 
       {/* 필터 뱃지 */}
       {sheetMode === 'hidden' && (
-        <div style={styles.filterRow}>
+        <HStack
+          style={{
+            position: 'absolute',
+            top: '78px',
+            left: 'var(--vapor-size-space-250)',
+            zIndex: 10,
+          }}
+          $css={{ gap: '$100' }}
+        >
           {FILTERS.map((filter, idx) => (
-            <div
+            <HStack
               key={filter}
-              style={{
-                ...styles.filterBadge,
-                backgroundColor:
-                  idx === selectedFilter ? '#6DBFFF' : '#fff',
+              role="button"
+              tabIndex={0}
+              onClick={() => setSelectedFilter(idx)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setSelectedFilter(idx);
+                }
+              }}
+              $css={{
+                height: '$300',
+                paddingInline: '$100',
+                paddingBlock: '$000',
+                borderRadius: '$500',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
                 color: idx === selectedFilter ? '#fff' : '#AEAEAE',
               }}
-              onClick={() => setSelectedFilter(idx)}
             >
-              {filter}
-            </div>
+              <Text
+                $css={{
+                  fontSize: '12px',
+                  fontWeight: 500,
+                  color: 'inherit',
+                }}
+              >
+                {filter}
+              </Text>
+            </HStack>
           ))}
-        </div>
+        </HStack>
       )}
 
       {/* 어두운 오버레이 (상세 모드) */}
       {sheetMode === 'detail' && (
-        <div
-          style={styles.overlay}
+        <Box
+          $css={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            backgroundColor: 'rgba(0,0,0,0.1)',
+            zIndex: 15,
+          }}
           onClick={() => {
             setSheetMode('hidden');
             setSelectedId(null);
@@ -189,36 +268,83 @@ export default function MapPage() {
       )}
 
       {/* 바텀시트 */}
-      <div
+      <VStack
         style={{
-          ...styles.bottomSheet,
           maxHeight: sheetMode === 'detail' ? '620px' : '480px',
           transform:
             sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
         }}
+        $css={{
+          position: 'absolute',
+          bottom: '80px',
+          left: 0,
+          right: 0,
+          backgroundColor: '#fff',
+          borderRadius: '24px 24px 0 0',
+          zIndex: 20,
+          transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
+        }}
       >
-        <div
-          style={styles.handleBar}
+        <HStack
           onClick={() => {
             setSheetMode('hidden');
             setSelectedId(null);
           }}
+          $css={{
+            justifyContent: 'center',
+            paddingBlock: '$100',
+            paddingInline: '$000',
+            backgroundColor: '#fff',
+            borderRadius: '24px 24px 0 0',
+            cursor: 'pointer',
+          }}
         >
-          <div style={styles.handle} />
-        </div>
+          <Box
+            $css={{
+              width: '44px',
+              height: '4px',
+              borderRadius: '$050',
+              backgroundColor: '#DEDEDE',
+            }}
+          />
+        </HStack>
 
         {/* 검색 결과 리스트 */}
         {sheetMode === 'list' && (
-          <div style={styles.resultList}>
+          <VStack
+            $css={{
+              gap: '10px',
+              paddingTop: '$100',
+              paddingInline: '$250',
+              paddingBottom: '$250',
+              overflowY: 'auto',
+              maxHeight: '430px',
+            }}
+          >
             {searchResults.map((s) => (
-              <div
+              <HStack
                 key={s.id}
-                style={styles.resultCard}
                 onClick={() => handleCardClick(s)}
+                $css={{
+                  position: 'relative',
+                  height: '103px',
+                  border: '1px solid #E1E1E1',
+                  borderRadius: '$300',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  backgroundColor: '#fff',
+                }}
               >
-                <div
-                  style={{
-                    ...styles.resultImage,
+                <HStack
+                  $css={{
+                    width: '132px',
+                    height: '103px',
+                    flexShrink: 0,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    overflow: 'hidden',
+                    borderRadius: '8px 0 0 8px',
+                    borderRight: '1px solid #E1E1E1',
                     backgroundColor: s.bgColor,
                   }}
                 >
@@ -229,24 +355,42 @@ export default function MapPage() {
                     height={86}
                     style={{ objectFit: 'contain' }}
                   />
-                </div>
-                <div style={styles.resultInfo}>
-                  <span style={styles.resultLocation}>{s.location}</span>
-                  <span style={styles.resultName}>{s.name}</span>
-                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                </HStack>
+                <VStack
+                  $css={{
+                    gap: '7px',
+                    paddingBlock: '$200',
+                    paddingInline: '$150',
+                    flex: 1,
+                    overflow: 'hidden',
+                    alignItems: 'flex-start',
+                  }}
+                >
+                  <Text style={styles.resultLocation}>{s.location}</Text>
+                  <Text style={styles.resultName}>{s.name}</Text>
+                  <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                     <CategoryTag
                       label={s.tags[0].label}
                       color={
-                        TAG_COLORS[
-                          s.tags[0].color as keyof typeof TAG_COLORS
-                        ]
+                        TAG_COLORS[s.tags[0].color as keyof typeof TAG_COLORS]
                       }
                     />
-                  </div>
-                </div>
-                <div
-                  style={styles.starButton}
+                  </Box>
+                </VStack>
+                <HStack
                   onClick={(e) => toggleFavorite(s.id, e)}
+                  $css={{
+                    position: 'absolute',
+                    top: '$200',
+                    right: '$200',
+                    width: '18px',
+                    height: '17px',
+                    borderRadius: '$500',
+                    backgroundColor: '#E0F4FF',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    cursor: 'pointer',
+                  }}
                 >
                   <img
                     src={
@@ -258,195 +402,83 @@ export default function MapPage() {
                     width={11}
                     height={11}
                   />
-                </div>
-              </div>
+                </HStack>
+              </HStack>
             ))}
             {searchResults.length === 0 && (
-              <div style={styles.noResult}>검색 결과가 없습니다.</div>
+              <Text
+                $css={{
+                  paddingBlock: '40px',
+                  paddingInline: '$000',
+                  textAlign: 'center',
+                  color: '#989898',
+                  fontSize: '14px',
+                }}
+              >
+                검색 결과가 없습니다.
+              </Text>
             )}
-          </div>
+          </VStack>
         )}
 
         {/* 상세 미리보기 */}
         {sheetMode === 'detail' && selectedSamchon && (
-          <div style={styles.detailContent}>
+          <VStack
+            $css={{
+              gap: '22px',
+              paddingInline: '$250',
+              paddingBottom: '$250',
+            }}
+          >
             <HouseCard
               imageUrl={selectedSamchon.imageUrl}
               bgColor={selectedSamchon.bgColor}
               size="card"
             />
-            <div style={styles.detailInfo}>
-              <div style={styles.detailInfoInner}>
-                <span style={styles.detailLocation}>
+            <VStack $css={{ gap: '$250', width: '100%' }}>
+              <VStack
+                $css={{
+                  gap: '11px',
+                  width: '100%',
+                  alignItems: 'flex-start',
+                }}
+              >
+                <Text style={styles.detailLocation}>
                   {selectedSamchon.location}
-                </span>
-                <span style={styles.detailName}>
-                  {selectedSamchon.name}
-                </span>
-                <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                </Text>
+                <Text style={styles.detailName}>{selectedSamchon.name}</Text>
+                <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                   <CategoryTag
                     label={selectedSamchon.tags[0].label}
                     color={
                       TAG_COLORS[
-                        selectedSamchon.tags[0]
-                          .color as keyof typeof TAG_COLORS
+                        selectedSamchon.tags[0].color as keyof typeof TAG_COLORS
                       ]
                     }
                   />
-                </div>
-                <p style={styles.detailDescription}>
+                </Box>
+                <Text render={<p />} style={styles.detailDescription}>
                   {selectedSamchon.description}
-                </p>
-              </div>
+                </Text>
+              </VStack>
               <button
+                type="button"
                 style={styles.detailButton}
-                onClick={() =>
-                  router.push(`/detail/${selectedSamchon.id}`)
-                }
+                onClick={() => router.push(`/detail/${selectedSamchon.id}`)}
               >
                 자세히 보기
               </button>
-            </div>
-          </div>
+            </VStack>
+          </VStack>
         )}
-      </div>
+      </VStack>
 
       <BottomNavBar />
-    </div>
+    </Box>
   );
 }
 
 const styles = {
-  layout: {
-    position: 'relative' as const,
-    width: '100%',
-    height: '100vh',
-    overflow: 'hidden',
-  },
-  map: {
-    width: '100%',
-    height: '100%',
-  },
-  searchBar: {
-    position: 'absolute' as const,
-    top: '20px',
-    left: '20px',
-    right: '20px',
-    maxWidth: '350px',
-    height: '48px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '7px',
-    padding: '0 16px',
-    backgroundColor: '#fff',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    zIndex: 10,
-  },
-  searchInput: {
-    flex: 1,
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '14.4px',
-    fontWeight: 500,
-    color: '#333',
-  },
-  filterRow: {
-    position: 'absolute' as const,
-    top: '78px',
-    left: '20px',
-    display: 'flex',
-    gap: '8px',
-    zIndex: 10,
-  },
-  filterBadge: {
-    height: '24px',
-    padding: '0 8px',
-    borderRadius: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '12px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    whiteSpace: 'nowrap' as const,
-  },
-  overlay: {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    zIndex: 15,
-  },
-  bottomSheet: {
-    position: 'absolute' as const,
-    bottom: '80px',
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    zIndex: 20,
-    transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
-  },
-  handleBar: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '10px 0',
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    cursor: 'pointer',
-  },
-  handle: {
-    width: '44px',
-    height: '4px',
-    borderRadius: '4px',
-    backgroundColor: '#DEDEDE',
-  },
-  // 검색 결과 리스트
-  resultList: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '10px',
-    padding: '10px 20px 20px',
-    overflowY: 'auto' as const,
-    maxHeight: '430px',
-  },
-  resultCard: {
-    display: 'flex',
-    position: 'relative' as const,
-    height: '103px',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    backgroundColor: '#fff',
-  },
-  resultImage: {
-    width: '132px',
-    height: '103px',
-    flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: '8px 0 0 8px',
-    borderRight: '1px solid #E1E1E1',
-  },
-  resultInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '7px',
-    padding: '16px 12px',
-    flex: 1,
-    overflow: 'hidden',
-  },
   resultLocation: {
     fontFamily:
       'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
@@ -463,44 +495,6 @@ const styles = {
     lineHeight: '21.06px',
     letterSpacing: '-0.081px',
     color: '#262626',
-  },
-  starButton: {
-    position: 'absolute' as const,
-    top: '16px',
-    right: '16px',
-    width: '18px',
-    height: '17px',
-    borderRadius: '16px',
-    backgroundColor: '#E0F4FF',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-  },
-  noResult: {
-    padding: '40px 0',
-    textAlign: 'center' as const,
-    color: '#989898',
-    fontSize: '14px',
-  },
-  // 상세 미리보기
-  detailContent: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '22px',
-    padding: '0 20px 20px',
-  },
-  detailInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '20px',
-    width: '100%',
-  },
-  detailInfoInner: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '11px',
-    width: '100%',
   },
   detailLocation: {
     fontFamily:

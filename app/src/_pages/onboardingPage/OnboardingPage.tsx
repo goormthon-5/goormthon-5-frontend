@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 import BottomActionBar from '@/components/BottomActionBar';
 import Splash from '@/components/Splash';
 
@@ -71,63 +72,131 @@ export default function OnboardingPage() {
   if (isLoading) return null;
 
   return (
-    <div style={S.layout} onClick={!isLastStep ? handleNext : undefined}>
+    <VStack
+      onClick={!isLastStep ? handleNext : undefined}
+      $css={{
+        width: '100%',
+        maxWidth: '390px',
+        height: '100vh',
+        margin: '0 auto',
+        backgroundColor: '#fff',
+        overflow: 'hidden',
+        position: 'relative',
+      }}
+    >
       {/* 스플래시 영역 */}
       {showSplash && (
-        <div
+        <Box
           style={{
-            ...S.splashOverlay,
+            ...styles.splashOverlay,
             opacity: isSplashFading ? 0 : 1,
           }}
         >
           <Splash onFinish={handleSplashFinish} />
-        </div>
+        </Box>
       )}
 
       {/* 온보딩 */}
       {!showSplash && (
-        <div style={S.contentFadeIn}>
-          <header style={S.header}>
-            {step > 0 && (
-              <button onClick={handleBack} style={S.backBtn}>
-                <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
-              </button>
-            )}
+        <VStack
+          style={styles.contentFadeIn}
+          $css={{ width: '100%', height: '100%' }}
+        >
+          <header style={styles.header}>
+            <HStack
+              $css={{
+                height: '100%',
+                paddingInline: '$250',
+                alignItems: 'center',
+              }}
+            >
+              {step > 0 && (
+                <button
+                  type="button"
+                  onClick={handleBack}
+                  style={styles.backBtn}
+                >
+                  <Image src={IcBack} alt="뒤로가기" width={24} height={24} />
+                </button>
+              )}
+            </HStack>
           </header>
 
-          <div
+          <HStack
             style={{
-              ...S.slideContainer,
               transform: `translateX(-${step * 100}%)`,
+            }}
+            $css={{
+              width: '100%',
+              height: '100%',
+              transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
             }}
           >
             {ONBOARDING_DATA.map((item) => (
-              <div key={item.id} style={S.slidePage}>
-                <main style={S.main}>
-                  <div style={S.logoWrapper}>
-                    <Image
-                      src={ImgLogo}
-                      alt="로고"
-                      width={143.29}
-                      height={40.53}
-                      priority
-                    />
-                  </div>
-                  <p style={S.title}>{item.title}</p>
-                  <div style={S.indicatorWrapper}>
-                    {ONBOARDING_DATA.map((_, idx) => (
-                      <div
-                        key={idx}
-                        style={{
-                          ...S.dot,
-                          backgroundColor: idx === step ? '#6DBFFF' : '#E1E1E1',
-                        }}
+              <VStack key={item.id} $css={{ minWidth: '100%', height: '100%' }}>
+                <main style={styles.main}>
+                  <VStack
+                    $css={{
+                      flex: 1,
+                      alignItems: 'center',
+                      textAlign: 'center',
+                      paddingTop: '100px',
+                    }}
+                  >
+                    <Box $css={{ marginBottom: '42.47px' }}>
+                      <Image
+                        src={ImgLogo}
+                        alt="로고"
+                        width={143.29}
+                        height={40.53}
+                        priority
                       />
-                    ))}
-                  </div>
+                    </Box>
+                    <Text
+                      render={<p />}
+                      $css={{
+                        fontSize: '20px',
+                        fontWeight: 700,
+                        lineHeight: '1.4',
+                        whiteSpace: 'pre-line',
+                        color: '#2B343B',
+                        margin: 0,
+                      }}
+                    >
+                      {item.title}
+                    </Text>
+                    <HStack
+                      $css={{
+                        gap: '$100',
+                        marginTop: '46px',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                      }}
+                    >
+                      {ONBOARDING_DATA.map((_, idx) => (
+                        <Box
+                          key={idx}
+                          $css={{
+                            width: '$100',
+                            height: '$100',
+                            borderRadius: '50%',
+                            transition: 'background-color 0.3s',
+                            backgroundColor:
+                              idx === step ? '#6DBFFF' : '#E1E1E1',
+                          }}
+                        />
+                      ))}
+                    </HStack>
+                  </VStack>
                 </main>
-                <footer style={S.footer}>
-                  <div style={S.imageBox}>
+                <footer style={styles.footer}>
+                  <Box
+                    $css={{
+                      width: '100%',
+                      height: '100%',
+                      position: 'relative',
+                    }}
+                  >
                     <Image
                       src={item.img}
                       alt="onboarding"
@@ -135,33 +204,22 @@ export default function OnboardingPage() {
                       style={{ objectFit: 'cover', objectPosition: 'bottom' }}
                       priority
                     />
-                  </div>
+                  </Box>
                 </footer>
-              </div>
+              </VStack>
             ))}
-          </div>
+          </HStack>
 
           {isLastStep && (
             <BottomActionBar label="시작하기" onClick={handleNext} />
           )}
-        </div>
+        </VStack>
       )}
-    </div>
+    </VStack>
   );
 }
 
-const S = {
-  layout: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    width: '100%',
-    maxWidth: '390px',
-    height: '100vh',
-    margin: '0 auto',
-    backgroundColor: '#fff',
-    overflow: 'hidden',
-    position: 'relative' as const,
-  },
+const styles = {
   splashOverlay: {
     position: 'absolute' as const,
     top: 0,
@@ -172,8 +230,6 @@ const S = {
     transition: 'opacity 0.6s ease-in-out',
   },
   contentFadeIn: {
-    width: '100%',
-    height: '100%',
     animation: 'fadeIn 0.5s ease-in',
   },
   header: {
@@ -182,52 +238,14 @@ const S = {
     left: 0,
     width: '100%',
     height: '60px',
-    padding: '0 20px',
-    display: 'flex',
-    alignItems: 'center',
     zIndex: 20,
-  },
-  backBtn: {
-    border: 'none',
-    background: 'none',
-    cursor: 'pointer',
-    padding: 0,
-  },
-  slideContainer: {
-    display: 'flex',
-    width: '100%',
-    height: '100%',
-    transition: 'transform 0.6s cubic-bezier(0.23, 1, 0.32, 1)',
-  },
-  slidePage: {
-    minWidth: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column' as const,
   },
   main: {
     flex: 1,
     display: 'flex',
     flexDirection: 'column' as const,
-    alignItems: 'center',
-    textAlign: 'center' as const,
-    paddingTop: '100px',
-  },
-  logoWrapper: { marginBottom: '42.47px' },
-  title: {
-    fontSize: '20px',
-    fontWeight: '700',
-    lineHeight: '1.4',
-    whiteSpace: 'pre-line' as const,
-    color: '#2B343B',
-    margin: 0,
-  },
-  indicatorWrapper: { display: 'flex', gap: '8px', marginTop: '46px' },
-  dot: {
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    transition: 'background-color 0.3s',
+    width: '100%',
+    minHeight: 0,
   },
   footer: {
     width: '100%',
@@ -235,5 +253,11 @@ const S = {
     display: 'flex',
     alignItems: 'flex-end',
   },
-  imageBox: { width: '100%', height: '100%', position: 'relative' as const },
-};
+  backBtn: {
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+    paddingBlock: 0,
+    paddingInline: 0,
+  },
+} as const;
