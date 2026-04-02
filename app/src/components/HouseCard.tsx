@@ -54,7 +54,8 @@ export default function HouseCard({
     <div
       style={{
         position: 'relative',
-        width: `${s.width}px`,
+        width: '100%',
+        maxWidth: `${s.width}px`,
         height: `${s.height}px`,
         backgroundColor: bgColor,
         borderRadius: s.border ? '8px 8px 0 0' : '0',

@@ -106,7 +106,7 @@ export default function Home() {
                 label: t.label,
                 color: TAG_COLORS[t.color as keyof typeof TAG_COLORS],
               }))}
-              onClick={() => router.push(`/detail`)}
+              onClick={() => router.push(`/detail/${s.id}`)}
             />
           ))}
         </section>

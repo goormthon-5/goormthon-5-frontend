@@ -49,7 +49,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column' as const,
     cursor: 'pointer',
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px',
   },
   content: {
     display: 'flex',
@@ -65,7 +66,7 @@ const styles = {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
-    width: '312px',
+    width: '100%',
   },
   location: {
     fontFamily:
