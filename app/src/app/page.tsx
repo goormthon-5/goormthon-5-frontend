@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { HStack, IconButton, Text, TextInput, VStack } from '@vapor-ui/core';
@@ -17,7 +17,20 @@ import IcSearch from '@/assets/icons/search-icon.svg';
 export default function Home() {
   const router = useRouter();
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
+
   const name: string = '제주좋아';
+
+  // 온보딩 체크 로직
+  useEffect(() => {
+    const hasSeen = localStorage.getItem('hasSeenOnboarding');
+
+    if (!hasSeen) {
+      router.replace('/onboarding');
+    } else {
+      setIsLoading(false);
+    }
+  }, [router]);
 
   return (
     <VStack
