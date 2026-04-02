@@ -1,6 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
+import ImgHareubang from '@/assets/images/hareubang.svg';
 
 export default function ReservationCompletePage() {
   const router = useRouter();
@@ -9,24 +11,7 @@ export default function ReservationCompletePage() {
     <div style={styles.layout}>
       {/* 중앙 콘텐츠 */}
       <div style={styles.content}>
-        {/* 체크 아이콘 */}
-        <div style={styles.checkCircle}>
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M8 16L14 22L24 10"
-              stroke="#fff"
-              strokeWidth="3"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </div>
+        <Image src={ImgHareubang} alt="돌하르방" width={174} height={125} />
         <h1 style={styles.title}>예약이 완료되었습니다!</h1>
         <p style={styles.description}>
           방문 일정과 장소를 다시 한번 확인해 주세요.
