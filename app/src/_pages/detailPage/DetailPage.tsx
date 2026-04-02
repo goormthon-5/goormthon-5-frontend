@@ -135,7 +135,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
             {data.accommodationHostInfo.cleanlinessLevel && (
               <Box style={styles.hostTag}>
                 <Text style={styles.hostTagText}>
-                  {({ LV1: '보통', LV2: '깔끔', LV3: '매우 깔끔' } as Record<string, string>)[data.accommodationHostInfo.cleanlinessLevel] || data.accommodationHostInfo.cleanlinessLevel}
+                  {({ LV1: '청결 C', LV2: '청결 B', LV3: '청결 A' } as Record<string, string>)[data.accommodationHostInfo.cleanlinessLevel] || data.accommodationHostInfo.cleanlinessLevel}
                 </Text>
               </Box>
             )}

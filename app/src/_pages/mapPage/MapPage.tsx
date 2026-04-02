@@ -18,7 +18,16 @@ declare global {
   }
 }
 
-const FILTERS = ['가까운 거리', '인기', '후기 많은', '오늘 가능', '예약 가능'];
+const FILTERS = [
+  '전체',
+  '밤낚시',
+  '바비큐',
+  '차담',
+  '손맛 집밥',
+  '산책',
+  '제주어',
+  '텃밭',
+];
 
 type SheetMode = 'hidden' | 'list' | 'detail';
 
@@ -26,6 +35,7 @@ export default function MapPage() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
+  const overlaysRef = useRef<any[]>([]);
   const [accommodations, setAccommodations] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState(0);
@@ -109,6 +119,7 @@ export default function MapPage() {
         });
         kakaoMapRef.current = map;
 
+        const overlays: any[] = [];
         accommodations.forEach((s: any) => {
           if (!s.address) return;
           const position = new window.kakao.maps.LatLng(
@@ -130,12 +141,15 @@ export default function MapPage() {
             );
           });
 
-          new window.kakao.maps.CustomOverlay({
+          const overlay = new window.kakao.maps.CustomOverlay({
             position,
             content: wrapper,
             yAnchor: 1,
-          }).setMap(map);
+          });
+          overlay.setMap(map);
+          overlays.push({ overlay, data: s });
         });
+        overlaysRef.current = overlays;
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
@@ -159,6 +173,23 @@ export default function MapPage() {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accommodations]);
+
+  // 필터 변경 시 마커 표시/숨기기
+  useEffect(() => {
+    if (!kakaoMapRef.current || overlaysRef.current.length === 0) return;
+    const filterKeyword = FILTERS[selectedFilter];
+
+    overlaysRef.current.forEach(({ overlay, data }) => {
+      if (selectedFilter === 0) {
+        overlay.setMap(kakaoMapRef.current);
+      } else {
+        const match = (data.options || []).some(
+          (opt: any) => (opt.name || opt).includes(filterKeyword),
+        );
+        overlay.setMap(match ? kakaoMapRef.current : null);
+      }
+    });
+  }, [selectedFilter]);
 
   return (
     <>
@@ -232,54 +263,53 @@ export default function MapPage() {
         </HStack>
 
         {/* 필터 뱃지 */}
-        {sheetMode === 'hidden' && (
-          <HStack
-            style={{
-              position: 'absolute',
-              top: '78px',
-              left: 'var(--vapor-size-space-250)',
-              zIndex: 10,
-            }}
-            $css={{ gap: '$100' }}
-          >
-            {FILTERS.map((filter, idx) => (
-              <HStack
-                key={filter}
-                role="button"
-                tabIndex={0}
-                onClick={() => setSelectedFilter(idx)}
-                onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') {
-                    e.preventDefault();
-                    setSelectedFilter(idx);
-                  }
-                }}
+        <HStack
+          style={{
+            position: 'absolute',
+            top: '78px',
+            left: 'var(--vapor-size-space-250)',
+            zIndex: 25,
+            overflowX: 'auto',
+            maxWidth: 'calc(100% - 40px)',
+          }}
+          $css={{ gap: '$100' }}
+        >
+          {FILTERS.map((filter, idx) => (
+            <HStack
+              key={filter}
+              role="button"
+              tabIndex={0}
+              onClick={() => {
+                setSelectedFilter(idx);
+                setSelectedId(null);
+                setSheetMode('hidden');
+                setSearchQuery('');
+              }}
+              $css={{
+                height: '$300',
+                paddingInline: '$100',
+                paddingBlock: '$000',
+                borderRadius: '$500',
+                alignItems: 'center',
+                justifyContent: 'center',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
+                color: idx === selectedFilter ? '#fff' : '#AEAEAE',
+              }}
+            >
+              <Text
                 $css={{
-                  height: '$300',
-                  paddingInline: '$100',
-                  paddingBlock: '$000',
-                  borderRadius: '$500',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                  backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
-                  color: idx === selectedFilter ? '#fff' : '#AEAEAE',
+                  fontSize: '12px',
+                  fontWeight: 500,
+                  color: 'inherit',
                 }}
               >
-                <Text
-                  $css={{
-                    fontSize: '12px',
-                    fontWeight: 500,
-                    color: 'inherit',
-                  }}
-                >
-                  {filter}
-                </Text>
-              </HStack>
-            ))}
-          </HStack>
-        )}
+                {filter}
+              </Text>
+            </HStack>
+          ))}
+        </HStack>
 
         {/* 오버레이 */}
         {sheetMode !== 'hidden' && (
@@ -325,171 +355,6 @@ export default function MapPage() {
               setSelectedId(null);
               setSearchQuery('');
             }}
-          />
-        </div>
-
-        {/* 검색 결과 리스트 */}
-        {sheetMode === 'list' && (
-          <div style={styles.resultList}>
-            {searchResults.map((s: any) => {
-              const cardStyle = getAccommodationStyle(s.accommodationId);
-              return (
-                <div
-                  key={s.accommodationId}
-                  style={styles.resultCard}
-                  onClick={() => handleCardClick(s)}
-                >
-                  <div
-                    style={{
-                      ...styles.resultImage,
-                      backgroundColor: cardStyle.bgColor,
-                    }}
-                  >
-                    <img
-                      src={cardStyle.houseImage}
-                      alt=""
-                      width={100}
-                      height={72}
-                      style={{ objectFit: 'contain' }}
-                    />
-                  </div>
-                  <div style={styles.resultInfo}>
-                    <span style={styles.resultLocation}>
-                      {s.address?.address_short || ''}
-                    </span>
-                    <span style={styles.resultName}>{s.name}</span>
-                    {s.cost != null && (
-                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#2B343B' }}>
-                        {s.cost.toLocaleString()}원<span style={{ fontSize: '10px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
-                      </span>
-                    )}
-                    {s.accommodationHostInfo && (
-                      <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
-                        {s.accommodationHostInfo.personality && (
-                          <span style={styles.infoTag}>{s.accommodationHostInfo.personality}</span>
-                        )}
-                        {s.accommodationHostInfo.trait && (
-                          <span style={styles.infoTag}>{s.accommodationHostInfo.trait}</span>
-                        )}
-                        {s.accommodationHostInfo.hasWifi != null && (
-                          <span style={{
-                            ...styles.infoTag,
-                            backgroundColor: '#F5F5F5',
-                            padding: '2px 5px',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                          }}>
-                            <img
-                              src={s.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
-                              alt={s.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
-                              width={14}
-                              height={14}
-                            />
-                          </span>
-                        )}
-                      </div>
-                    )}
-                  </div>
-                  <div
-                    style={styles.starButton}
-                    onClick={(e) => toggleFavorite(s.accommodationId, e)}
-                  >
-                    <img
-                      src={
-                        favorites.includes(s.accommodationId)
-                          ? '/icons/active-star.svg'
-                          : '/icons/non-active-star.svg'
-                      }
-                      alt="즐겨찾기"
-                      width={11}
-                      height={11}
-                    />
-                  </div>
-                </div>
-              );
-            })}
-            {searchResults.length === 0 && (
-              <div style={styles.noResult}>검색 결과가 없습니다.</div>
-            )}
-          </div>
-        )}
-
-        {/* 상세 미리보기 */}
-        {sheetMode === 'detail' &&
-          selected &&
-          (() => {
-            const detailStyle = getAccommodationStyle(selected.accommodationId);
-            return (
-              <div style={styles.detailContent}>
-                <HouseCard
-                  imageUrl={detailStyle.houseImage}
-                  bgColor={detailStyle.bgColor}
-                  size="card"
-                />
-                <div style={styles.detailInfo}>
-                  <div style={styles.detailInfoInner}>
-                    <span style={styles.detailLocation}>
-                      {selected.address?.address_short || ''}
-                    </span>
-                    <span style={styles.detailName}>{selected.name}</span>
-                    {selected.cost != null && (
-                      <span style={{ fontSize: '16px', fontWeight: 700, color: '#2B343B' }}>
-                        {selected.cost.toLocaleString()}원<span style={{ fontSize: '12px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
-                      </span>
-                    )}
-                    {(selected.options || []).length > 0 && (
-                      <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                        <CategoryTag
-                          label={
-                            selected.options[0]?.name || selected.options[0]
-                          }
-                          color={detailStyle.tagColor}
-                        />
-                      </div>
-                    )}
-                    {selected.accommodationHostInfo && (
-                      <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
-                        {selected.accommodationHostInfo.personality && (
-                          <span style={styles.infoTag}>{selected.accommodationHostInfo.personality}</span>
-                        )}
-                        {selected.accommodationHostInfo.trait && (
-                          <span style={styles.infoTag}>{selected.accommodationHostInfo.trait}</span>
-                        )}
-                        {selected.accommodationHostInfo.cleanlinessLevel && (
-                          <span style={styles.infoTag}>
-                            {({ LV1: '보통', LV2: '깔끔', LV3: '매우 깔끔' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
-                          </span>
-                        )}
-                        {selected.accommodationHostInfo.hasWifi != null && (
-                          <span style={{
-                            ...styles.infoTag,
-                            backgroundColor: '#F5F5F5',
-                            padding: '2px 5px',
-                            display: 'inline-flex',
-                            alignItems: 'center',
-                          }}>
-                            <img
-                              src={selected.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
-                              alt={selected.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
-                              width={16}
-                              height={16}
-                            />
-                          </span>
-                        )}
-                      </div>
-                    )}
-                    <p style={styles.detailDescription}>
-                      {selected.description}
-                    </p>
-                  </div>
-                  <button
-                    style={styles.detailButton}
-                    onClick={() => {
-                      const accId = Number(
-                        selected.accommodationId ?? selected.id,
-                      );
-                      if (!Number.isFinite(accId)) return;
-                      router.push(`/reservation/detail/${accId}`);
             $css={{
               justifyContent: 'center',
               paddingBlock: '$100',
@@ -528,7 +393,7 @@ export default function MapPage() {
                     onClick={() => handleCardClick(s)}
                     $css={{
                       position: 'relative',
-                      minHeight: '103px',
+                      minHeight: '130px',
                       border: '1px solid #E1E1E1',
                       borderRadius: '$300',
                       overflow: 'hidden',
@@ -537,7 +402,7 @@ export default function MapPage() {
                     }}
                   >
                     <HStack
-                      style={{ width: '120px', minHeight: '103px' }}
+                      style={{ width: '120px', minHeight: '130px' }}
                       $css={{
                         flexShrink: 0,
                         alignItems: 'center',
@@ -557,7 +422,7 @@ export default function MapPage() {
                     </HStack>
                     <VStack
                       $css={{
-                        gap: '6px',
+                        gap: '5px',
                         paddingBlock: '$175',
                         paddingInline: '$150',
                         flex: 1,
@@ -570,6 +435,12 @@ export default function MapPage() {
                         {s.address?.address_short || ''}
                       </Text>
                       <Text style={styles.resultName}>{s.name}</Text>
+                      {s.cost != null && (
+                        <Text style={{ fontSize: '13px', fontWeight: 700, color: '#2B343B', margin: 0 }}>
+                          {s.cost.toLocaleString()}원
+                          <span style={{ fontSize: '10px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+                        </Text>
+                      )}
                       {(s.options || []).length > 0 && (
                         <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                           <CategoryTag
@@ -577,6 +448,26 @@ export default function MapPage() {
                             color={cardStyle.tagColor}
                           />
                         </Box>
+                      )}
+                      {s.accommodationHostInfo && (
+                        <HStack style={{ gap: '4px', flexWrap: 'wrap' }}>
+                          {s.accommodationHostInfo.personality && (
+                            <span style={styles.infoTag}>{s.accommodationHostInfo.personality}</span>
+                          )}
+                          {s.accommodationHostInfo.trait && (
+                            <span style={styles.infoTag}>{s.accommodationHostInfo.trait}</span>
+                          )}
+                          {s.accommodationHostInfo.hasWifi != null && (
+                            <span style={{ ...styles.infoTag, display: 'inline-flex', alignItems: 'center', padding: '2px 5px' }}>
+                              <img
+                                src={s.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                                alt={s.accommodationHostInfo.hasWifi ? 'Wi-Fi' : 'No Wi-Fi'}
+                                width={14}
+                                height={14}
+                              />
+                            </span>
+                          )}
+                        </HStack>
                       )}
                     </VStack>
                     <HStack
@@ -674,6 +565,12 @@ function DetailPreview({
             {selected.address?.address_short || ''}
           </Text>
           <Text style={styles.detailName}>{selected.name}</Text>
+          {selected.cost != null && (
+            <Text style={{ fontSize: '16px', fontWeight: 700, color: '#2B343B', margin: 0 }}>
+              {selected.cost.toLocaleString()}원
+              <span style={{ fontSize: '12px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+            </Text>
+          )}
           {(selected.options || []).length > 0 && (
             <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
               <CategoryTag
@@ -681,6 +578,31 @@ function DetailPreview({
                 color={detailStyle.tagColor}
               />
             </Box>
+          )}
+          {selected.accommodationHostInfo && (
+            <HStack style={{ gap: '5px', flexWrap: 'wrap' }}>
+              {selected.accommodationHostInfo.personality && (
+                <span style={styles.infoTag}>{selected.accommodationHostInfo.personality}</span>
+              )}
+              {selected.accommodationHostInfo.trait && (
+                <span style={styles.infoTag}>{selected.accommodationHostInfo.trait}</span>
+              )}
+              {selected.accommodationHostInfo.cleanlinessLevel && (
+                <span style={styles.infoTag}>
+                  {({ LV1: '청결 C', LV2: '청결 B', LV3: '청결 A' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
+                </span>
+              )}
+              {selected.accommodationHostInfo.hasWifi != null && (
+                <span style={{ ...styles.infoTag, display: 'inline-flex', alignItems: 'center', padding: '2px 5px' }}>
+                  <img
+                    src={selected.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                    alt={selected.accommodationHostInfo.hasWifi ? 'Wi-Fi' : 'No Wi-Fi'}
+                    width={16}
+                    height={16}
+                  />
+                </span>
+              )}
+            </HStack>
           )}
           <Text render={<p />} style={styles.detailDescription}>
             {selected.description}
@@ -691,7 +613,11 @@ function DetailPreview({
           variant="fill"
           colorPalette="contrast"
           size="xl"
-          onClick={() => router.push(`/detail/${selected.accommodationId}`)}
+          onClick={() => {
+            const accId = Number(selected.accommodationId ?? selected.id);
+            if (!Number.isFinite(accId)) return;
+            router.push(`/reservation/detail/${accId}`);
+          }}
           style={{ width: '100%', height: '48px' }}
           $css={{
             paddingBlock: '$000',
