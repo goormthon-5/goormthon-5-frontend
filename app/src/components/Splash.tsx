@@ -12,8 +12,8 @@ export default function Splash({ onFinish }: { onFinish: () => void }) {
   useEffect(() => {
     // 0.1초 뒤에 아이콘들이 서서히 나타나기
     const fadeInTimer = setTimeout(() => setIsVisible(true), 100);
-    // 2.5초 뒤에 온보딩으로
-    const finishTimer = setTimeout(() => onFinish(), 2500);
+    // 1.4초 뒤에 온보딩으로
+    const finishTimer = setTimeout(() => onFinish(), 1400);
 
     return () => {
       clearTimeout(fadeInTimer);
