@@ -16,7 +16,16 @@ declare global {
   }
 }
 
-const FILTERS = ['가까운 거리', '인기', '후기 많은', '오늘 가능', '예약 가능'];
+const FILTERS = [
+  '전체',
+  '밤낚시',
+  '바비큐',
+  '차담',
+  '손맛 집밥',
+  '산책',
+  '제주어',
+  '텃밭',
+];
 
 type SheetMode = 'hidden' | 'list' | 'detail';
 
@@ -28,6 +37,7 @@ export default function MapPage({ appKey }: MapPageProps) {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
+  const overlaysRef = useRef<any[]>([]);
   const [accommodations, setAccommodations] = useState<any[]>([]);
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
@@ -109,6 +119,7 @@ export default function MapPage({ appKey }: MapPageProps) {
         });
         kakaoMapRef.current = map;
 
+        const overlays: any[] = [];
         accommodations.forEach((s: any) => {
           if (!s.address) return;
           const position = new window.kakao.maps.LatLng(
@@ -130,12 +141,15 @@ export default function MapPage({ appKey }: MapPageProps) {
             );
           });
 
-          new window.kakao.maps.CustomOverlay({
+          const overlay = new window.kakao.maps.CustomOverlay({
             position,
             content: wrapper,
             yAnchor: 1,
-          }).setMap(map);
+          });
+          overlay.setMap(map);
+          overlays.push({ overlay, data: s });
         });
+        overlaysRef.current = overlays;
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
@@ -159,6 +173,23 @@ export default function MapPage({ appKey }: MapPageProps) {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accommodations]);
+
+  // 필터 변경 시 마커 표시/숨기기
+  useEffect(() => {
+    if (!kakaoMapRef.current || overlaysRef.current.length === 0) return;
+    const filterKeyword = FILTERS[selectedFilter];
+
+    overlaysRef.current.forEach(({ overlay, data }) => {
+      if (selectedFilter === 0) {
+        overlay.setMap(kakaoMapRef.current);
+      } else {
+        const match = (data.options || []).some(
+          (opt: any) => (opt.name || opt).includes(filterKeyword),
+        );
+        overlay.setMap(match ? kakaoMapRef.current : null);
+      }
+    });
+  }, [selectedFilter]);
 
   return (
     <div style={styles.layout}>
@@ -187,23 +218,26 @@ export default function MapPage({ appKey }: MapPageProps) {
       </div>
 
       {/* 필터 뱃지 */}
-      {sheetMode === 'hidden' && (
-        <div style={styles.filterRow}>
-          {FILTERS.map((filter, idx) => (
-            <div
-              key={filter}
-              style={{
-                ...styles.filterBadge,
-                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
-                color: idx === selectedFilter ? '#fff' : '#AEAEAE',
-              }}
-              onClick={() => setSelectedFilter(idx)}
-            >
-              {filter}
-            </div>
-          ))}
-        </div>
-      )}
+      <div style={styles.filterRow}>
+        {FILTERS.map((filter, idx) => (
+          <div
+            key={filter}
+            style={{
+              ...styles.filterBadge,
+              backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
+              color: idx === selectedFilter ? '#fff' : '#AEAEAE',
+            }}
+            onClick={() => {
+              setSelectedFilter(idx);
+              setSelectedId(null);
+              setSheetMode('hidden');
+              setSearchQuery('');
+            }}
+          >
+            {filter}
+          </div>
+        ))}
+      </div>
 
       {/* 오버레이 */}
       {sheetMode !== 'hidden' && (
@@ -391,7 +425,9 @@ const styles = {
     left: '20px',
     display: 'flex',
     gap: '8px',
-    zIndex: 10,
+    zIndex: 25,
+    overflowX: 'auto' as const,
+    maxWidth: 'calc(100% - 40px)',
   },
   filterBadge: {
     height: '24px',
