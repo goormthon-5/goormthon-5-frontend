@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { HStack, IconButton, Text, TextInput, VStack } from '@vapor-ui/core';
+import RatingBadge from '@/components/RatingBadge';
 import SamchonCard from '@/components/SamchonCard';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
@@ -273,8 +274,12 @@ export default function Home() {
                     bgColor={style.bgColor}
                     location={s.address?.address_short || ''}
                     name={s.name}
-                    rating={s.averageRating || 0}
-                    reviewCount={s.guestBookCount || 0}
+                    renderRightTop={
+                      <RatingBadge
+                        rating={s.averageRating || 0}
+                        reviewCount={s.guestBookCount || 0}
+                      />
+                    }
                     tags={(s.options || []).slice(0, 1).map((opt: any) => ({
                       label: opt.name || opt,
                       color: style.tagColor,
