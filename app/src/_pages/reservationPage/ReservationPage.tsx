@@ -65,36 +65,12 @@ export default function ReservationPage() {
                 <CategoryTag label={item.tag.label} color={item.tag.color} />
               </div>
               <div style={styles.dateRow}>
-                <svg
-                  width="12"
-                  height="13"
-                  viewBox="0 0 12 13"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <rect
-                    x="1"
-                    y="2"
-                    width="10"
-                    height="9"
-                    rx="1.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                  />
-                  <path d="M1 5H11" stroke="#989898" strokeWidth="1.2" />
-                  <path
-                    d="M3.5 0.5V2.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M8.5 0.5V2.5"
-                    stroke="#989898"
-                    strokeWidth="1.2"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                <Image
+                  src="/icons/calendar-icon.svg"
+                  alt="날짜"
+                  width={12}
+                  height={13}
+                />
                 <span style={styles.dateText}>{item.date}</span>
               </div>
             </div>

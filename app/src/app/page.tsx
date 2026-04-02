@@ -4,6 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { IconButton } from '@vapor-ui/core';
 import SamchonCard from '@/components/SamchonCard';
+import { TAG_COLORS } from '@/components/CategoryTag';
 import DataSearch from '@/components/main/DataSearch';
 import BottomNavBar from '@/components/BottomNavBar';
 import ImgLogo from '@/assets/images/main-logo.svg';
@@ -90,17 +91,32 @@ export default function Home() {
           <h2 style={S.sectionTitle}>삼춘 목록</h2>
 
           <SamchonCard
-            imageUrl="/sample-image.jpg"
-            location="제주시"
+            imageUrl="/images/house-1.png"
+            bgColor="#E0F4FF"
+            location="성산읍 시흥리"
             name="손맛 좋은 옥자 할망"
             rating={4.9}
             reviewCount={47}
-            tags={[{ label: '식사', color: '#6DBFFF' }]}
+            tags={[{ label: '식사', color: TAG_COLORS.blue }]}
           />
-
-          <div style={S.cardPlaceholder}>Card 1</div>
-          <div style={S.cardPlaceholder}>Card 2</div>
-          <div style={S.cardPlaceholder}>Card 3</div>
+          <SamchonCard
+            imageUrl="/images/house-2.png"
+            bgColor="#FFC061"
+            location="남원읍 위미리"
+            name="올레 1코스 정원사 인태 삼춘"
+            rating={3.9}
+            reviewCount={12}
+            tags={[{ label: '동백꽃 산책', color: TAG_COLORS.orange }]}
+          />
+          <SamchonCard
+            imageUrl="/images/house-3.png"
+            bgColor="#D2FAE8"
+            location="구좌읍 세화리"
+            name="바닷가 뷰 순자 할멈"
+            rating={5.0}
+            reviewCount={20}
+            tags={[{ label: '바닷가 투어', color: TAG_COLORS.green }]}
+          />
         </section>
       </main>
       <BottomNavBar />
