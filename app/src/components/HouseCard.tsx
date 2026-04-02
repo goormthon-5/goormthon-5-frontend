@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import { Box } from '@vapor-ui/core';
 
 type HouseCardSize = 'card' | 'detail';
 
@@ -51,18 +52,24 @@ export default function HouseCard({
   const s = SIZES[size];
 
   return (
-    <div
+    <Box
       style={{
-        position: 'relative',
-        width: '100%',
         maxWidth: `${s.width}px`,
         height: `${s.height}px`,
         backgroundColor: bgColor,
         borderRadius: s.border ? '8px 8px 0 0' : '0',
-        borderTop: s.border ? '1px solid #E1E1E1' : 'none',
-        borderLeft: s.border ? '1px solid #E1E1E1' : 'none',
-        borderRight: s.border ? '1px solid #E1E1E1' : 'none',
+      }}
+      $css={{
+        position: 'relative',
+        width: '100%',
         overflow: 'hidden',
+        ...(s.border
+          ? {
+              borderTop: '1px solid #E1E1E1',
+              borderLeft: '1px solid #E1E1E1',
+              borderRight: '1px solid #E1E1E1',
+            }
+          : {}),
       }}
     >
       <Image
@@ -104,6 +111,6 @@ export default function HouseCard({
           }}
         />
       )}
-    </div>
+    </Box>
   );
 }

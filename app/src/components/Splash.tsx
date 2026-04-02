@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { Box, VStack } from '@vapor-ui/core';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import ImgTangerine from '@/assets/images/tangerine.svg';
 import ImgCanola from '@/assets/images/canola.svg';
@@ -22,7 +23,15 @@ export default function Splash({ onFinish }: { onFinish: () => void }) {
   }, [onFinish]);
 
   return (
-    <div style={S.container}>
+    <VStack
+      $css={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+        height: '100vh',
+        backgroundColor: '#fff',
+      }}
+    >
       <style>{`
         @keyframes fadeInSway {
           from { opacity: 0; transform: scale(0.8) rotate(-10deg); }
@@ -33,40 +42,31 @@ export default function Splash({ onFinish }: { onFinish: () => void }) {
         }
       `}</style>
 
-      <div style={S.centerGroup}>
-        {/* 귤*/}
+      <Box $css={{ position: 'relative' }}>
+        {/* 귤 */}
         {isVisible && (
-          <div style={S.tangerineWrapper} className="icon-fade-in">
+          <Box style={styles.tangerineWrapper} className="icon-fade-in">
             <Image src={ImgTangerine} alt="귤" width={90} />
-          </div>
+          </Box>
         )}
 
         <Image src={ImgLogo} alt="로고" width={140} height={42} priority />
 
         {/* 유채꽃 */}
         {isVisible && (
-          <div
-            style={{ ...S.canolaWrapper, animationDelay: '0.3s' }}
+          <Box
+            style={{ ...styles.canolaWrapper, animationDelay: '0.3s' }}
             className="icon-fade-in"
           >
             <Image src={ImgCanola} alt="유채꽃" width={120} />
-          </div>
+          </Box>
         )}
-      </div>
-    </div>
+      </Box>
+    </VStack>
   );
 }
 
-const S = {
-  container: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: '100%',
-    height: '100vh',
-    backgroundColor: '#fff',
-  },
-  centerGroup: { position: 'relative' as const },
+const styles = {
   tangerineWrapper: {
     position: 'absolute' as const,
     top: '-65px',
@@ -79,4 +79,4 @@ const S = {
     right: '-85px',
     opacity: 0,
   },
-};
+} as const;

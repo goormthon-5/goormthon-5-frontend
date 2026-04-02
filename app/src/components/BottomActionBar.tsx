@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Text, VStack } from '@vapor-ui/core';
+import { Box, Button, Text, VStack } from '@vapor-ui/core';
 
 interface BottomActionBarProps {
   label: string;
@@ -22,37 +22,42 @@ export default function BottomActionBar({
   return (
     <VStack
       style={{
-        alignItems: 'center',
         position: 'fixed',
         bottom: 0,
         left: '50%',
         transform: 'translateX(-50%)',
+      }}
+      $css={{
+        alignItems: 'center',
         width: '100%',
         maxWidth: '390px',
         zIndex: 1000,
       }}
     >
       <VStack
-        style={{
-          width: buttonWidth,
-          maxWidth: '350px',
+        style={{ width: buttonWidth }}
+        $css={{
           justifyContent: 'center',
           alignItems: 'center',
           padding: '0 20px',
           boxSizing: 'border-box' as const,
         }}
       >
-        <button
+        <Button
           type="button"
+          variant="fill"
+          colorPalette="contrast"
+          size="xl"
           onClick={onClick}
-          style={{
-            width: '100%',
-            height: buttonHeight,
-            borderRadius: '8px',
+          style={{ width: '100%', height: buttonHeight }}
+          $css={{
+            paddingBlock: '$000',
+            paddingInline: '$000',
+            borderRadius: '$300',
             border: 'none',
             backgroundColor: '#2B343B',
             cursor: 'pointer',
-            padding: 0,
+            width: '100%',
           }}
         >
           <Text
@@ -60,28 +65,33 @@ export default function BottomActionBar({
               display: 'block',
               fontSize: labelFontSize,
               fontWeight: labelFontWeight,
+              marginBlock: 0,
+              marginInline: 0,
+            }}
+            $css={{
               color: '#fff',
               textAlign: 'center',
               lineHeight: '100%',
-              margin: 0,
             }}
           >
             {label}
           </Text>
-        </button>
+        </Button>
       </VStack>
 
       <VStack
-        style={{
+        $css={{
           width: '100%',
           justifyContent: 'flex-end',
           alignItems: 'center',
-          paddingBottom: 'var(--vapor-size-space-100)',
+          paddingBottom: '$100',
         }}
       >
         <Box
           style={{
-            height: '5px',
+            width: '134px',
+            height: '20px',
+            borderRadius: '100px',
             backgroundColor: '#fff',
           }}
         />

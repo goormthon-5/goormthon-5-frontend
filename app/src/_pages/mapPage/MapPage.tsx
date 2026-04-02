@@ -40,7 +40,9 @@ export default function MapPage() {
       s.name.includes(searchQuery) ||
       (s.address?.address_short || '').includes(searchQuery) ||
       (s.address?.address_group || '').includes(searchQuery) ||
-      (s.options || []).some((opt: any) => (opt.name || opt).includes(searchQuery)),
+      (s.options || []).some((opt: any) =>
+        (opt.name || opt).includes(searchQuery),
+      ),
   );
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
@@ -187,8 +189,7 @@ export default function MapPage() {
               key={filter}
               style={{
                 ...styles.filterBadge,
-                backgroundColor:
-                  idx === selectedFilter ? '#6DBFFF' : '#fff',
+                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
                 color: idx === selectedFilter ? '#fff' : '#AEAEAE',
               }}
               onClick={() => setSelectedFilter(idx)}
@@ -236,49 +237,55 @@ export default function MapPage() {
             {searchResults.map((s: any) => {
               const cardStyle = getAccommodationStyle(s.accommodationId);
               return (
-              <div
-                key={s.accommodationId}
-                style={styles.resultCard}
-                onClick={() => handleCardClick(s)}
-              >
                 <div
-                  style={{
-                    ...styles.resultImage,
-                    backgroundColor: cardStyle.bgColor,
-                  }}
+                  key={s.accommodationId}
+                  style={styles.resultCard}
+                  onClick={() => handleCardClick(s)}
                 >
-                  <img src={cardStyle.houseImage} alt="" width={100} height={72} style={{ objectFit: 'contain' }} />
+                  <div
+                    style={{
+                      ...styles.resultImage,
+                      backgroundColor: cardStyle.bgColor,
+                    }}
+                  >
+                    <img
+                      src={cardStyle.houseImage}
+                      alt=""
+                      width={100}
+                      height={72}
+                      style={{ objectFit: 'contain' }}
+                    />
+                  </div>
+                  <div style={styles.resultInfo}>
+                    <span style={styles.resultLocation}>
+                      {s.address?.address_short || ''}
+                    </span>
+                    <span style={styles.resultName}>{s.name}</span>
+                    {(s.options || []).length > 0 && (
+                      <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                        <CategoryTag
+                          label={s.options[0]?.name || s.options[0]}
+                          color={cardStyle.tagColor}
+                        />
+                      </div>
+                    )}
+                  </div>
+                  <div
+                    style={styles.starButton}
+                    onClick={(e) => toggleFavorite(s.accommodationId, e)}
+                  >
+                    <img
+                      src={
+                        favorites.includes(s.accommodationId)
+                          ? '/icons/active-star.svg'
+                          : '/icons/non-active-star.svg'
+                      }
+                      alt="즐겨찾기"
+                      width={11}
+                      height={11}
+                    />
+                  </div>
                 </div>
-                <div style={styles.resultInfo}>
-                  <span style={styles.resultLocation}>
-                    {s.address?.address_short || ''}
-                  </span>
-                  <span style={styles.resultName}>{s.name}</span>
-                  {(s.options || []).length > 0 && (
-                    <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                      <CategoryTag
-                        label={s.options[0]?.name || s.options[0]}
-                        color={cardStyle.tagColor}
-                      />
-                    </div>
-                  )}
-                </div>
-                <div
-                  style={styles.starButton}
-                  onClick={(e) => toggleFavorite(s.accommodationId, e)}
-                >
-                  <img
-                    src={
-                      favorites.includes(s.accommodationId)
-                        ? '/icons/active-star.svg'
-                        : '/icons/non-active-star.svg'
-                    }
-                    alt="즐겨찾기"
-                    width={11}
-                    height={11}
-                  />
-                </div>
-              </div>
               );
             })}
             {searchResults.length === 0 && (
@@ -288,41 +295,49 @@ export default function MapPage() {
         )}
 
         {/* 상세 미리보기 */}
-        {sheetMode === 'detail' && selected && (() => {
-          const detailStyle = getAccommodationStyle(selected.accommodationId);
-          return (
-          <div style={styles.detailContent}>
-            <HouseCard imageUrl={detailStyle.houseImage} bgColor={detailStyle.bgColor} size="card" />
-            <div style={styles.detailInfo}>
-              <div style={styles.detailInfoInner}>
-                <span style={styles.detailLocation}>
-                  {selected.address?.address_short || ''}
-                </span>
-                <span style={styles.detailName}>{selected.name}</span>
-                {(selected.options || []).length > 0 && (
-                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                    <CategoryTag
-                      label={selected.options[0]?.name || selected.options[0]}
-                      color={detailStyle.tagColor}
-                    />
+        {sheetMode === 'detail' &&
+          selected &&
+          (() => {
+            const detailStyle = getAccommodationStyle(selected.accommodationId);
+            return (
+              <div style={styles.detailContent}>
+                <HouseCard
+                  imageUrl={detailStyle.houseImage}
+                  bgColor={detailStyle.bgColor}
+                  size="card"
+                />
+                <div style={styles.detailInfo}>
+                  <div style={styles.detailInfoInner}>
+                    <span style={styles.detailLocation}>
+                      {selected.address?.address_short || ''}
+                    </span>
+                    <span style={styles.detailName}>{selected.name}</span>
+                    {(selected.options || []).length > 0 && (
+                      <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                        <CategoryTag
+                          label={
+                            selected.options[0]?.name || selected.options[0]
+                          }
+                          color={detailStyle.tagColor}
+                        />
+                      </div>
+                    )}
+                    <p style={styles.detailDescription}>
+                      {selected.description}
+                    </p>
                   </div>
-                )}
-                <p style={styles.detailDescription}>
-                  {selected.description}
-                </p>
+                  <button
+                    style={styles.detailButton}
+                    onClick={() =>
+                      router.push(`/detail/${selected.accommodationId}`)
+                    }
+                  >
+                    자세히 보기
+                  </button>
+                </div>
               </div>
-              <button
-                style={styles.detailButton}
-                onClick={() =>
-                  router.push(`/detail/${selected.accommodationId}`)
-                }
-              >
-                자세히 보기
-              </button>
-            </div>
-          </div>
-          );
-        })()}
+            );
+          })()}
       </div>
 
       <BottomNavBar />
@@ -359,7 +374,8 @@ const styles = {
     border: 'none',
     outline: 'none',
     backgroundColor: 'transparent',
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '14.4px',
     fontWeight: 500,
     color: '#333',
@@ -379,7 +395,8 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '12px',
     fontWeight: 500,
     cursor: 'pointer',
@@ -457,14 +474,16 @@ const styles = {
     overflow: 'hidden',
   },
   resultLocation: {
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '12px',
     fontWeight: 500,
     lineHeight: '18px',
     color: '#A1A1A1',
   },
   resultName: {
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '15px',
     fontWeight: 700,
     lineHeight: '22px',
@@ -509,14 +528,16 @@ const styles = {
     width: '100%',
   },
   detailLocation: {
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: '9.72px',
     fontWeight: 500,
     lineHeight: '14.58px',
     color: '#A1A1A1',
   },
   detailName: {
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-200, 18px)',
     fontWeight: 700,
     lineHeight: 'var(--vapor-typography-lineHeight-200, 26px)',
@@ -524,7 +545,8 @@ const styles = {
     color: '#262626',
   },
   detailDescription: {
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
     fontWeight: 400,
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
@@ -539,7 +561,8 @@ const styles = {
     color: '#fff',
     border: 'none',
     borderRadius: '8px',
-    fontFamily: 'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
     fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
     fontWeight: 500,
     cursor: 'pointer',

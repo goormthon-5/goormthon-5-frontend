@@ -1,5 +1,7 @@
 'use client';
 
+import { Box, HStack, Text } from '@vapor-ui/core';
+
 export const TAG_COLORS = {
   blue: '#4BC2FF',
   orange: '#FFB632',
@@ -16,18 +18,21 @@ export default function CategoryTag({
   color = '#4BC2FF',
 }: CategoryTagProps) {
   return (
-    <div
+    <HStack
       style={{
-        display: 'flex',
         height: '23px',
-        padding: '0 9px 0 3px',
-        alignItems: 'center',
+        paddingLeft: '3px',
+        paddingRight: '9px',
+        paddingBlock: 0,
         gap: '3px',
         borderRadius: '15px',
         backgroundColor: color,
       }}
+      $css={{
+        alignItems: 'center',
+      }}
     >
-      <div
+      <Box
         style={{
           width: '16px',
           height: '16px',
@@ -35,17 +40,16 @@ export default function CategoryTag({
           backgroundColor: 'rgba(255, 255, 255, 0.4)',
         }}
       />
-      <span
-        style={{
+      <Text
+        $css={{
           color: '#fff',
-          fontFamily: 'Pretendard, sans-serif',
           fontSize: '10.206px',
           fontWeight: 400,
           lineHeight: 'normal',
         }}
       >
         {label}
-      </span>
-    </div>
+      </Text>
+    </HStack>
   );
 }

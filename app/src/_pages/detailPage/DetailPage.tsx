@@ -1,13 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
-import { Box, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
+import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 import HouseCard from '@/components/HouseCard';
 import CategoryTag from '@/components/CategoryTag';
 import RatingBadge from '@/components/RatingBadge';
-import ActionButton from '@/components/ActionButton';
 import BottomActionBar from '@/components/BottomActionBar';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
@@ -22,8 +21,6 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
   const router = useRouter();
   const [data, setData] = useState<any>(null);
   const [messages, setMessages] = useState<string[]>([]);
-  const [newMessage, setNewMessage] = useState('');
-  const [showInput, setShowInput] = useState(false);
 
   useEffect(() => {
     accommodationApi
@@ -39,24 +36,10 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
       .catch(() => {});
   }, [id]);
 
-  const handleAddMessage = () => {
-    if (newMessage.trim()) {
-      guestBookApi
-        .create(id, { content: newMessage.trim() })
-        .then(() => {
-          setMessages([...messages, newMessage.trim()]);
-          setNewMessage('');
-          setShowInput(false);
-        })
-        .catch(() => {
-          setMessages([...messages, newMessage.trim()]);
-          setNewMessage('');
-          setShowInput(false);
-        });
-    }
-  };
-
   if (!data) return null;
+
+  const previewMessages = messages.slice(0, 2);
+  const showGuestbookMore = messages.length > 2;
 
   return (
     <VStack
@@ -88,35 +71,38 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
           </button>
         </Box>
 
-        <HouseCard imageUrl={getAccommodationStyle(id).houseImage} bgColor={getAccommodationStyle(id).bgColor} size="detail" />
+        <HouseCard
+          imageUrl={getAccommodationStyle(id).houseImage}
+          bgColor={getAccommodationStyle(id).bgColor}
+          size="detail"
+        />
       </Box>
 
       {/* 정보 영역 */}
       <VStack
         style={styles.contentSection}
-        $css={{ alignItems: 'flex-start', paddingInline: '$250' }}
+        $css={{
+          alignItems: 'flex-start',
+          paddingInline: '$250',
+          gap: '20px',
+        }}
       >
         {/* 위치 + 이름 + 별점 */}
         <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
-          <Text style={styles.location}>{data.address?.address_short || ''}</Text>
+          <Text style={styles.location}>
+            {data.address?.address_short || ''}
+          </Text>
           <Text style={styles.name}>{data.name}</Text>
-          <RatingBadge rating={data.averageRating || 0} reviewCount={data.guestBookCount || 0} />
+          <RatingBadge
+            rating={data.averageRating || 0}
+            reviewCount={data.guestBookCount || 0}
+          />
         </VStack>
 
-        {/* 소개 */}
-        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
-          <Text style={styles.sectionTitle}>소개</Text>
-          <Text style={styles.description}>{data.description}</Text>
-        </VStack>
-
-        <Box style={styles.divider} />
-
-        {/* 함께하는 것들 */}
-        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$050' }}>
-          <Text style={styles.sectionTitle}>함께하는 것들</Text>
-
+        {/* 키워드 */}
+        {(data.options || []).length > 0 && (
           <HStack
-            $css={{ alignItems: 'center', width: '100%' }}
+            $css={{ alignItems: 'center', width: '100%', flexWrap: 'wrap' }}
             style={styles.tagRow}
           >
             {(data.options || []).map((opt: any, idx: number) => (
@@ -127,50 +113,48 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
               />
             ))}
           </HStack>
-        </VStack>
+        )}
+
+        {/* 소개 본문 */}
+        <Text typography="body2" style={styles.description}>
+          {data.description}
+        </Text>
 
         <Box style={styles.divider} />
 
-        {/* 여행객들의 메세지 */}
-        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$150' }}>
-          <Text style={styles.sectionTitle}>여행객들의 메세지</Text>
-
-          <VStack
-            style={styles.messageList}
-            $css={{ width: '100%', marginTop: '$075' }}
+        {/* 방명록 */}
+        <VStack $css={{ width: '100%', alignItems: 'flex-start', gap: '$300' }}>
+          <HStack
+            $css={{
+              width: '100%',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
           >
-            {messages.map((msg, idx) => (
+            <Text style={styles.guestbookTitle}>방명록</Text>
+            {showGuestbookMore && (
+              <button
+                type="button"
+                style={styles.moreButton}
+                onClick={() =>
+                  router.push(`/reservation/detail/${id}/guestbook`)
+                }
+              >
+                더보기 &gt;
+              </button>
+            )}
+          </HStack>
+
+          <VStack style={styles.messageList} $css={{ width: '100%' }}>
+            {previewMessages.map((msg, idx) => (
               <HStack
                 key={idx}
                 style={styles.messageCard}
-                $css={{ alignItems: 'center', width: '100%' }}
+                $css={{ alignItems: 'flex-start', width: '100%' }}
               >
                 <Text style={styles.messageText}>{msg}</Text>
               </HStack>
             ))}
-
-            {showInput && (
-              <HStack
-                style={styles.messageCard}
-                $css={{ alignItems: 'center', width: '100%' }}
-              >
-                <TextInput
-                  style={styles.messageInput}
-                  value={newMessage}
-                  onValueChange={(value) => setNewMessage(value)}
-                  onKeyDown={(e) => e.key === 'Enter' && handleAddMessage()}
-                  placeholder="메세지를 입력하세요"
-                  autoFocus
-                />
-              </HStack>
-            )}
-
-            <ActionButton
-              label="메세지 추가"
-              onClick={() =>
-                showInput ? handleAddMessage() : setShowInput(true)
-              }
-            />
           </VStack>
         </VStack>
       </VStack>
@@ -199,16 +183,6 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
 }
 
 const styles = {
-  layout: {},
-  // 상단 이미지
-  imageSection: {
-    position: 'relative' as const,
-    width: '100%',
-    maxWidth: '390px',
-    height: '325px',
-    backgroundColor: '#E0F4FF',
-    overflow: 'hidden',
-  },
   backButtonWrap: {
     position: 'absolute' as const,
     top: '20px',
@@ -223,18 +197,12 @@ const styles = {
     border: 'none',
     cursor: 'pointer',
   },
-  // 컨텐츠
   contentSection: {
     width: '100%',
     alignSelf: 'center',
     boxSizing: 'border-box' as const,
     paddingTop: '22px',
     paddingBottom: '120px',
-    gap: '30px',
-  },
-  infoBlock: {
-    width: '100%',
-    gap: '4px',
   },
   location: {
     color: '#A1A1A1',
@@ -250,15 +218,7 @@ const styles = {
     color: '#262626',
     margin: 0,
   },
-  sectionTitle: {
-    fontSize: '14.4px',
-    fontWeight: 500,
-    lineHeight: '21.6px',
-    color: '#262626',
-  },
   description: {
-    fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
-    fontWeight: 400,
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: '#5D5D5D',
@@ -272,38 +232,35 @@ const styles = {
     backgroundColor: '#E1E1E1',
   },
   tagRow: {
-    marginTop: '9px',
     gap: '10px',
   },
-  // 메세지
+  guestbookTitle: {
+    fontSize: '18px',
+    fontWeight: 700,
+    lineHeight: '21.6px',
+    color: '#2B343B',
+  },
+  moreButton: {
+    padding: 0,
+    border: 'none',
+    background: 'none',
+    cursor: 'pointer',
+    fontSize: '14.4px',
+    fontWeight: 500,
+    color: '#262626',
+  },
   messageList: {
     width: '100%',
     gap: '10px',
   },
   messageCard: {
-    height: '48px',
+    minHeight: '48px',
     alignSelf: 'stretch',
-    padding: '0 17px',
+    padding: '12px 17px',
     borderRadius: '8px',
     border: '1px solid #E1E1E1',
     backgroundColor: '#FBFBFB',
     overflow: 'hidden',
-  },
-  messageInput: {
-    width: '100%',
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    boxShadow: 'none',
-    paddingBlock: 0,
-    paddingInline: 0,
-    height: '100%',
-    borderRadius: 0,
-    fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
-    fontWeight: 400,
-    lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
-    letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
-    color: '#5D5D5D',
   },
   messageText: {
     fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
@@ -311,39 +268,5 @@ const styles = {
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: '#5D5D5D',
-  },
-  // 하단 예약하기
-  bottomBar: {
-    alignItems: 'center',
-    position: 'fixed' as const,
-    bottom: 0,
-    left: '50%',
-    transform: 'translateX(-50%)',
-    width: '100%',
-    maxWidth: '390px',
-    cursor: 'pointer',
-    padding: 0,
-  },
-  reserveBar: {
-    width: '350px',
-    height: '48px',
-    borderRadius: '8px',
-    backgroundColor: '#2B343B',
-    overflow: 'hidden',
-    cursor: 'pointer',
-  },
-  reserveText: {
-    fontSize: '16px',
-    fontWeight: 500,
-    color: '#fff',
-    textAlign: 'center' as const,
-    lineHeight: '100%',
-  },
-  homeBar: {
-    width: '100%',
-  },
-  homeIndicator: {
-    height: '5px',
-    backgroundColor: '#fff',
   },
 } as const;
