@@ -276,6 +276,8 @@ export default function Home() {
                     bgColor={style.bgColor}
                     location={s.address?.address_short || ''}
                     name={s.name}
+                    cost={s.cost}
+                    hostInfo={s.accommodationHostInfo}
                     renderRightTop={
                       <RatingBadge
                         rating={s.averageRating || 0}

@@ -300,12 +300,35 @@ export default function MapPage({ appKey }: MapPageProps) {
                       {s.address?.address_short || ''}
                     </span>
                     <span style={styles.resultName}>{s.name}</span>
-                    {(s.options || []).length > 0 && (
-                      <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                        <CategoryTag
-                          label={s.options[0]?.name || s.options[0]}
-                          color={cardStyle.tagColor}
-                        />
+                    {s.cost != null && (
+                      <span style={{ fontSize: '13px', fontWeight: 700, color: '#2B343B' }}>
+                        {s.cost.toLocaleString()}원<span style={{ fontSize: '10px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+                      </span>
+                    )}
+                    {s.accommodationHostInfo && (
+                      <div style={{ display: 'flex', gap: '4px', flexWrap: 'wrap' }}>
+                        {s.accommodationHostInfo.personality && (
+                          <span style={styles.infoTag}>{s.accommodationHostInfo.personality}</span>
+                        )}
+                        {s.accommodationHostInfo.trait && (
+                          <span style={styles.infoTag}>{s.accommodationHostInfo.trait}</span>
+                        )}
+                        {s.accommodationHostInfo.hasWifi != null && (
+                          <span style={{
+                            ...styles.infoTag,
+                            backgroundColor: '#F5F5F5',
+                            padding: '2px 5px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                          }}>
+                            <img
+                              src={s.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                              alt={s.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
+                              width={14}
+                              height={14}
+                            />
+                          </span>
+                        )}
                       </div>
                     )}
                   </div>
@@ -351,6 +374,11 @@ export default function MapPage({ appKey }: MapPageProps) {
                       {selected.address?.address_short || ''}
                     </span>
                     <span style={styles.detailName}>{selected.name}</span>
+                    {selected.cost != null && (
+                      <span style={{ fontSize: '16px', fontWeight: 700, color: '#2B343B' }}>
+                        {selected.cost.toLocaleString()}원<span style={{ fontSize: '12px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+                      </span>
+                    )}
                     {(selected.options || []).length > 0 && (
                       <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                         <CategoryTag
@@ -359,6 +387,37 @@ export default function MapPage({ appKey }: MapPageProps) {
                           }
                           color={detailStyle.tagColor}
                         />
+                      </div>
+                    )}
+                    {selected.accommodationHostInfo && (
+                      <div style={{ display: 'flex', gap: '5px', flexWrap: 'wrap' }}>
+                        {selected.accommodationHostInfo.personality && (
+                          <span style={styles.infoTag}>{selected.accommodationHostInfo.personality}</span>
+                        )}
+                        {selected.accommodationHostInfo.trait && (
+                          <span style={styles.infoTag}>{selected.accommodationHostInfo.trait}</span>
+                        )}
+                        {selected.accommodationHostInfo.cleanlinessLevel && (
+                          <span style={styles.infoTag}>
+                            {({ LV1: '보통', LV2: '깔끔', LV3: '매우 깔끔' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
+                          </span>
+                        )}
+                        {selected.accommodationHostInfo.hasWifi != null && (
+                          <span style={{
+                            ...styles.infoTag,
+                            backgroundColor: '#F5F5F5',
+                            padding: '2px 5px',
+                            display: 'inline-flex',
+                            alignItems: 'center',
+                          }}>
+                            <img
+                              src={selected.accommodationHostInfo.hasWifi ? '/icons/wifi-o.svg' : '/icons/wifi-x.svg'}
+                              alt={selected.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
+                              width={16}
+                              height={16}
+                            />
+                          </span>
+                        )}
                       </div>
                     )}
                     <p style={styles.detailDescription}>
@@ -492,7 +551,7 @@ const styles = {
     display: 'flex',
     flexDirection: 'row' as const,
     position: 'relative' as const,
-    minHeight: '103px',
+    minHeight: '130px',
     border: '1px solid #E1E1E1',
     borderRadius: '8px',
     overflow: 'hidden',
@@ -501,7 +560,7 @@ const styles = {
   },
   resultImage: {
     width: '120px',
-    minHeight: '103px',
+    minHeight: '130px',
     flexShrink: 0,
     display: 'flex',
     alignItems: 'center',
@@ -611,5 +670,14 @@ const styles = {
     fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
     fontWeight: 500,
     cursor: 'pointer',
+  },
+  infoTag: {
+    fontSize: '10px',
+    fontWeight: 500,
+    color: '#666',
+    backgroundColor: '#F5F5F5',
+    borderRadius: '10px',
+    padding: '2px 6px',
+    whiteSpace: 'nowrap' as const,
   },
 } as const;

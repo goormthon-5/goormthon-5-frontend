@@ -85,6 +85,8 @@ export default function ReservationPage() {
               bgColor={accStyle.bgColor}
               location={item.accommodation?.address?.address_short || ''}
               name={samchonName}
+              cost={item.accommodation?.cost}
+              hostInfo={item.accommodation?.accommodationHostInfo}
               tags={(item.accommodation?.options || [])
                 .slice(0, 1)
                 .map((opt: any) => ({

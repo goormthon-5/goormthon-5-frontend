@@ -13,6 +13,8 @@ import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { reservationApi } from '@/apis/reservationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import IcWifiO from '@/assets/icons/wifi-o.svg';
+import IcWifiX from '@/assets/icons/wifi-x.svg';
 
 interface DetailPageProps {
   id?: number;
@@ -108,6 +110,53 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
             reviewCount={data.guestBookCount || 0}
           />
         </VStack>
+
+        {/* 가격 */}
+        {data.cost != null && (
+          <Text style={{ fontSize: '20px', fontWeight: 700, color: '#2B343B', margin: 0 }}>
+            {data.cost.toLocaleString()}원
+            <span style={{ fontSize: '14px', fontWeight: 400, color: '#A1A1A1' }}> /박</span>
+          </Text>
+        )}
+
+        {/* 호스트 정보 */}
+        {data.accommodationHostInfo && (
+          <HStack $css={{ gap: '$050', flexWrap: 'wrap', alignItems: 'center' }}>
+            {data.accommodationHostInfo.personality && (
+              <Box style={styles.hostTag}>
+                <Text style={styles.hostTagText}>{data.accommodationHostInfo.personality}</Text>
+              </Box>
+            )}
+            {data.accommodationHostInfo.trait && (
+              <Box style={styles.hostTag}>
+                <Text style={styles.hostTagText}>{data.accommodationHostInfo.trait}</Text>
+              </Box>
+            )}
+            {data.accommodationHostInfo.cleanlinessLevel && (
+              <Box style={styles.hostTag}>
+                <Text style={styles.hostTagText}>
+                  {({ LV1: '보통', LV2: '깔끔', LV3: '매우 깔끔' } as Record<string, string>)[data.accommodationHostInfo.cleanlinessLevel] || data.accommodationHostInfo.cleanlinessLevel}
+                </Text>
+              </Box>
+            )}
+            {data.accommodationHostInfo.hasWifi != null && (
+              <Box style={{
+                ...styles.hostTag,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '3px 8px',
+              }}>
+                <Image
+                  src={data.accommodationHostInfo.hasWifi ? IcWifiO : IcWifiX}
+                  alt={data.accommodationHostInfo.hasWifi ? 'Wi-Fi 가능' : 'Wi-Fi 불가'}
+                  width={16}
+                  height={16}
+                />
+              </Box>
+            )}
+          </HStack>
+        )}
 
         {/* 키워드 */}
         {(data.options || []).length > 0 && (
@@ -278,5 +327,16 @@ const styles = {
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: '#5D5D5D',
+  },
+  hostTag: {
+    backgroundColor: '#F5F5F5',
+    borderRadius: '12px',
+    padding: '3px 10px',
+  },
+  hostTagText: {
+    fontSize: '12px',
+    fontWeight: 500,
+    color: '#666',
+    whiteSpace: 'nowrap' as const,
   },
 } as const;
