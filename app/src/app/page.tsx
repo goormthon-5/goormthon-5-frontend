@@ -19,8 +19,22 @@ export default function Home() {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(true);
   const [accommodations, setAccommodations] = useState<any[]>([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
 
   const name: string = '제주좋아';
+
+  const filteredAccommodations = accommodations.filter((s: any) => {
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.trim().toLowerCase();
+    const nameMatch = s.name?.toLowerCase().includes(q);
+    const addressMatch = (s.address?.address_short || '').toLowerCase().includes(q)
+      || (s.address?.address_group || '').toLowerCase().includes(q);
+    const tagMatch = (s.options || []).some(
+      (opt: any) => (opt.name || opt).toLowerCase().includes(q),
+    );
+    return nameMatch || addressMatch || tagMatch;
+  });
 
   // 온보딩 체크 로직
   useEffect(() => {
@@ -115,7 +129,7 @@ export default function Home() {
           </VStack>
 
           <VStack $css={{ gap: '10px', width: '100%' }}>
-            <DataSearch />
+            <DataSearch onDateChange={(date: Date | null) => setSelectedDate(date)} />
 
             <HStack
               $css={{
@@ -132,8 +146,10 @@ export default function Home() {
               <Image src={IcSearch} alt="" width={18} height={18} />
               <TextInput
                 type="search"
-                placeholder="마을 이름, 어르신 이름으로 검색"
-                aria-label="마을 이름, 어르신 이름으로 검색"
+                placeholder="이름, 주소, 태그로 검색"
+                aria-label="이름, 주소, 태그로 검색"
+                defaultValue=""
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearchQuery(e.target.value)}
                 $css={{
                   flex: 1,
                   minWidth: 0,
@@ -225,7 +241,20 @@ export default function Home() {
                 삼춘 목록
               </Text>
 
-              {accommodations.map((s: any) => {
+              {filteredAccommodations.length === 0 && searchQuery.trim() && (
+                <Text
+                  $css={{
+                    textAlign: 'center',
+                    color: '#989898',
+                    paddingBlock: '$400',
+                    fontSize: '14px',
+                  }}
+                >
+                  검색 결과가 없습니다.
+                </Text>
+              )}
+
+              {filteredAccommodations.map((s: any) => {
                 const style = getAccommodationStyle(s.accommodationId);
                 return (
                   <SamchonCard
