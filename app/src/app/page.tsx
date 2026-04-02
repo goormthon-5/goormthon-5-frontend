@@ -3,15 +3,14 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import { IconButton } from '@vapor-ui/core';
+import SamchonCard from '@/components/SamchonCard';
+import DataSearch from '@/components/main/DataSearch';
+
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
-
-const AREAS = [
-  { name: '전체' },
-  { name: '성산·구좌' },
-  { name: '서귀포·남원' },
-];
+import IcCalendar from '@/assets/icons/calendar-icon.svg';
+import IcSearch from '@/assets/icons/search-icon.svg';
 
 export default function Home() {
   const [selectedIdx, setSelectedIdx] = useState<number>(0);
@@ -19,53 +18,53 @@ export default function Home() {
 
   return (
     <div style={S.layout}>
+      {/* 1. Header */}
       <header style={S.header}>
-        <Image src={ImgLogo} alt="메인 로고" width={83.5} height={23.62} />
+        <div style={{ width: 84, height: 24, position: 'relative' }}>
+          <Image
+            src={ImgLogo}
+            alt="메인 로고"
+            fill
+            style={{ objectFit: 'contain' }}
+          />
+        </div>
+
         <div style={S.headerIcons}>
-          {/* IconButton 사용, 배경색 없는 ghost variant, colorPalette은 primary/secondary 등만 사용 가능, 커서 포인터 추가 */}
-          <IconButton
-            aria-label="메뉴 열기"
-            size="md"
-            variant="ghost"
-            style={{ cursor: 'pointer' }}
-          >
+          <IconButton aria-label="메뉴 열기" size="md" variant="ghost">
             <Image src={IcMenu} alt="메뉴 아이콘" width={28} height={28} />
           </IconButton>
-          <IconButton
-            aria-label="알림"
-            size="md"
-            variant="ghost"
-            style={{ cursor: 'pointer' }}
-          >
+          <IconButton aria-label="알림" size="md" variant="ghost">
             <Image src={IcBell} alt="벨 아이콘" width={28} height={28} />
           </IconButton>
         </div>
       </header>
 
-      {/* 2. Main Body (VStack) */}
+      {/* 2. Main Body */}
       <main style={S.main}>
-        {/* Welcome */}
+        {/* Welcome Section */}
         <section style={S.welcomeSection}>
           <h1 style={S.welcomeText}>
             {`안녕하세요! ${name}님\n같이 삼춘네로 가볼까요?`}
           </h1>
         </section>
 
-        {/* Search (VStack) */}
+        {/* Search Section */}
         <section style={S.searchSection}>
-          <input
-            type="text"
-            placeholder="언제 도착하시나요?"
-            style={S.inputBox}
-          />
-          <input
-            type="text"
-            placeholder="마을 이름, 어르신 이름으로 검색"
-            style={S.inputBox}
-          />
+          {/* 첫 번째: 캘린더 */}
+          <DataSearch />
+
+          {/* 두 번째: 검색 */}
+          <div style={S.inputWrapper}>
+            <Image src={IcSearch} alt="검색" width={18} height={18} />
+            <input
+              type="text"
+              placeholder="마을 이름, 어르신 이름으로 검색"
+              style={S.inputInner}
+            />
+          </div>
         </section>
 
-        {/* Category Tabs (HStack) */}
+        {/* Category Tabs */}
         <nav style={S.tabContainer}>
           {AREAS.map((area, idx) => (
             <div
@@ -90,18 +89,33 @@ export default function Home() {
         {/* List Section */}
         <section style={S.listSection}>
           <h2 style={S.sectionTitle}>삼춘 목록</h2>
+
+          <SamchonCard
+            imageUrl="/sample-image.jpg"
+            location="제주시"
+            name="손맛 좋은 옥자 할망"
+            rating={4.9}
+            reviewCount={47}
+            tags={[{ label: '식사', color: '#6DBFFF' }]}
+          />
+
           <div style={S.cardPlaceholder}>Card 1</div>
           <div style={S.cardPlaceholder}>Card 2</div>
           <div style={S.cardPlaceholder}>Card 3</div>
-          <div style={S.cardPlaceholder}>Card 4</div>
         </section>
       </main>
     </div>
   );
 }
 
+const AREAS = [
+  { name: '전체' },
+  { name: '성산·구좌' },
+  { name: '서귀포·남원' },
+];
+
 /**
- * 스타일 모음 (S)
+ * 스타일 정의 (S)
  */
 const S = {
   layout: {
@@ -110,16 +124,14 @@ const S = {
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#ffffff',
-    fontFamily: 'sans-serif',
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: '12px 20px',
-  },
-  logo: {
-    fontSize: '18px',
   },
   headerIcons: {
     display: 'flex',
@@ -142,25 +154,42 @@ const S = {
     lineHeight: '1.4',
     whiteSpace: 'pre-line' as const,
     margin: 0,
+    color: '#1F1F1F',
   },
   searchSection: {
     display: 'flex',
     flexDirection: 'column' as const,
     gap: '10px',
   },
-  inputBox: {
+  inputWrapper: {
     display: 'flex',
     alignItems: 'center',
-    width: '350px',
+    width: '100%',
+    maxWidth: '350px',
     height: '48px',
     padding: '0 14px',
-    fontSize: '14.4px',
-    color: '#989898',
     backgroundColor: '#ffffff',
     borderRadius: '8px',
     border: '1px solid #E1E1E1',
-    outline: 'none',
     boxSizing: 'border-box' as const,
+  },
+  inputPlaceholder: {
+    flex: 1,
+    marginLeft: '8px',
+    fontSize: '14.4px',
+    color: '#989898',
+  },
+  inputInner: {
+    flex: 1,
+    height: '100%',
+    border: 'none',
+    outline: 'none',
+    fontSize: '14.4px',
+    color: '#333',
+    backgroundColor: 'transparent',
+    marginLeft: '8px',
+    display: 'flex',
+    alignItems: 'center',
   },
   tabContainer: {
     display: 'flex',
@@ -173,12 +202,11 @@ const S = {
     flexDirection: 'column' as const,
     alignItems: 'center',
     cursor: 'pointer',
-    paddingBottom: '5px',
+    padding: '8px 4px',
     position: 'relative' as const,
   },
   tabText: {
-    fontSize: '14px',
-    fontWeight: '500',
+    fontSize: '15px',
     transition: 'color 0.2s',
   },
   activeBar: {
@@ -199,7 +227,7 @@ const S = {
     fontSize: '18px',
     fontWeight: '700',
     color: '#1F1F1F',
-    marginBottom: '4px',
+    margin: '0 0 4px 0',
   },
   cardPlaceholder: {
     height: '254px',
@@ -209,5 +237,6 @@ const S = {
     alignItems: 'center',
     justifyContent: 'center',
     border: '1px solid #F3F4F6',
+    color: '#9CA3AF',
   },
 };
