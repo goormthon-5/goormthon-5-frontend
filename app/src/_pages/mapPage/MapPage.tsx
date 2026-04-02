@@ -3,9 +3,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { Box, Button, HStack, Text, TextInput, VStack } from '@vapor-ui/core';
 import BottomNavBar from '@/components/BottomNavBar';
 import HouseCard from '@/components/HouseCard';
 import CategoryTag from '@/components/CategoryTag';
+import Spinner from '@/components/Spinner';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import IcSearch from '@/assets/icons/search-icon.svg';
@@ -16,29 +18,16 @@ declare global {
   }
 }
 
-const FILTERS = [
-  '전체',
-  '밤낚시',
-  '바비큐',
-  '차담',
-  '손맛 집밥',
-  '산책',
-  '제주어',
-  '텃밭',
-];
+const FILTERS = ['가까운 거리', '인기', '후기 많은', '오늘 가능', '예약 가능'];
 
 type SheetMode = 'hidden' | 'list' | 'detail';
 
-interface MapPageProps {
-  appKey: string;
-}
-
-export default function MapPage({ appKey }: MapPageProps) {
+export default function MapPage() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
-  const overlaysRef = useRef<any[]>([]);
   const [accommodations, setAccommodations] = useState<any[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
   const [sheetMode, setSheetMode] = useState<SheetMode>('hidden');
@@ -66,7 +55,7 @@ export default function MapPage({ appKey }: MapPageProps) {
     );
   };
 
-  const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  const handleSearch = (e: React.KeyboardEvent<HTMLElement>) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
       setSelectedId(null);
       setSheetMode('list');
@@ -91,18 +80,19 @@ export default function MapPage({ appKey }: MapPageProps) {
     }
   };
 
-  // API 호출
   useEffect(() => {
-    console.log('[MapPage] API 호출 시작');
     accommodationApi
       .getAll()
       .then((res) => setAccommodations(res.data))
-      .catch(() => {});
+      .catch(() => {})
+      .finally(() => setIsLoading(false));
   }, []);
 
-  // 카카오맵
   useEffect(() => {
     if (accommodations.length === 0) return;
+
+    const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
+    if (!appKey) return;
 
     const script = document.createElement('script');
     script.src = `//dapi.kakao.com/v2/maps/sdk.js?appkey=${appKey}&autoload=false`;
@@ -119,7 +109,6 @@ export default function MapPage({ appKey }: MapPageProps) {
         });
         kakaoMapRef.current = map;
 
-        const overlays: any[] = [];
         accommodations.forEach((s: any) => {
           if (!s.address) return;
           const position = new window.kakao.maps.LatLng(
@@ -141,15 +130,12 @@ export default function MapPage({ appKey }: MapPageProps) {
             );
           });
 
-          const overlay = new window.kakao.maps.CustomOverlay({
+          new window.kakao.maps.CustomOverlay({
             position,
             content: wrapper,
             yAnchor: 1,
-          });
-          overlay.setMap(map);
-          overlays.push({ overlay, data: s });
+          }).setMap(map);
         });
-        overlaysRef.current = overlays;
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
@@ -174,94 +160,166 @@ export default function MapPage({ appKey }: MapPageProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accommodations]);
 
-  // 필터 변경 시 마커 표시/숨기기
-  useEffect(() => {
-    if (!kakaoMapRef.current || overlaysRef.current.length === 0) return;
-    const filterKeyword = FILTERS[selectedFilter];
-
-    overlaysRef.current.forEach(({ overlay, data }) => {
-      if (selectedFilter === 0) {
-        overlay.setMap(kakaoMapRef.current);
-      } else {
-        const match = (data.options || []).some(
-          (opt: any) => (opt.name || opt).includes(filterKeyword),
-        );
-        overlay.setMap(match ? kakaoMapRef.current : null);
-      }
-    });
-  }, [selectedFilter]);
-
   return (
-    <div style={styles.layout}>
-      <div ref={mapRef} style={styles.map} />
+    <>
+      <Spinner loading={isLoading} />
 
-      {/* 검색바 */}
-      <div style={styles.searchBar}>
-        <Image src={IcSearch} alt="검색" width={18} height={18} />
-        <input
-          type="text"
-          placeholder="마을 이름, 어르신 이름으로 검색"
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-            if (!e.target.value.trim()) {
-              setSheetMode('hidden');
-              setSelectedId(null);
-            } else {
-              setSelectedId(null);
-              setSheetMode('list');
-            }
-          }}
-          onKeyDown={handleSearch}
-          style={styles.searchInput}
-        />
-      </div>
-
-      {/* 필터 뱃지 */}
-      <div style={styles.filterRow}>
-        {FILTERS.map((filter, idx) => (
-          <div
-            key={filter}
-            style={{
-              ...styles.filterBadge,
-              backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
-              color: idx === selectedFilter ? '#fff' : '#AEAEAE',
-            }}
-            onClick={() => {
-              setSelectedFilter(idx);
-              setSelectedId(null);
-              setSheetMode('hidden');
-              setSearchQuery('');
-            }}
-          >
-            {filter}
-          </div>
-        ))}
-      </div>
-
-      {/* 오버레이 */}
-      {sheetMode !== 'hidden' && (
-        <div
-          style={styles.overlay}
-          onClick={() => {
-            setSheetMode('hidden');
-            setSelectedId(null);
-          }}
-        />
-      )}
-
-      {/* 바텀시트 */}
-      <div
-        style={{
-          ...styles.bottomSheet,
-          maxHeight: sheetMode === 'detail' ? '620px' : '480px',
-          transform:
-            sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
+      <Box
+        $css={{
+          position: 'relative',
+          width: '100%',
+          height: '100vh',
+          overflow: 'hidden',
         }}
       >
-        <div style={styles.handleBar}>
-          <div
-            style={styles.handle}
+        <Box ref={mapRef} $css={{ width: '100%', height: '100%' }} />
+
+        {/* 검색바 */}
+        <HStack
+          style={{
+            position: 'absolute',
+            top: 'var(--vapor-size-space-250)',
+            left: 'var(--vapor-size-space-250)',
+            right: 'var(--vapor-size-space-250)',
+            maxWidth: '350px',
+            height: '48px',
+            zIndex: 10,
+          }}
+          $css={{
+            alignItems: 'center',
+            gap: '7px',
+            paddingInline: '$200',
+            paddingBlock: '$000',
+            backgroundColor: '#fff',
+            border: '1px solid #E1E1E1',
+            borderRadius: '$300',
+          }}
+        >
+          <Image src={IcSearch} alt="검색" width={18} height={18} />
+          <TextInput
+            type="text"
+            placeholder="마을 이름, 어르신 이름으로 검색"
+            aria-label="마을 이름, 어르신 이름으로 검색"
+            value={searchQuery}
+            onValueChange={(value) => {
+              setSearchQuery(value);
+              if (!value.trim()) {
+                setSheetMode('hidden');
+                setSelectedId(null);
+              } else {
+                setSelectedId(null);
+                setSheetMode('list');
+              }
+            }}
+            onKeyDown={handleSearch}
+            $css={{
+              flex: 1,
+              minWidth: 0,
+              height: '100%',
+              alignSelf: 'stretch',
+              border: 'none',
+              borderRadius: 0,
+              boxShadow: 'none',
+              backgroundColor: 'transparent',
+              paddingBlock: '$000',
+              paddingInline: '$000',
+              fontSize: '14.4px',
+              fontWeight: 500,
+              color: '#333',
+              outline: 'none',
+            }}
+          />
+        </HStack>
+
+        {/* 필터 뱃지 */}
+        {sheetMode === 'hidden' && (
+          <HStack
+            style={{
+              position: 'absolute',
+              top: '78px',
+              left: 'var(--vapor-size-space-250)',
+              zIndex: 10,
+            }}
+            $css={{ gap: '$100' }}
+          >
+            {FILTERS.map((filter, idx) => (
+              <HStack
+                key={filter}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedFilter(idx)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setSelectedFilter(idx);
+                  }
+                }}
+                $css={{
+                  height: '$300',
+                  paddingInline: '$100',
+                  paddingBlock: '$000',
+                  borderRadius: '$500',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
+                  color: idx === selectedFilter ? '#fff' : '#AEAEAE',
+                }}
+              >
+                <Text
+                  $css={{
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    color: 'inherit',
+                  }}
+                >
+                  {filter}
+                </Text>
+              </HStack>
+            ))}
+          </HStack>
+        )}
+
+        {/* 오버레이 */}
+        {sheetMode !== 'hidden' && (
+          <Box
+            $css={{
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              backgroundColor: 'rgba(0,0,0,0.1)',
+              zIndex: 15,
+            }}
+            onClick={() => {
+              setSheetMode('hidden');
+              setSelectedId(null);
+            }}
+          />
+        )}
+
+        {/* 바텀시트 */}
+        <VStack
+          style={{
+            maxHeight: sheetMode === 'detail' ? '620px' : '480px',
+            transform:
+              sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
+          }}
+          $css={{
+            position: 'absolute',
+            bottom: '80px',
+            left: 0,
+            right: 0,
+            backgroundColor: '#fff',
+            borderRadius: '24px 24px 0 0',
+            zIndex: 20,
+            transition:
+              'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
+          }}
+        >
+          <HStack
             onClick={() => {
               setSheetMode('hidden');
               setSelectedId(null);
@@ -432,151 +490,235 @@ export default function MapPage({ appKey }: MapPageProps) {
                       );
                       if (!Number.isFinite(accId)) return;
                       router.push(`/reservation/detail/${accId}`);
+            $css={{
+              justifyContent: 'center',
+              paddingBlock: '$100',
+              paddingInline: '$000',
+              backgroundColor: '#fff',
+              borderRadius: '24px 24px 0 0',
+              cursor: 'pointer',
+            }}
+          >
+            <Box
+              $css={{
+                width: '44px',
+                height: '4px',
+                borderRadius: '$050',
+                backgroundColor: '#DEDEDE',
+              }}
+            />
+          </HStack>
+
+          {/* 검색 결과 리스트 */}
+          {sheetMode === 'list' && (
+            <VStack
+              style={{ maxHeight: '430px', paddingTop: '10px' }}
+              $css={{
+                gap: '10px',
+                paddingInline: '$250',
+                paddingBottom: '$250',
+                overflowY: 'auto',
+              }}
+            >
+              {searchResults.map((s: any) => {
+                const cardStyle = getAccommodationStyle(s.accommodationId);
+                return (
+                  <HStack
+                    key={s.accommodationId}
+                    onClick={() => handleCardClick(s)}
+                    $css={{
+                      position: 'relative',
+                      minHeight: '103px',
+                      border: '1px solid #E1E1E1',
+                      borderRadius: '$300',
+                      overflow: 'hidden',
+                      cursor: 'pointer',
+                      backgroundColor: '#fff',
                     }}
                   >
-                    자세히 보기
-                  </button>
-                </div>
-              </div>
-            );
-          })()}
-      </div>
+                    <HStack
+                      style={{ width: '120px', minHeight: '103px' }}
+                      $css={{
+                        flexShrink: 0,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        overflow: 'hidden',
+                        borderRadius: '8px 0 0 8px',
+                        backgroundColor: cardStyle.bgColor,
+                      }}
+                    >
+                      <img
+                        src={cardStyle.houseImage}
+                        alt=""
+                        width={100}
+                        height={72}
+                        style={{ objectFit: 'contain' }}
+                      />
+                    </HStack>
+                    <VStack
+                      $css={{
+                        gap: '6px',
+                        paddingBlock: '$175',
+                        paddingInline: '$150',
+                        flex: 1,
+                        minWidth: 0,
+                        overflow: 'hidden',
+                        alignItems: 'flex-start',
+                      }}
+                    >
+                      <Text style={styles.resultLocation}>
+                        {s.address?.address_short || ''}
+                      </Text>
+                      <Text style={styles.resultName}>{s.name}</Text>
+                      {(s.options || []).length > 0 && (
+                        <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                          <CategoryTag
+                            label={s.options[0]?.name || s.options[0]}
+                            color={cardStyle.tagColor}
+                          />
+                        </Box>
+                      )}
+                    </VStack>
+                    <HStack
+                      onClick={(e) => toggleFavorite(s.accommodationId, e)}
+                      $css={{
+                        position: 'absolute',
+                        top: '$200',
+                        right: '$200',
+                        width: '18px',
+                        height: '17px',
+                        borderRadius: '$500',
+                        backgroundColor: '#E0F4FF',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        cursor: 'pointer',
+                      }}
+                    >
+                      <img
+                        src={
+                          favorites.includes(s.accommodationId)
+                            ? '/icons/active-star.svg'
+                            : '/icons/non-active-star.svg'
+                        }
+                        alt="즐겨찾기"
+                        width={11}
+                        height={11}
+                      />
+                    </HStack>
+                  </HStack>
+                );
+              })}
+              {searchResults.length === 0 && (
+                <Text
+                  style={{ paddingBlock: '40px', paddingInline: 0 }}
+                  $css={{
+                    textAlign: 'center',
+                    color: '#989898',
+                    fontSize: '14px',
+                  }}
+                >
+                  검색 결과가 없습니다.
+                </Text>
+              )}
+            </VStack>
+          )}
 
-      <BottomNavBar />
-    </div>
+          {/* 상세 미리보기 */}
+          {sheetMode === 'detail' && selected && (
+            <DetailPreview
+              selected={selected}
+              router={router}
+              getAccommodationStyle={getAccommodationStyle}
+            />
+          )}
+        </VStack>
+
+        <BottomNavBar />
+      </Box>
+    </>
+  );
+}
+
+function DetailPreview({
+  selected,
+  router,
+  getAccommodationStyle,
+}: {
+  selected: any;
+  router: ReturnType<typeof useRouter>;
+  getAccommodationStyle: typeof import('@/utils/accommodationStyle').getAccommodationStyle;
+}) {
+  const detailStyle = getAccommodationStyle(selected.accommodationId);
+  return (
+    <VStack
+      style={{ gap: '22px' }}
+      $css={{
+        paddingInline: '$250',
+        paddingBottom: '$250',
+      }}
+    >
+      <HouseCard
+        imageUrl={detailStyle.houseImage}
+        bgColor={detailStyle.bgColor}
+        size="card"
+      />
+      <VStack $css={{ gap: '$250', width: '100%' }}>
+        <VStack
+          $css={{
+            gap: '11px',
+            width: '100%',
+            alignItems: 'flex-start',
+          }}
+        >
+          <Text style={styles.detailLocation}>
+            {selected.address?.address_short || ''}
+          </Text>
+          <Text style={styles.detailName}>{selected.name}</Text>
+          {(selected.options || []).length > 0 && (
+            <Box $css={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+              <CategoryTag
+                label={selected.options[0]?.name || selected.options[0]}
+                color={detailStyle.tagColor}
+              />
+            </Box>
+          )}
+          <Text render={<p />} style={styles.detailDescription}>
+            {selected.description}
+          </Text>
+        </VStack>
+        <Button
+          type="button"
+          variant="fill"
+          colorPalette="contrast"
+          size="xl"
+          onClick={() => router.push(`/detail/${selected.accommodationId}`)}
+          style={{ width: '100%', height: '48px' }}
+          $css={{
+            paddingBlock: '$000',
+            paddingInline: '$000',
+            borderRadius: '$300',
+            border: 'none',
+            backgroundColor: '#2B343B',
+            cursor: 'pointer',
+            width: '100%',
+          }}
+        >
+          <Text
+            $css={{
+              color: '#fff',
+              fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
+              fontWeight: 500,
+            }}
+          >
+            자세히 보기
+          </Text>
+        </Button>
+      </VStack>
+    </VStack>
   );
 }
 
 const styles = {
-  layout: {
-    position: 'relative' as const,
-    width: '100%',
-    height: '100vh',
-    overflow: 'hidden',
-  },
-  map: { width: '100%', height: '100%' },
-  searchBar: {
-    position: 'absolute' as const,
-    top: '20px',
-    left: '20px',
-    right: '20px',
-    maxWidth: '350px',
-    height: '48px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '7px',
-    padding: '0 16px',
-    backgroundColor: '#fff',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    zIndex: 10,
-  },
-  searchInput: {
-    flex: 1,
-    border: 'none',
-    outline: 'none',
-    backgroundColor: 'transparent',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '14.4px',
-    fontWeight: 500,
-    color: '#333',
-  },
-  filterRow: {
-    position: 'absolute' as const,
-    top: '78px',
-    left: '20px',
-    display: 'flex',
-    gap: '8px',
-    zIndex: 25,
-    overflowX: 'auto' as const,
-    maxWidth: 'calc(100% - 40px)',
-  },
-  filterBadge: {
-    height: '24px',
-    padding: '0 8px',
-    borderRadius: '16px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: '12px',
-    fontWeight: 500,
-    cursor: 'pointer',
-    whiteSpace: 'nowrap' as const,
-  },
-  overlay: {
-    position: 'absolute' as const,
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    backgroundColor: 'rgba(0,0,0,0.1)',
-    zIndex: 15,
-  },
-  bottomSheet: {
-    position: 'absolute' as const,
-    bottom: '80px',
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    zIndex: 20,
-    transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
-  },
-  handleBar: {
-    display: 'flex',
-    justifyContent: 'center',
-    padding: '10px 0',
-    backgroundColor: '#fff',
-    borderRadius: '24px 24px 0 0',
-    cursor: 'pointer',
-  },
-  handle: {
-    width: '44px',
-    height: '4px',
-    borderRadius: '4px',
-    backgroundColor: '#DEDEDE',
-  },
-  resultList: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '10px',
-    padding: '10px 20px 20px',
-    overflowY: 'auto' as const,
-    maxHeight: '430px',
-  },
-  resultCard: {
-    display: 'flex',
-    flexDirection: 'row' as const,
-    position: 'relative' as const,
-    minHeight: '130px',
-    border: '1px solid #E1E1E1',
-    borderRadius: '8px',
-    overflow: 'hidden',
-    cursor: 'pointer',
-    backgroundColor: '#fff',
-  },
-  resultImage: {
-    width: '120px',
-    minHeight: '130px',
-    flexShrink: 0,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    overflow: 'hidden',
-    borderRadius: '8px 0 0 8px',
-  },
-  resultInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '6px',
-    padding: '14px 12px',
-    flex: 1,
-    minWidth: 0,
-    overflow: 'hidden',
-  },
   resultLocation: {
     fontFamily:
       'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
@@ -593,43 +735,6 @@ const styles = {
     lineHeight: '22px',
     letterSpacing: '-0.08px',
     color: '#262626',
-  },
-  starButton: {
-    position: 'absolute' as const,
-    top: '16px',
-    right: '16px',
-    width: '18px',
-    height: '17px',
-    borderRadius: '16px',
-    backgroundColor: '#E0F4FF',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    cursor: 'pointer',
-  },
-  noResult: {
-    padding: '40px 0',
-    textAlign: 'center' as const,
-    color: '#989898',
-    fontSize: '14px',
-  },
-  detailContent: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '22px',
-    padding: '0 20px 20px',
-  },
-  detailInfo: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '20px',
-    width: '100%',
-  },
-  detailInfoInner: {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    gap: '11px',
-    width: '100%',
   },
   detailLocation: {
     fontFamily:
@@ -656,20 +761,8 @@ const styles = {
     lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
     letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
     color: '#5D5D5D',
-    margin: 0,
-  },
-  detailButton: {
-    width: '100%',
-    height: '48px',
-    backgroundColor: '#2B343B',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '8px',
-    fontFamily:
-      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
-    fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
-    fontWeight: 500,
-    cursor: 'pointer',
+    marginBlock: 0,
+    marginInline: 0,
   },
   infoTag: {
     fontSize: '10px',
