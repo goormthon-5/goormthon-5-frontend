@@ -17,17 +17,27 @@ declare global {
 
 const FILTERS = ['가까운 거리', '인기', '후기 많은', '오늘 가능', '예약 가능'];
 
+type SheetMode = 'hidden' | 'list' | 'detail';
+
 export default function MapPage() {
   const router = useRouter();
   const mapRef = useRef<HTMLDivElement>(null);
   const kakaoMapRef = useRef<any>(null);
   const [selectedFilter, setSelectedFilter] = useState(0);
   const [searchQuery, setSearchQuery] = useState('');
-  const [showResults, setShowResults] = useState(false);
-  const [selectedSamchonId, setSelectedSamchonId] = useState<number | null>(
-    null,
-  );
+  const [sheetMode, setSheetMode] = useState<SheetMode>('hidden');
+  const [selectedId, setSelectedId] = useState<number | null>(null);
   const [favorites, setFavorites] = useState<number[]>([]);
+
+  const selectedSamchon = samchons.find((s) => s.id === selectedId);
+
+  const searchResults = samchons.filter(
+    (s) =>
+      s.name.includes(searchQuery) ||
+      s.location.includes(searchQuery) ||
+      s.area.includes(searchQuery) ||
+      s.tags.some((t) => t.label.includes(searchQuery)),
+  );
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -36,31 +46,30 @@ export default function MapPage() {
     );
   };
 
-  const searchResults = selectedSamchonId
-    ? samchons.filter((s) => s.id === selectedSamchonId)
-    : samchons.filter(
-        (s) =>
-          s.name.includes(searchQuery) ||
-          s.location.includes(searchQuery) ||
-          s.area.includes(searchQuery) ||
-          s.tags.some((t) => t.label.includes(searchQuery)),
-      );
-
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter' && searchQuery.trim()) {
-      setSelectedSamchonId(null);
-      setShowResults(true);
+      setSelectedId(null);
+      setSheetMode('list');
     }
   };
 
-  const panToSamchon = (id: number) => {
-    const s = samchons.find((item) => item.id === id);
-    if (s && kakaoMapRef.current) {
-      const moveLatLng = new window.kakao.maps.LatLng(
-        s.latitude,
-        s.longitude,
+  const handleMarkerClick = (id: number, lat: number, lng: number) => {
+    setSelectedId(id);
+    setSheetMode('detail');
+    if (kakaoMapRef.current) {
+      kakaoMapRef.current.panTo(
+        new window.kakao.maps.LatLng(lat, lng),
       );
-      kakaoMapRef.current.panTo(moveLatLng);
+    }
+  };
+
+  const handleCardClick = (s: (typeof samchons)[0]) => {
+    setSelectedId(s.id);
+    setSheetMode('detail');
+    if (kakaoMapRef.current) {
+      kakaoMapRef.current.panTo(
+        new window.kakao.maps.LatLng(s.latitude, s.longitude),
+      );
     }
   };
 
@@ -92,9 +101,7 @@ export default function MapPage() {
             <img src="${s.markerIcon}" width="46" height="57" style="display:block;" />
           `;
           wrapper.addEventListener('click', () => {
-            setSelectedSamchonId(s.id);
-            setShowResults(true);
-            map.panTo(position);
+            handleMarkerClick(s.id, s.latitude, s.longitude);
           });
 
           new window.kakao.maps.CustomOverlay({
@@ -110,13 +117,9 @@ export default function MapPage() {
               pos.coords.latitude,
               pos.coords.longitude,
             );
-            const currentContent = `
-              <img src="/icons/current-location.svg" width="64" height="64" style="display:block;" />
-            `;
-
             new window.kakao.maps.CustomOverlay({
               position: currentPos,
-              content: currentContent,
+              content: `<img src="/icons/current-location.svg" width="64" height="64" style="display:block;" />`,
               yAnchor: 0.5,
               xAnchor: 0.5,
             }).setMap(map);
@@ -128,11 +131,11 @@ export default function MapPage() {
     return () => {
       document.head.removeChild(script);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div style={styles.layout}>
-      {/* 카카오 지도 */}
       <div ref={mapRef} style={styles.map} />
 
       {/* 검색바 */}
@@ -145,8 +148,8 @@ export default function MapPage() {
           onChange={(e) => {
             setSearchQuery(e.target.value);
             if (!e.target.value.trim()) {
-              setShowResults(false);
-              setSelectedSamchonId(null);
+              setSheetMode('hidden');
+              setSelectedId(null);
             }
           }}
           onKeyDown={handleSearch}
@@ -155,7 +158,7 @@ export default function MapPage() {
       </div>
 
       {/* 필터 뱃지 */}
-      {!showResults && (
+      {sheetMode === 'hidden' && (
         <div style={styles.filterRow}>
           {FILTERS.map((filter, idx) => (
             <div
@@ -174,90 +177,140 @@ export default function MapPage() {
         </div>
       )}
 
+      {/* 어두운 오버레이 (상세 모드) */}
+      {sheetMode === 'detail' && (
+        <div
+          style={styles.overlay}
+          onClick={() => {
+            setSheetMode('hidden');
+            setSelectedId(null);
+          }}
+        />
+      )}
+
       {/* 바텀시트 */}
       <div
         style={{
           ...styles.bottomSheet,
-          transform: showResults ? 'translateY(0)' : 'translateY(100%)',
+          maxHeight: sheetMode === 'detail' ? '620px' : '480px',
+          transform:
+            sheetMode !== 'hidden' ? 'translateY(0)' : 'translateY(100%)',
         }}
       >
-        {/* 드래그 핸들 */}
         <div
           style={styles.handleBar}
           onClick={() => {
-            setShowResults(false);
-            setSelectedSamchonId(null);
+            setSheetMode('hidden');
+            setSelectedId(null);
           }}
         >
           <div style={styles.handle} />
         </div>
 
-        {/* 결과 목록 */}
-        <div style={styles.resultList}>
-          {searchResults.map((s) => (
-            <div
-              key={s.id}
-              style={styles.resultCard}
-              onClick={() => {
-                panToSamchon(s.id);
-                router.push(`/detail/${s.id}`);
-              }}
-            >
-              {/* 왼쪽 이미지 */}
+        {/* 검색 결과 리스트 */}
+        {sheetMode === 'list' && (
+          <div style={styles.resultList}>
+            {searchResults.map((s) => (
               <div
-                style={{
-                  ...styles.resultImage,
-                  backgroundColor: s.bgColor,
-                }}
+                key={s.id}
+                style={styles.resultCard}
+                onClick={() => handleCardClick(s)}
               >
-                <Image
-                  src={s.imageUrl}
-                  alt={s.name}
-                  width={120}
-                  height={86}
-                  style={{ objectFit: 'contain' }}
-                />
+                <div
+                  style={{
+                    ...styles.resultImage,
+                    backgroundColor: s.bgColor,
+                  }}
+                >
+                  <Image
+                    src={s.imageUrl}
+                    alt={s.name}
+                    width={120}
+                    height={86}
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+                <div style={styles.resultInfo}>
+                  <span style={styles.resultLocation}>{s.location}</span>
+                  <span style={styles.resultName}>{s.name}</span>
+                  <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                    <CategoryTag
+                      label={s.tags[0].label}
+                      color={
+                        TAG_COLORS[
+                          s.tags[0].color as keyof typeof TAG_COLORS
+                        ]
+                      }
+                    />
+                  </div>
+                </div>
+                <div
+                  style={styles.starButton}
+                  onClick={(e) => toggleFavorite(s.id, e)}
+                >
+                  <img
+                    src={
+                      favorites.includes(s.id)
+                        ? '/icons/active-star.svg'
+                        : '/icons/non-active-star.svg'
+                    }
+                    alt="즐겨찾기"
+                    width={11}
+                    height={11}
+                  />
+                </div>
               </div>
-              {/* 오른쪽 정보 */}
-              <div style={styles.resultInfo}>
-                <span style={styles.resultLocation}>{s.location}</span>
-                <span style={styles.resultName}>{s.name}</span>
+            ))}
+            {searchResults.length === 0 && (
+              <div style={styles.noResult}>검색 결과가 없습니다.</div>
+            )}
+          </div>
+        )}
+
+        {/* 상세 미리보기 */}
+        {sheetMode === 'detail' && selectedSamchon && (
+          <div style={styles.detailContent}>
+            <HouseCard
+              imageUrl={selectedSamchon.imageUrl}
+              bgColor={selectedSamchon.bgColor}
+              size="card"
+            />
+            <div style={styles.detailInfo}>
+              <div style={styles.detailInfoInner}>
+                <span style={styles.detailLocation}>
+                  {selectedSamchon.location}
+                </span>
+                <span style={styles.detailName}>
+                  {selectedSamchon.name}
+                </span>
                 <div style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
                   <CategoryTag
-                    label={s.tags[0].label}
+                    label={selectedSamchon.tags[0].label}
                     color={
                       TAG_COLORS[
-                        s.tags[0].color as keyof typeof TAG_COLORS
+                        selectedSamchon.tags[0]
+                          .color as keyof typeof TAG_COLORS
                       ]
                     }
                   />
                 </div>
+                <p style={styles.detailDescription}>
+                  {selectedSamchon.description}
+                </p>
               </div>
-              {/* 즐겨찾기 */}
-              <div
-                style={styles.starButton}
-                onClick={(e) => toggleFavorite(s.id, e)}
+              <button
+                style={styles.detailButton}
+                onClick={() =>
+                  router.push(`/detail/${selectedSamchon.id}`)
+                }
               >
-                <img
-                  src={
-                    favorites.includes(s.id)
-                      ? '/icons/active-star.svg'
-                      : '/icons/non-active-star.svg'
-                  }
-                  alt="즐겨찾기"
-                  width={11}
-                  height={11}
-                />
-              </div>
+                자세히 보기
+              </button>
             </div>
-          ))}
-          {searchResults.length === 0 && (
-            <div style={styles.noResult}>검색 결과가 없습니다.</div>
-          )}
-        </div>
+          </div>
+        )}
       </div>
 
-      {/* 하단 네비게이션 */}
       <BottomNavBar />
     </div>
   );
@@ -323,17 +376,24 @@ const styles = {
     cursor: 'pointer',
     whiteSpace: 'nowrap' as const,
   },
-  // 바텀시트
+  overlay: {
+    position: 'absolute' as const,
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(0,0,0,0.1)',
+    zIndex: 15,
+  },
   bottomSheet: {
     position: 'absolute' as const,
     bottom: '80px',
     left: 0,
     right: 0,
-    maxHeight: '480px',
     backgroundColor: '#fff',
     borderRadius: '24px 24px 0 0',
     zIndex: 20,
-    transition: 'transform 0.3s ease-in-out',
+    transition: 'transform 0.3s ease-in-out, max-height 0.3s ease-in-out',
   },
   handleBar: {
     display: 'flex',
@@ -349,6 +409,7 @@ const styles = {
     borderRadius: '4px',
     backgroundColor: '#DEDEDE',
   },
+  // 검색 결과 리스트
   resultList: {
     display: 'flex',
     flexDirection: 'column' as const,
@@ -414,11 +475,71 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
+    cursor: 'pointer',
   },
   noResult: {
     padding: '40px 0',
     textAlign: 'center' as const,
     color: '#989898',
     fontSize: '14px',
+  },
+  // 상세 미리보기
+  detailContent: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '22px',
+    padding: '0 20px 20px',
+  },
+  detailInfo: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '20px',
+    width: '100%',
+  },
+  detailInfoInner: {
+    display: 'flex',
+    flexDirection: 'column' as const,
+    gap: '11px',
+    width: '100%',
+  },
+  detailLocation: {
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: '9.72px',
+    fontWeight: 500,
+    lineHeight: '14.58px',
+    color: '#A1A1A1',
+  },
+  detailName: {
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: 'var(--vapor-typography-fontSize-200, 18px)',
+    fontWeight: 700,
+    lineHeight: 'var(--vapor-typography-lineHeight-200, 26px)',
+    letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
+    color: '#262626',
+  },
+  detailDescription: {
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: 'var(--vapor-typography-fontSize-075, 14px)',
+    fontWeight: 400,
+    lineHeight: 'var(--vapor-typography-lineHeight-075, 22px)',
+    letterSpacing: 'var(--vapor-typography-letterSpacing-100, -0.1px)',
+    color: '#5D5D5D',
+    margin: 0,
+  },
+  detailButton: {
+    width: '100%',
+    height: '48px',
+    backgroundColor: '#2B343B',
+    color: '#fff',
+    border: 'none',
+    borderRadius: '8px',
+    fontFamily:
+      'var(--vapor-typography-fontFamily-sans, Pretendard, sans-serif)',
+    fontSize: 'var(--vapor-typography-fontSize-100, 16px)',
+    fontWeight: 500,
+    cursor: 'pointer',
   },
 } as const;
