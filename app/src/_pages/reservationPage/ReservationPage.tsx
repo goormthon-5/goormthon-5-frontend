@@ -40,7 +40,6 @@ export default function ReservationPage() {
     <VStack $css={styles.layout}>
       {/* 제목 */}
       <Text
-        render={<h1 />}
         $css={{
           paddingInline: '$250',
           paddingBottom: '$250',
@@ -55,56 +54,63 @@ export default function ReservationPage() {
         {reservations.map((item: any) => {
           const accStyle = getAccommodationStyle(item.accommodationId);
           return (
-          <VStack
-            key={item.reservationId}
-            style={styles.card}
-            onClick={() => router.push(`/detail/${item.accommodationId}`)}
-          >
-            <HouseCard imageUrl={accStyle.houseImage} bgColor={accStyle.bgColor} size="card" />
+            <VStack
+              key={item.reservationId}
+              style={styles.card}
+              onClick={() => router.push(`/detail/${item.accommodationId}`)}
+            >
+              <HouseCard
+                imageUrl={accStyle.houseImage}
+                bgColor={accStyle.bgColor}
+                size="card"
+              />
 
-            <VStack style={styles.cardContent}>
-              <HStack
-                $css={{
-                  justifyContent: 'space-between',
-                  alignItems: 'flex-start',
-                  width: '100%',
-                }}
-              >
-                <Text style={styles.cardLocation}>
-                  {item.accommodation?.address?.address_short || ''}
-                </Text>
-                <RatingBadge
-                  rating={item.accommodation?.averageRating || 0}
-                  reviewCount={item.accommodation?.guestBookCount || 0}
-                />
-              </HStack>
-
-              <Text render={<h2 />} style={styles.cardName}>
-                {item.accommodation?.name || ''}
-              </Text>
-
-              {(item.accommodation?.options || []).length > 0 && (
-                <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
-                  <CategoryTag
-                    label={item.accommodation.options[0]?.name || item.accommodation.options[0]}
-                    color={accStyle.tagColor}
+              <VStack style={styles.cardContent}>
+                <HStack
+                  $css={{
+                    justifyContent: 'space-between',
+                    alignItems: 'flex-start',
+                    width: '100%',
+                  }}
+                >
+                  <Text style={styles.cardLocation}>
+                    {item.accommodation?.address?.address_short || ''}
+                  </Text>
+                  <RatingBadge
+                    rating={item.accommodation?.averageRating || 0}
+                    reviewCount={item.accommodation?.guestBookCount || 0}
                   />
-                </Box>
-              )}
+                </HStack>
 
-              <HStack $css={{ gap: '$100', alignItems: 'center' }}>
-                <Image
-                  src="/icons/calendar-icon.svg"
-                  alt="날짜"
-                  width={12}
-                  height={13}
-                />
-                <Text style={styles.dateText}>
-                  {item.startDate} - {item.endDate}
+                <Text render={<h2 />} style={styles.cardName}>
+                  {item.accommodation?.name || ''}
                 </Text>
-              </HStack>
+
+                {(item.accommodation?.options || []).length > 0 && (
+                  <Box style={{ flexShrink: 0, alignSelf: 'flex-start' }}>
+                    <CategoryTag
+                      label={
+                        item.accommodation.options[0]?.name ||
+                        item.accommodation.options[0]
+                      }
+                      color={accStyle.tagColor}
+                    />
+                  </Box>
+                )}
+
+                <HStack $css={{ gap: '$100', alignItems: 'center' }}>
+                  <Image
+                    src="/icons/calendar-icon.svg"
+                    alt="날짜"
+                    width={12}
+                    height={13}
+                  />
+                  <Text style={styles.dateText}>
+                    {item.startDate} - {item.endDate}
+                  </Text>
+                </HStack>
+              </VStack>
             </VStack>
-          </VStack>
           );
         })}
 
@@ -123,6 +129,7 @@ const styles = {
     width: '100%',
     minHeight: '100vh',
     backgroundColor: '#fff',
+    padding: '$250 0',
   },
   title: {
     fontFamily:
