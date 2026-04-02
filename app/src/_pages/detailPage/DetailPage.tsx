@@ -11,9 +11,12 @@ import ActionButton from '@/components/ActionButton';
 import BottomActionBar from '@/components/BottomActionBar';
 import samchons from '@/mocks/samchons.json';
 
-const DUMMY = samchons[0];
+interface DetailPageProps {
+  id?: number;
+}
 
-export default function DetailPage() {
+export default function DetailPage({ id = 1 }: DetailPageProps) {
+  const DUMMY = samchons.find((s) => s.id === id) || samchons[0];
   const router = useRouter();
   const [messages, setMessages] = useState<string[]>(DUMMY.messages);
   const [newMessage, setNewMessage] = useState('');
@@ -57,7 +60,7 @@ export default function DetailPage() {
           </button>
         </Box>
 
-        <HouseCard imageUrl={DUMMY.imageUrl} bgColor="#E0F4FF" size="detail" />
+        <HouseCard imageUrl={DUMMY.imageUrl} bgColor={DUMMY.bgColor} size="detail" />
       </Box>
 
       {/* 정보 영역 */}
