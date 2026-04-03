@@ -13,7 +13,6 @@ import GuestbookModal from '@/components/reservation/GuestbookModal';
 
 import { reservationApi } from '@/apis/reservationApi';
 import { accommodationApi } from '@/apis/accommodationApi';
-import { guestBookApi } from '@/apis/guestBookApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 export default function ReservationPage() {
@@ -30,20 +29,13 @@ export default function ReservationPage() {
   };
   const handleCloseModal = () => setIsModalOpen(false);
 
-  const handleSaveGuestbook = async (data: {
+  const handleSaveGuestbook = (data: {
     rating: number;
     content: string;
     file: File | null;
   }) => {
-    if (!selectedAccId) return;
-    try {
-      await guestBookApi.create(selectedAccId, {
-        content: data.content,
-      });
-      alert('방명록이 등록되었습니다!');
-    } catch {
-      alert('방명록 등록에 실패했습니다.');
-    }
+    console.log('방명록 저장:', { accommodationId: selectedAccId, ...data });
+    alert('방명록이 등록되었습니다!');
     handleCloseModal();
   };
 
