@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import DetailPage from '@/_pages/detailPage/DetailPage';
+import accommodationsMock from '@/mocks/data/accommodations.json';
 import accommodationsDetailMock from '@/mocks/data/accommodations-detail.json';
+
+// 빌드 타임에 모든 숙소 상세 페이지를 정적 생성 (SSG)
+export async function generateStaticParams() {
+  return accommodationsMock.map((a) => ({
+    id: String(a.accommodationId),
+  }));
+}
 
 // 각 상세 페이지 메타데이터 (링크 공유 시 미리보기)
 export async function generateMetadata({

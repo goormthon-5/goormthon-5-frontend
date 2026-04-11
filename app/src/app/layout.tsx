@@ -3,6 +3,9 @@ import './globals.css';
 import Providers from './providers';
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://samchoon-irang.vercel.app',
+  ),
   title: {
     default: '삼춘이랑 - 제주 삼춘과 함께하는 여행',
     template: '%s',

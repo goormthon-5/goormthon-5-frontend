@@ -1,6 +1,14 @@
 import type { Metadata } from 'next';
 import GuestbookPage from '@/_pages/guestbookPage/GuestbookPage';
+import accommodationsMock from '@/mocks/data/accommodations.json';
 import accommodationsDetailMock from '@/mocks/data/accommodations-detail.json';
+
+// 빌드 타임에 모든 방명록 페이지를 정적 생성 (SSG)
+export async function generateStaticParams() {
+  return accommodationsMock.map((a) => ({
+    id: String(a.accommodationId),
+  }));
+}
 
 export async function generateMetadata({
   params,
