@@ -3,8 +3,28 @@ import './globals.css';
 import Providers from './providers';
 
 export const metadata: Metadata = {
-  title: 'Goormthon 5',
-  description: 'Goormthon 5th Project',
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || 'https://samchoon-irang.vercel.app',
+  ),
+  title: {
+    default: '삼춘이랑 - 제주 삼춘과 함께하는 여행',
+    template: '%s',
+  },
+  description:
+    '제주 삼춘의 집에서 머물며 진짜 제주를 경험해보세요. 밤낚시, 귤 따기, 손맛 집밥 등 로컬만이 줄 수 있는 특별한 여행.',
+  keywords: ['제주', '삼춘이랑', '제주여행', '로컬여행', '독거노인', '게스트하우스'],
+  openGraph: {
+    title: '삼춘이랑',
+    description: '제주 삼춘과 함께하는 특별한 여행',
+    type: 'website',
+    locale: 'ko_KR',
+    siteName: '삼춘이랑',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '삼춘이랑',
+    description: '제주 삼춘과 함께하는 특별한 여행',
+  },
 };
 
 export default function RootLayout({

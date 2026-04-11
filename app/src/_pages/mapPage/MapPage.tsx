@@ -394,17 +394,20 @@ export default function MapPage() {
                     $css={{
                       position: 'relative',
                       minHeight: '130px',
+                      alignItems: 'stretch',
                       border: '1px solid #E1E1E1',
                       borderRadius: '$300',
                       overflow: 'hidden',
                       cursor: 'pointer',
                       backgroundColor: '#fff',
+                      flexShrink: 0,
                     }}
                   >
                     <HStack
-                      style={{ width: '120px', minHeight: '130px' }}
+                      style={{ width: '120px' }}
                       $css={{
                         flexShrink: 0,
+                        alignSelf: 'stretch',
                         alignItems: 'center',
                         justifyContent: 'center',
                         overflow: 'hidden',
