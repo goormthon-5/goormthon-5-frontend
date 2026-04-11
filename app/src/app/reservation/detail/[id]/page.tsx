@@ -30,7 +30,6 @@ export async function generateMetadata({
     };
   }
 
-  const location = data.address?.address_short || '제주';
   const title = `${data.name} | 삼춘이랑`;
   const description = data.description;
 
@@ -43,20 +42,12 @@ export async function generateMetadata({
       type: 'website',
       locale: 'ko_KR',
       siteName: '삼춘이랑',
-      images: [
-        {
-          url: '/images/goormthon_main.png',
-          width: 1200,
-          height: 630,
-          alt: `${data.name} - ${location}`,
-        },
-      ],
+      // images는 opengraph-image.tsx가 자동 생성
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
-      images: ['/images/goormthon_main.png'],
     },
   };
 }

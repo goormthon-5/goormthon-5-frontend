@@ -31,6 +31,12 @@ export async function generateMetadata({
       description: `${name}에 다녀온 여행객들의 이야기`,
       siteName: '삼춘이랑',
       locale: 'ko_KR',
+      // images는 opengraph-image.tsx가 자동 생성
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${name} 방명록`,
+      description: `${name}에 다녀온 여행객들의 이야기`,
     },
   };
 }
