@@ -1,0 +1,39 @@
+{
+  "accommodationId": 5,
+  "name": "고산리 노을감상 정순 할망",
+  "description": "노을이 예쁜 언덕 집. LP 음악을 들으며 할망과 만두를 빚어보세요.",
+  "address": {
+    "latitude": 33.351200103759766,
+    "longitude": 126.1719970703125,
+    "address_group": "제주시",
+    "address_short": "한경면 고산리",
+    "address_detail": "제주시 한경면 고산로 12"
+  },
+  "cost": 75000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "솔직한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": false
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 8,
+      "name": "LP판 음악 감상",
+      "price": 5000
+    },
+    {
+      "optionId": 9,
+      "name": "함께 빚는 만두",
+      "price": 10000
+    }
+  ]
+}

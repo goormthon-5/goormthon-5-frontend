@@ -1,0 +1,23 @@
+{
+  "accommodationId": 3,
+  "name": "와산리 숲속휴식 영자 삼춘",
+  "description": "중산간 마을의 숲 옆집입니다. 아무 방해 없이 새 소리 들으며 쉬어가세요.",
+  "address": {
+    "latitude": 33.4723014831543,
+    "longitude": 126.65899658203125,
+    "address_group": "제주시",
+    "address_short": "조천읍 와산리",
+    "address_detail": "제주시 조천읍 와산로 92"
+  },
+  "cost": 60000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정겨운",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": []
+}

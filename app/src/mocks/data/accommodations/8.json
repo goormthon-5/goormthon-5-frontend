@@ -1,0 +1,29 @@
+{
+  "accommodationId": 8,
+  "name": "평대리 제주어수업 만수 하르방",
+  "description": "바다가 보이는 평대리 집. 할망에게 제주어를 배우며 힐링하세요.",
+  "address": {
+    "latitude": 33.532100677490234,
+    "longitude": 126.84100341796875,
+    "address_group": "제주시",
+    "address_short": "구좌읍 평대리",
+    "address_detail": "제주시 구좌읍 평대서길 45"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "솔직한",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 10,
+      "name": "할망 제주어 교실",
+      "price": 10000
+    }
+  ]
+}

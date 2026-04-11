@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 104,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "정겨운 대화와 체험이 많아 사람 냄새 나는 여행을 했습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:02",
+    "updatedAt": "2026-04-02T16:00:02"
+  },
+  {
+    "guestBookId": 103,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "오일장과 동네 나들이가 재미있어서 관광지와 다른 매력을 느꼈어요.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:02",
+    "updatedAt": "2026-04-02T16:00:02"
+  },
+  {
+    "guestBookId": 102,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:02",
+    "updatedAt": "2026-04-02T16:00:02"
+  },
+  {
+    "guestBookId": 101,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:02",
+    "updatedAt": "2026-04-02T16:00:02"
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "accommodationId": 31,
+  "name": "하천리 정원바비큐 정수 하르방",
+  "description": "꽃과 나무가 숨 쉬는 정원. 마당 바비큐와 텃밭 체험이 가능합니다.",
+  "address": {
+    "latitude": 33.34120178222656,
+    "longitude": 126.82099914550781,
+    "address_group": "서귀포시",
+    "address_short": "표선면 하천리",
+    "address_detail": "서귀포시 표선면 하천로 91"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "호탕한",
+    "trait": "일찍 일어나는",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 2,
+      "name": "제철 텃밭 간식",
+      "price": 8000
+    },
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 7000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

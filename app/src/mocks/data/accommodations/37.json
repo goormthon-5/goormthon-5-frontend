@@ -1,0 +1,39 @@
+{
+  "accommodationId": 37,
+  "name": "세화리 세화포구 용구 하르방",
+  "description": "세화 바다가 보이는 돌담집. 포구 낚시 후 바비큐를 즐기세요.",
+  "address": {
+    "latitude": 33.52119827270508,
+    "longitude": 126.85099792480469,
+    "address_group": "제주시",
+    "address_short": "구좌읍 세화리",
+    "address_detail": "제주시 구좌읍 세화3길 11"
+  },
+  "cost": 95000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "생활력 강한",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 20000
+    },
+    {
+      "optionId": 5,
+      "name": "별 구경 명당",
+      "price": 5000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

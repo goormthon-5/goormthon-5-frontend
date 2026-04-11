@@ -1,0 +1,34 @@
+{
+  "accommodationId": 25,
+  "name": "선흘리 음악다실 길자 할망",
+  "description": "람사르 습지가 있는 선흘리. LP 음악과 텃밭 간식이 있는 집.",
+  "address": {
+    "latitude": 33.511199951171875,
+    "longitude": 126.71099853515625,
+    "address_group": "제주시",
+    "address_short": "조천읍 선흘리",
+    "address_detail": "제주시 조천읍 선흘동2길 18"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정겨운",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 2,
+      "name": "제철 텃밭 간식",
+      "price": 8000
+    },
+    {
+      "optionId": 8,
+      "name": "LP판 음악 감상",
+      "price": 5000
+    }
+  ]
+}

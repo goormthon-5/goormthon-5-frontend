@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 40,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 39,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "중산간 특유의 고요함이 매력적이라 재방문하고 싶은 숙소입니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 38,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 37,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  }
+]

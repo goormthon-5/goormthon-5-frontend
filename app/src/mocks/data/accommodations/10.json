@@ -1,0 +1,39 @@
+{
+  "accommodationId": 10,
+  "name": "가시리 오름명상 덕배 하르방",
+  "description": "따라비오름 아래 마을. 숲길 명상과 LP 음악으로 마음을 달래보세요.",
+  "address": {
+    "latitude": 33.35409927368164,
+    "longitude": 126.74099731445312,
+    "address_group": "서귀포시",
+    "address_short": "표선면 가시리",
+    "address_detail": "서귀포시 표선면 가시로 565"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "유쾌한",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 8,
+      "name": "LP판 음악 감상",
+      "price": 5000
+    },
+    {
+      "optionId": 14,
+      "name": "함께하는 요가",
+      "price": 15000
+    },
+    {
+      "optionId": 16,
+      "name": "숲길 명상 걷기",
+      "price": 12000
+    }
+  ]
+}

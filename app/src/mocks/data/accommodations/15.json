@@ -1,0 +1,29 @@
+{
+  "accommodationId": 15,
+  "name": "수산리 요가아침 정희 삼춘",
+  "description": "새소리에 깨어 요가를 즐기는 아침. 평상에서 차를 마시며 쉬세요.",
+  "address": {
+    "latitude": 33.4640998840332,
+    "longitude": 126.39099884033203,
+    "address_group": "제주시",
+    "address_short": "애월읍 수산리",
+    "address_detail": "제주시 애월읍 수산서길 7"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "호탕한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 14,
+      "name": "함께하는 요가",
+      "price": 15000
+    }
+  ]
+}

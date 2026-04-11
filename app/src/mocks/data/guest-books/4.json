@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 16,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:54",
+    "updatedAt": "2026-04-02T15:59:54"
+  },
+  {
+    "guestBookId": 15,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:54",
+    "updatedAt": "2026-04-02T15:59:54"
+  },
+  {
+    "guestBookId": 14,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:54",
+    "updatedAt": "2026-04-02T15:59:54"
+  },
+  {
+    "guestBookId": 13,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:54",
+    "updatedAt": "2026-04-02T15:59:54"
+  }
+]

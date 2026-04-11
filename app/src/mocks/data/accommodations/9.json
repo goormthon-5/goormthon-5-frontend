@@ -1,0 +1,23 @@
+{
+  "accommodationId": 9,
+  "name": "고산리 파도멍 춘자 삼춘",
+  "description": "바다 뷰가 환상적인 언덕 끝자락. 조용히 파도 소리만 듣고 싶은 분께.",
+  "address": {
+    "latitude": 33.351200103759766,
+    "longitude": 126.1719970703125,
+    "address_group": "제주시",
+    "address_short": "한경면 고산리",
+    "address_detail": "제주시 한경면 고산로 12"
+  },
+  "cost": 110000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "털털한",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": []
+}

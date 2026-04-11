@@ -1,0 +1,34 @@
+{
+  "accommodationId": 33,
+  "name": "서광리 비양도뷰 상철 삼춘",
+  "description": "우도 동쪽 끝 별장. 동네 비밀 산책과 밤하늘 별구경을 함께해요.",
+  "address": {
+    "latitude": 33.51409912109375,
+    "longitude": 126.94100189208984,
+    "address_group": "제주시",
+    "address_short": "우도면 서광리",
+    "address_detail": "제주시 우도면 우도해안길 312"
+  },
+  "cost": 100000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "털털한",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 10000
+    },
+    {
+      "optionId": 5,
+      "name": "별 구경 명당",
+      "price": 5000
+    }
+  ]
+}

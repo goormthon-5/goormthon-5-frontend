@@ -1,0 +1,39 @@
+{
+  "accommodationId": 16,
+  "name": "상모리 바둑이야기 성호 하르방",
+  "description": "대정읍 역사가 깃든 마을. 하르방과 바둑 두며 옛 이야기를 들어보세요.",
+  "address": {
+    "latitude": 33.2140998840332,
+    "longitude": 126.26100158691406,
+    "address_group": "서귀포시",
+    "address_short": "대정읍 상모리",
+    "address_detail": "서귀포시 대정읍 상모대동로 34"
+  },
+  "cost": 60000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "인심 좋은",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 7,
+      "name": "마당 평상 차담",
+      "price": 5000
+    },
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    },
+    {
+      "optionId": 13,
+      "name": "장기·바둑 한판",
+      "price": 5000
+    }
+  ]
+}

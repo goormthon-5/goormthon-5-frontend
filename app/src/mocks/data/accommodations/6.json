@@ -1,0 +1,29 @@
+{
+  "accommodationId": 6,
+  "name": "무릉리 올레산책 종필 삼춘",
+  "description": "올레길이 지나는 마을입니다. 삼춘과 함께 동네 비밀 산책을 떠나요.",
+  "address": {
+    "latitude": 33.28450012207031,
+    "longitude": 126.23100280761719,
+    "address_group": "서귀포시",
+    "address_short": "대정읍 무릉리",
+    "address_detail": "서귀포시 대정읍 무릉중앙로 21"
+  },
+  "cost": 65000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 8000
+    }
+  ]
+}

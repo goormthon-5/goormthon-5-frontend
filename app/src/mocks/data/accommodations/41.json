@@ -1,0 +1,29 @@
+{
+  "accommodationId": 41,
+  "name": "토산리 햇살뜨개 영애 할망",
+  "description": "따뜻한 햇살 아래 뜨개질을 배워보세요. 소박한 휴식을 선사합니다.",
+  "address": {
+    "latitude": 33.29119873046875,
+    "longitude": 126.7509994506836,
+    "address_group": "서귀포시",
+    "address_short": "표선면 토산리",
+    "address_detail": "서귀포시 표선면 토산중앙로 42"
+  },
+  "cost": 75000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정겨운",
+    "trait": "손이 빠른",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 12,
+      "name": "뜨개질 원데이",
+      "price": 10000
+    }
+  ]
+}

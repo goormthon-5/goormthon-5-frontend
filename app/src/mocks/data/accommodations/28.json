@@ -1,0 +1,23 @@
+{
+  "accommodationId": 28,
+  "name": "덕천리 중산간쉼 영호 하르방",
+  "description": "상큼한 숲 내음 가득한 덕천리. 아무 생각 없이 쉬고 싶은 분께.",
+  "address": {
+    "latitude": 33.481201171875,
+    "longitude": 126.78099822998047,
+    "address_group": "제주시",
+    "address_short": "구좌읍 덕천리",
+    "address_detail": "제주시 구좌읍 덕천길 31"
+  },
+  "cost": 75000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "손이 빠른",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": []
+}
