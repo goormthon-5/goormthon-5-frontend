@@ -10,6 +10,7 @@ import CategoryTag from '@/components/CategoryTag';
 import Spinner from '@/components/Spinner';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { getCleanlinessLabel } from '@/constants/accommodationLabels';
 import { useFavoriteStore } from '@/store/favoriteStore';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
@@ -618,7 +619,7 @@ function DetailPreview({
               )}
               {selected.accommodationHostInfo.cleanlinessLevel && (
                 <span style={styles.infoTag}>
-                  {({ LV1: '청결 C', LV2: '청결 B', LV3: '청결 A' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
+                  {getCleanlinessLabel(selected.accommodationHostInfo.cleanlinessLevel)}
                 </span>
               )}
               {selected.accommodationHostInfo.hasWifi != null && (
