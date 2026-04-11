@@ -45,7 +45,9 @@ export async function generateMetadata({
       siteName: '삼춘이랑',
       images: [
         {
-          url: '/images/main-logo.svg',
+          url: '/images/goormthon_main.png',
+          width: 1200,
+          height: 630,
           alt: `${data.name} - ${location}`,
         },
       ],
@@ -54,6 +56,7 @@ export async function generateMetadata({
       card: 'summary_large_image',
       title,
       description,
+      images: ['/images/goormthon_main.png'],
     },
   };
 }

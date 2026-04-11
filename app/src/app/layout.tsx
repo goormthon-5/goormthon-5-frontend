@@ -19,11 +19,20 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'ko_KR',
     siteName: '삼춘이랑',
+    images: [
+      {
+        url: '/images/goormthon_main.png',
+        width: 1200,
+        height: 630,
+        alt: '삼춘이랑 - 제주 삼춘과 함께하는 여행',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: '삼춘이랑',
     description: '제주 삼춘과 함께하는 특별한 여행',
+    images: ['/images/goormthon_main.png'],
   },
 };
 
