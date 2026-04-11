@@ -6,9 +6,9 @@ const HOUSE_IMAGES = [
 
 // OG 공유용 PNG 이미지 (카톡/슬랙 미리보기는 SVG 미지원)
 const OG_IMAGES = [
-  '/images/meta-house-1.png',
-  '/images/meta-house-2.png',
-  '/images/meta-house-3.png',
+  '/images/meta-house-1-new.png',
+  '/images/meta-house-2-new.png',
+  '/images/meta-house-3-new.png',
 ];
 
 const BG_COLORS = ['#E0F4FF', '#FFECB3', '#D2FAE8'];
