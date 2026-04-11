@@ -1,0 +1,39 @@
+{
+  "accommodationId": 27,
+  "name": "하모리 시장투어 경자 삼춘",
+  "description": "모슬포항 근처 마을. 할망과 오일장에 가서 맛있는 것을 사와요.",
+  "address": {
+    "latitude": 33.22119903564453,
+    "longitude": 126.2509994506836,
+    "address_group": "서귀포시",
+    "address_short": "대정읍 하모리",
+    "address_detail": "서귀포시 대정읍 하모중앙로 78"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 9,
+      "name": "함께 빚는 만두",
+      "price": 10000
+    },
+    {
+      "optionId": 17,
+      "name": "오일장 구경 가기",
+      "price": 10000
+    }
+  ]
+}

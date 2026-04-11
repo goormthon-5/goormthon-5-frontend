@@ -1,0 +1,29 @@
+{
+  "accommodationId": 18,
+  "name": "덕수리 꽃정원 명자 삼춘",
+  "description": "계절마다 꽃이 피는 정원집. 텃밭 간식을 먹으며 쉬어가는 공간.",
+  "address": {
+    "latitude": 33.25120162963867,
+    "longitude": 126.31099700927734,
+    "address_group": "서귀포시",
+    "address_short": "안덕면 덕수리",
+    "address_detail": "서귀포시 안덕면 덕수회관로 10"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "푸근한",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": false
+  },
+  "averageRating": 4.0,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 2,
+      "name": "제철 텃밭 간식",
+      "price": 7000
+    }
+  ]
+}

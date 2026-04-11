@@ -1,0 +1,34 @@
+{
+  "accommodationId": 30,
+  "name": "신양리 바다담소 재식 삼춘",
+  "description": "추자 바다가 한눈에. 삼춘의 옛 이야기를 들으며 낚시하세요.",
+  "address": {
+    "latitude": 33.941200256347656,
+    "longitude": 126.32099914550781,
+    "address_group": "제주시",
+    "address_short": "추자면 신양리",
+    "address_detail": "제주시 추자면 신양말길 15"
+  },
+  "cost": 60000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "푸근한",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 18000
+    },
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    }
+  ]
+}

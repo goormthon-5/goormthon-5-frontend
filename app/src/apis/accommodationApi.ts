@@ -1,13 +1,12 @@
-import instance from './axios/instance';
+import { accommodationApi as client } from './client';
 
 export const accommodationApi = {
   // 숙소 목록 조회
-  getAll: () => instance.get('/api/accommodations'),
+  getAll: () => client.getAll(),
 
   // 숙소 상세 조회
-  getById: (id: number) => instance.get(`/api/accommodations/${id}`),
+  getById: (id: number) => client.getById(id),
 
   // 숙소 검색
-  search: (query: string) =>
-    instance.get('/api/accommodations/search', { params: { query } }),
+  search: (query: string) => client.search({ keyword: query }),
 };

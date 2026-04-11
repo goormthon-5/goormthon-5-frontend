@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "generate:api": "openapi-generator-cli generate -i ./src/mocks/data/openapi-spec.json -g typescript-axios -o ./src/generated/api --additional-properties=supportsES6=true,withSeparateModelsAndApi=true,modelPackage=models,apiPackage=apis,useSingleRequestParameter=true"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.96.1",
@@ -21,6 +22,7 @@
     "zustand": "^5.0.12"
   },
   "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^2.31.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

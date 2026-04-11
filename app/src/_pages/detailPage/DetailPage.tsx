@@ -13,6 +13,7 @@ import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { reservationApi } from '@/apis/reservationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { useUserStore } from '@/store/userStore';
 import IcWifiO from '@/assets/icons/wifi-o.svg';
 import IcWifiX from '@/assets/icons/wifi-x.svg';
 
@@ -25,6 +26,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
   const [data, setData] = useState<any>(null);
   const [messages, setMessages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const userId = useUserStore((s) => s.userId);
 
   useEffect(() => {
     setIsLoading(true);
@@ -228,7 +230,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
           reservationApi
             .create({
               accommodationId: id,
-              userId: 51,
+              userId,
               guestCount: 1,
               startDate: today.toISOString().split('T')[0],
               endDate: tomorrow.toISOString().split('T')[0],

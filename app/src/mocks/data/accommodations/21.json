@@ -1,0 +1,39 @@
+{
+  "accommodationId": 21,
+  "name": "신창리 풍차해안 순철 삼춘",
+  "description": "풍차가 보이는 해안 마을. 밤포구 낚시와 별 구경이 가능합니다.",
+  "address": {
+    "latitude": 33.34410095214844,
+    "longitude": 126.1709976196289,
+    "address_group": "제주시",
+    "address_short": "한경면 신창리",
+    "address_detail": "제주시 한경면 신창로 44"
+  },
+  "cost": 95000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "일찍 일어나는",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": false
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 18000
+    },
+    {
+      "optionId": 5,
+      "name": "별 구경 명당",
+      "price": 5000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

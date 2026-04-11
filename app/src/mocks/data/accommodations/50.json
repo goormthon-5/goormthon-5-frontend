@@ -1,0 +1,34 @@
+{
+  "accommodationId": 50,
+  "name": "신창리 신창바람 충식 하르방",
+  "description": "풍차가 보이는 신창 바다. 하르방과 밤낚시하며 바비큐를 즐기세요.",
+  "address": {
+    "latitude": 33.34410095214844,
+    "longitude": 126.1709976196289,
+    "address_group": "제주시",
+    "address_short": "한경면 신창리",
+    "address_detail": "제주시 한경면 신창해안로 15"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "푸근한",
+    "trait": "생활력 강한",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 20000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

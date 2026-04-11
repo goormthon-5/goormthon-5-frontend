@@ -1,0 +1,34 @@
+{
+  "accommodationId": 11,
+  "name": "연평리 별빛마당 명숙 할망",
+  "description": "우도의 푸른 밤을 느끼는 집. 마당에서 쏟아지는 별을 감상하세요.",
+  "address": {
+    "latitude": 33.50410079956055,
+    "longitude": 126.95099639892578,
+    "address_group": "제주시",
+    "address_short": "우도면 연평리",
+    "address_detail": "제주시 우도면 우도로 122"
+  },
+  "cost": 100000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 5,
+      "name": "별 구경 명당",
+      "price": 5000
+    },
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    }
+  ]
+}

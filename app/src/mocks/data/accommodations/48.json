@@ -1,0 +1,39 @@
+{
+  "accommodationId": 48,
+  "name": "위미리 귤밭산책 성환 삼춘",
+  "description": "남원 위미항 근처 귤밭 집. 귤 따기 체험 후 강아지와 산책해요.",
+  "address": {
+    "latitude": 33.27119827270508,
+    "longitude": 126.66100311279297,
+    "address_group": "서귀포시",
+    "address_short": "남원읍 위미리",
+    "address_detail": "서귀포시 남원읍 위미대성로 104"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "털털한",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 6,
+      "name": "귤 따기 체험",
+      "price": 10000
+    },
+    {
+      "optionId": 7,
+      "name": "마당 평상 차담",
+      "price": 5000
+    },
+    {
+      "optionId": 20,
+      "name": "반려견 산책 메이트",
+      "price": 10000
+    }
+  ]
+}

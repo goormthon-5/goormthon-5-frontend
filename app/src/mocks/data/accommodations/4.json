@@ -1,0 +1,34 @@
+{
+  "accommodationId": 4,
+  "name": "신례리 귤밭체험 창석 하르방",
+  "description": "사방이 귤나무인 정겨운 집. 귤 따기 체험과 마당 바비큐를 즐기세요.",
+  "address": {
+    "latitude": 33.30149841308594,
+    "longitude": 126.62100219726562,
+    "address_group": "서귀포시",
+    "address_short": "남원읍 신례리",
+    "address_detail": "서귀포시 남원읍 신례천로 167"
+  },
+  "cost": 95000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "푸근한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": false
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 6,
+      "name": "귤 따기 체험",
+      "price": 12000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "accommodationId": 45,
+  "name": "협재리 협재독서 희숙 삼춘",
+  "description": "협재 바다가 보이는 예쁜 집. 혼자 조용히 책 읽기 좋은 공간.",
+  "address": {
+    "latitude": 33.39120101928711,
+    "longitude": 126.24099731445312,
+    "address_group": "제주시",
+    "address_short": "한림읍 협재리",
+    "address_detail": "제주시 한림읍 협재로 74"
+  },
+  "cost": 90000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "털털한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": []
+}

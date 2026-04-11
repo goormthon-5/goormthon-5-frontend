@@ -1,0 +1,39 @@
+{
+  "accommodationId": 40,
+  "name": "판포리 판포밤낚시 덕구 하르방",
+  "description": "스노클링 명당 판포포구 앞. 하르방과 제주어를 배우며 밤낚시!",
+  "address": {
+    "latitude": 33.36119842529297,
+    "longitude": 126.20099639892578,
+    "address_group": "제주시",
+    "address_short": "한경면 판포리",
+    "address_detail": "제주시 한경면 판포4길 8"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "호탕한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.0,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 7000
+    },
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 18000
+    },
+    {
+      "optionId": 10,
+      "name": "할망 제주어 교실",
+      "price": 10000
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "accommodationId": 1,
+  "name": "하가리 연화못 복희 할망",
+  "description": "연화못 근처 돌담집입니다. 텃밭 채소 시골 밥상과 마당 평상이 정겹습니다.",
+  "address": {
+    "latitude": 33.46120071411133,
+    "longitude": 126.34500122070312,
+    "address_group": "제주시",
+    "address_short": "애월읍 하가리",
+    "address_detail": "제주시 애월읍 하가로 145"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "털털한",
+    "trait": "생활력 강한",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 7,
+      "name": "마당 평상 차담",
+      "price": 5000
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "accommodationId": 26,
+  "name": "용수리 제주어산책 병호 하르방",
+  "description": "삼춘과 제주어를 배우며 동네 한 바퀴 산책하는 소박한 여행.",
+  "address": {
+    "latitude": 33.32120132446289,
+    "longitude": 126.16100311279297,
+    "address_group": "제주시",
+    "address_short": "한경면 용수리",
+    "address_detail": "제주시 한경면 용수길 5"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "다정한",
+    "trait": "생활력 강한",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": false
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 7000
+    },
+    {
+      "optionId": 10,
+      "name": "할망 제주어 교실",
+      "price": 10000
+    }
+  ]
+}

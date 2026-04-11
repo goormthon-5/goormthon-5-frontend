@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 116,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "책 읽고 음악 듣기 좋은 공간이라 하루가 금방 지나갔어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  },
+  {
+    "guestBookId": 115,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "차 한잔하며 쉬기 좋고 조용해서 생각 정리하기에 최고였습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  },
+  {
+    "guestBookId": 114,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  },
+  {
+    "guestBookId": 113,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  }
+]

@@ -1,0 +1,34 @@
+{
+  "accommodationId": 14,
+  "name": "태흥리 낚시고수 봉섭 하르방",
+  "description": "남원 바다가 마당인 집. 낚시 후 즐기는 마당 바비큐는 최고입니다.",
+  "address": {
+    "latitude": 33.28409957885742,
+    "longitude": 126.68099975585938,
+    "address_group": "서귀포시",
+    "address_short": "남원읍 태흥리",
+    "address_detail": "서귀포시 남원읍 태흥장터로 15"
+  },
+  "cost": 120000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "수다스러운",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 20000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 15000
+    }
+  ]
+}

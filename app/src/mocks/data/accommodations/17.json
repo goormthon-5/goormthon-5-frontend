@@ -1,0 +1,34 @@
+{
+  "accommodationId": 17,
+  "name": "북촌리 오일장나들이 점례 할망",
+  "description": "조천 바다가 보이는 집. 오일장에 가서 할망 단골집을 구경해요.",
+  "address": {
+    "latitude": 33.55120086669922,
+    "longitude": 126.69100189208984,
+    "address_group": "제주시",
+    "address_short": "조천읍 북촌리",
+    "address_detail": "제주시 조천읍 북촌3길 22"
+  },
+  "cost": 75000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "호탕한",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    },
+    {
+      "optionId": 17,
+      "name": "오일장 구경 가기",
+      "price": 10000
+    }
+  ]
+}

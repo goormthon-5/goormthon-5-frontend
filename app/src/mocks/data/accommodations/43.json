@@ -1,0 +1,34 @@
+{
+  "accommodationId": 43,
+  "name": "동일리 비밀산책 영기 하르방",
+  "description": "대정읍 동일리 바다 앞 돌담집. 삼춘과 함께 비밀 산책을 떠나요.",
+  "address": {
+    "latitude": 33.231201171875,
+    "longitude": 126.23100280761719,
+    "address_group": "서귀포시",
+    "address_short": "대정읍 동일리",
+    "address_detail": "서귀포시 대정읍 동일로 45"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정 많은",
+    "trait": "손이 빠른",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 7000
+    },
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 18000
+    }
+  ]
+}

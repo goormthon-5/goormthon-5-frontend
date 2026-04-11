@@ -1,0 +1,39 @@
+{
+  "accommodationId": 44,
+  "name": "한남리 한남만두 금자 할망",
+  "description": "숲 체험 마을 한남리. 할망의 집밥과 함께 빚는 만두 체험.",
+  "address": {
+    "latitude": 33.29119873046875,
+    "longitude": 126.63099670410156,
+    "address_group": "서귀포시",
+    "address_short": "남원읍 한남리",
+    "address_detail": "서귀포시 남원읍 한남로 12"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "인정 많은",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 5.0,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 9,
+      "name": "함께 빚는 만두",
+      "price": 10000
+    },
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    }
+  ]
+}
