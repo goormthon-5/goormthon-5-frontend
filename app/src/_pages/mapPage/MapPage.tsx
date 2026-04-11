@@ -98,9 +98,8 @@ export default function MapPage() {
       .finally(() => setIsLoading(false));
   }, []);
 
+  // 카카오맵 스크립트 로드 & 지도 초기화 (한 번만 실행)
   useEffect(() => {
-    if (accommodations.length === 0) return;
-
     const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
     if (!appKey) return;
 
@@ -118,38 +117,6 @@ export default function MapPage() {
           level: 10,
         });
         kakaoMapRef.current = map;
-
-        const overlays: any[] = [];
-        accommodations.forEach((s: any) => {
-          if (!s.address) return;
-          const position = new window.kakao.maps.LatLng(
-            s.address.latitude,
-            s.address.longitude,
-          );
-
-          const markerStyle = getAccommodationStyle(s.accommodationId);
-          const wrapper = document.createElement('div');
-          wrapper.style.cursor = 'pointer';
-          wrapper.innerHTML = `
-            <img src="${markerStyle.markerIcon}" width="46" height="57" style="display:block;" />
-          `;
-          wrapper.addEventListener('click', () => {
-            handleMarkerClick(
-              s.accommodationId,
-              s.address.latitude,
-              s.address.longitude,
-            );
-          });
-
-          const overlay = new window.kakao.maps.CustomOverlay({
-            position,
-            content: wrapper,
-            yAnchor: 1,
-          });
-          overlay.setMap(map);
-          overlays.push({ overlay, data: s });
-        });
-        overlaysRef.current = overlays;
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
@@ -169,7 +136,66 @@ export default function MapPage() {
     };
 
     return () => {
-      document.head.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
+  // 숙소 데이터가 들어오면 마커 오버레이 생성 (지도 인스턴스가 준비되면)
+  useEffect(() => {
+    if (accommodations.length === 0) return;
+
+    let cancelled = false;
+    const createOverlays = () => {
+      if (cancelled) return;
+      const map = kakaoMapRef.current;
+      if (!map || !window.kakao?.maps) {
+        // 아직 지도 초기화 전이면 대기 후 재시도
+        setTimeout(createOverlays, 100);
+        return;
+      }
+
+      // 기존 오버레이 제거 (재호출 안전)
+      overlaysRef.current.forEach(({ overlay }) => overlay.setMap(null));
+
+      const overlays: { overlay: any; data: any }[] = [];
+      accommodations.forEach((s: any) => {
+        if (!s.address) return;
+        const position = new window.kakao.maps.LatLng(
+          s.address.latitude,
+          s.address.longitude,
+        );
+
+        const markerStyle = getAccommodationStyle(s.accommodationId);
+        const wrapper = document.createElement('div');
+        wrapper.style.cursor = 'pointer';
+        wrapper.innerHTML = `
+          <img src="${markerStyle.markerIcon}" width="46" height="57" style="display:block;" />
+        `;
+        wrapper.addEventListener('click', () => {
+          handleMarkerClick(
+            s.accommodationId,
+            s.address.latitude,
+            s.address.longitude,
+          );
+        });
+
+        const overlay = new window.kakao.maps.CustomOverlay({
+          position,
+          content: wrapper,
+          yAnchor: 1,
+        });
+        overlay.setMap(map);
+        overlays.push({ overlay, data: s });
+      });
+      overlaysRef.current = overlays;
+    };
+
+    createOverlays();
+
+    return () => {
+      cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accommodations]);
