@@ -15,6 +15,7 @@ import { reservationApi } from '@/apis/reservationApi';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { toast } from '@/store/toastStore';
 
 export default function ReservationPage() {
   const router = useRouter();
@@ -40,9 +41,9 @@ export default function ReservationPage() {
       await guestBookApi.create(selectedAccId, {
         content: data.content,
       });
-      alert('방명록이 등록되었습니다!');
+      toast.success('방명록이 등록되었습니다!');
     } catch {
-      alert('방명록 등록에 실패했습니다.');
+      toast.error('방명록 등록에 실패했습니다.');
     }
     handleCloseModal();
   };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import Image from 'next/image';
 import { Box, Button, HStack, Text, Textarea, VStack } from '@vapor-ui/core';
 
@@ -23,9 +23,23 @@ export default function GuestbookModal({
   const [rating, setRating] = useState(0);
   const [content, setContent] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const isFormValid = rating > 0 && content.trim().length > 0;
+
+  // 선택된 파일이 바뀌면 프리뷰 URL을 생성하고, 정리 시점에 메모리 해제
+  useEffect(() => {
+    if (!selectedFile) {
+      setPreviewUrl(null);
+      return;
+    }
+    const url = URL.createObjectURL(selectedFile);
+    setPreviewUrl(url);
+    return () => {
+      URL.revokeObjectURL(url);
+    };
+  }, [selectedFile]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -86,7 +100,7 @@ export default function GuestbookModal({
       />
 
       {/* 이미지 미리보기 */}
-      {selectedFile && (
+      {selectedFile && previewUrl && (
         <Box
           $css={{
             position: 'relative',
@@ -94,8 +108,9 @@ export default function GuestbookModal({
             marginBottom: '$150',
           }}
         >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={URL.createObjectURL(selectedFile)}
+            src={previewUrl}
             alt="미리보기"
             style={{
               width: '100%',

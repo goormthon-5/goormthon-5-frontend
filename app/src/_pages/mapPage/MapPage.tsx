@@ -10,6 +10,7 @@ import CategoryTag from '@/components/CategoryTag';
 import Spinner from '@/components/Spinner';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { getCleanlinessLabel } from '@/constants/accommodationLabels';
 import { useFavoriteStore } from '@/store/favoriteStore';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
@@ -98,9 +99,8 @@ export default function MapPage() {
       .finally(() => setIsLoading(false));
   }, []);
 
+  // 카카오맵 스크립트 로드 & 지도 초기화 (한 번만 실행)
   useEffect(() => {
-    if (accommodations.length === 0) return;
-
     const appKey = process.env.NEXT_PUBLIC_KAKAO_MAP_KEY;
     if (!appKey) return;
 
@@ -118,38 +118,6 @@ export default function MapPage() {
           level: 10,
         });
         kakaoMapRef.current = map;
-
-        const overlays: any[] = [];
-        accommodations.forEach((s: any) => {
-          if (!s.address) return;
-          const position = new window.kakao.maps.LatLng(
-            s.address.latitude,
-            s.address.longitude,
-          );
-
-          const markerStyle = getAccommodationStyle(s.accommodationId);
-          const wrapper = document.createElement('div');
-          wrapper.style.cursor = 'pointer';
-          wrapper.innerHTML = `
-            <img src="${markerStyle.markerIcon}" width="46" height="57" style="display:block;" />
-          `;
-          wrapper.addEventListener('click', () => {
-            handleMarkerClick(
-              s.accommodationId,
-              s.address.latitude,
-              s.address.longitude,
-            );
-          });
-
-          const overlay = new window.kakao.maps.CustomOverlay({
-            position,
-            content: wrapper,
-            yAnchor: 1,
-          });
-          overlay.setMap(map);
-          overlays.push({ overlay, data: s });
-        });
-        overlaysRef.current = overlays;
 
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition((pos) => {
@@ -169,7 +137,66 @@ export default function MapPage() {
     };
 
     return () => {
-      document.head.removeChild(script);
+      if (script.parentNode) {
+        script.parentNode.removeChild(script);
+      }
+    };
+  }, []);
+
+  // 숙소 데이터가 들어오면 마커 오버레이 생성 (지도 인스턴스가 준비되면)
+  useEffect(() => {
+    if (accommodations.length === 0) return;
+
+    let cancelled = false;
+    const createOverlays = () => {
+      if (cancelled) return;
+      const map = kakaoMapRef.current;
+      if (!map || !window.kakao?.maps) {
+        // 아직 지도 초기화 전이면 대기 후 재시도
+        setTimeout(createOverlays, 100);
+        return;
+      }
+
+      // 기존 오버레이 제거 (재호출 안전)
+      overlaysRef.current.forEach(({ overlay }) => overlay.setMap(null));
+
+      const overlays: { overlay: any; data: any }[] = [];
+      accommodations.forEach((s: any) => {
+        if (!s.address) return;
+        const position = new window.kakao.maps.LatLng(
+          s.address.latitude,
+          s.address.longitude,
+        );
+
+        const markerStyle = getAccommodationStyle(s.accommodationId);
+        const wrapper = document.createElement('div');
+        wrapper.style.cursor = 'pointer';
+        wrapper.innerHTML = `
+          <img src="${markerStyle.markerIcon}" width="46" height="57" style="display:block;" />
+        `;
+        wrapper.addEventListener('click', () => {
+          handleMarkerClick(
+            s.accommodationId,
+            s.address.latitude,
+            s.address.longitude,
+          );
+        });
+
+        const overlay = new window.kakao.maps.CustomOverlay({
+          position,
+          content: wrapper,
+          yAnchor: 1,
+        });
+        overlay.setMap(map);
+        overlays.push({ overlay, data: s });
+      });
+      overlaysRef.current = overlays;
+    };
+
+    createOverlays();
+
+    return () => {
+      cancelled = true;
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accommodations]);
@@ -267,48 +294,66 @@ export default function MapPage() {
           style={{
             position: 'absolute',
             top: '78px',
-            left: 'var(--vapor-size-space-250)',
+            left: 0,
+            right: 0,
             zIndex: 25,
             overflowX: 'auto',
-            maxWidth: 'calc(100% - 40px)',
+            paddingInline: '20px',
+            scrollbarWidth: 'none',
+            WebkitMaskImage:
+              'linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%)',
+            maskImage:
+              'linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%)',
           }}
           $css={{ gap: '$100' }}
         >
-          {FILTERS.map((filter, idx) => (
-            <HStack
-              key={filter}
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                setSelectedFilter(idx);
-                setSelectedId(null);
-                setSheetMode('hidden');
-                setSearchQuery('');
-              }}
-              $css={{
-                height: '$300',
-                paddingInline: '$100',
-                paddingBlock: '$000',
-                borderRadius: '$500',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
-                color: idx === selectedFilter ? '#fff' : '#AEAEAE',
-              }}
-            >
-              <Text
+          {FILTERS.map((filter, idx) => {
+            const isActive = idx === selectedFilter;
+            const handleSelect = () => {
+              setSelectedFilter(idx);
+              setSelectedId(null);
+              setSheetMode('hidden');
+              setSearchQuery('');
+            };
+            return (
+              <HStack
+                key={filter}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isActive}
+                aria-label={`${filter} 필터`}
+                onClick={handleSelect}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleSelect();
+                  }
+                }}
                 $css={{
-                  fontSize: '12px',
-                  fontWeight: 500,
-                  color: 'inherit',
+                  height: '$300',
+                  paddingInline: '$100',
+                  paddingBlock: '$000',
+                  borderRadius: '$500',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  backgroundColor: isActive ? '#6DBFFF' : '#fff',
+                  color: isActive ? '#fff' : '#AEAEAE',
                 }}
               >
-                {filter}
-              </Text>
-            </HStack>
-          ))}
+                <Text
+                  $css={{
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    color: 'inherit',
+                  }}
+                >
+                  {filter}
+                </Text>
+              </HStack>
+            );
+          })}
         </HStack>
 
         {/* 오버레이 */}
@@ -592,7 +637,7 @@ function DetailPreview({
               )}
               {selected.accommodationHostInfo.cleanlinessLevel && (
                 <span style={styles.infoTag}>
-                  {({ LV1: '청결 C', LV2: '청결 B', LV3: '청결 A' } as Record<string, string>)[selected.accommodationHostInfo.cleanlinessLevel] || selected.accommodationHostInfo.cleanlinessLevel}
+                  {getCleanlinessLabel(selected.accommodationHostInfo.cleanlinessLevel)}
                 </span>
               )}
               {selected.accommodationHostInfo.hasWifi != null && (
