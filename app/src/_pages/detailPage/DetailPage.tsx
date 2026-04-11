@@ -13,6 +13,7 @@ import { accommodationApi } from '@/apis/accommodationApi';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { reservationApi } from '@/apis/reservationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { getCleanlinessLabel } from '@/constants/accommodationLabels';
 import { useUserStore } from '@/store/userStore';
 import IcWifiO from '@/assets/icons/wifi-o.svg';
 import IcWifiX from '@/assets/icons/wifi-x.svg';
@@ -137,7 +138,7 @@ export default function DetailPage({ id = 1 }: DetailPageProps) {
             {data.accommodationHostInfo.cleanlinessLevel && (
               <Box style={styles.hostTag}>
                 <Text style={styles.hostTagText}>
-                  {({ LV1: '청결 C', LV2: '청결 B', LV3: '청결 A' } as Record<string, string>)[data.accommodationHostInfo.cleanlinessLevel] || data.accommodationHostInfo.cleanlinessLevel}
+                  {getCleanlinessLabel(data.accommodationHostInfo.cleanlinessLevel)}
                 </Text>
               </Box>
             )}

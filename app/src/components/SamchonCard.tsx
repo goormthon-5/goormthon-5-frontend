@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { HStack, Text, VStack, Box } from '@vapor-ui/core';
 import CategoryTag from './CategoryTag';
 import HouseCard from './HouseCard';
+import { getCleanlinessLabel } from '@/constants/accommodationLabels';
 import IcWifiO from '@/assets/icons/wifi-o.svg';
 import IcWifiX from '@/assets/icons/wifi-x.svg';
 
@@ -27,12 +28,6 @@ interface SamchonCardProps {
   renderRightTop?: ReactNode;
   children?: ReactNode;
 }
-
-const CLEAN_LABEL: Record<string, string> = {
-  LV1: '청결 C',
-  LV2: '청결 B',
-  LV3: '청결 A',
-};
 
 export default function SamchonCard({
   imageUrl,
@@ -116,7 +111,7 @@ export default function SamchonCard({
             )}
             {hostInfo.cleanlinessLevel && (
               <Box style={styles.infoTag}>
-                <Text style={styles.infoTagText}>{CLEAN_LABEL[hostInfo.cleanlinessLevel] || hostInfo.cleanlinessLevel}</Text>
+                <Text style={styles.infoTagText}>{getCleanlinessLabel(hostInfo.cleanlinessLevel)}</Text>
               </Box>
             )}
             {hostInfo.hasWifi != null && (

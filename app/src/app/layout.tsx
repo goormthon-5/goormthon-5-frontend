@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import Providers from './providers';
+import Toast from '@/components/Toast';
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -52,6 +53,7 @@ export default function RootLayout({
       <body>
         <div className="root">
           <Providers>{children}</Providers>
+          <Toast />
         </div>
       </body>
     </html>
