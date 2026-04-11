@@ -294,10 +294,16 @@ export default function MapPage() {
           style={{
             position: 'absolute',
             top: '78px',
-            left: 'var(--vapor-size-space-250)',
+            left: 0,
+            right: 0,
             zIndex: 25,
             overflowX: 'auto',
-            maxWidth: 'calc(100% - 40px)',
+            paddingInline: '20px',
+            scrollbarWidth: 'none',
+            WebkitMaskImage:
+              'linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%)',
+            maskImage:
+              'linear-gradient(to right, transparent 0, #000 20px, #000 calc(100% - 20px), transparent 100%)',
           }}
           $css={{ gap: '$100' }}
         >
