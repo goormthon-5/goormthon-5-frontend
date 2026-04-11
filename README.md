@@ -12,7 +12,9 @@
   <b>구름톤 17기 in JEJU | TEAM 마음충전소</b>
 </p>
 
-**삼춘이랑**은 제주 1인 독거노인 가구의 유휴 공간과, 제주만의 특별한 로컬 경험을 원하는 청년·여행객을 연결하는 **롱세어링(Long-sharing) 커뮤니티 매칭 서비스**입니다.
+1인 노인계층이 전국 대비 높은 제주에서 노인가구 내 여행객에게 제공할 수 있는 여분의 방을
+제주로 여행을 온 여행객에게 제주 소지역 경험을 함께 제공해주는
+**제주 독거노인과 청년 · 여행객을 잇는 커뮤니티 매칭 서비스**
 
 어르신에게는 따뜻한 동행과 부가 수입을, 여행자에게는 진짜 제주를 선사합니다.
 
@@ -118,7 +120,7 @@
 ## 🏗 Service Architecture
 
 <p align="center">
-  <img src="assets/service-architecture.png" alt="Service Architecture" width="800"/>
+  <img src="assets/service-architecture.png" alt="Service Architecture" width="600"/>
 </p>
 
 ### Tech Stack
