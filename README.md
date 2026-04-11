@@ -12,15 +12,9 @@
   <b>구름톤 17기 in JEJU | TEAM 마음충전소</b>
 </p>
 
----
-
-## 📖 Overview
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0002.jpg" alt="삼춘이랑 소개" width="800"/>
-</p>
-
-**삼춘이랑**은 제주 1인 독거노인 가구의 유휴 공간과, 제주만의 특별한 로컬 경험을 원하는 청년·여행객을 연결하는 **롱세어링(Long-sharing) 커뮤니티 매칭 서비스**입니다.
+1인 노인계층이 전국 대비 높은 제주에서 노인가구 내 여행객에게 제공할 수 있는 여분의 방을
+제주로 여행을 온 여행객에게 제주 소지역 경험을 함께 제공해주는
+**제주 독거노인과 청년 · 여행객을 잇는 커뮤니티 매칭 서비스**
 
 어르신에게는 따뜻한 동행과 부가 수입을, 여행자에게는 진짜 제주를 선사합니다.
 
@@ -48,18 +42,6 @@
 - **제주도와 육지 간 비연결성** — 육지 내 친척·친구와의 단절
 - **마을회관의 낮은 접근성** — 중산간 마을 및 급격한 경사, 교통 취약
 - 커뮤니티 시설 접근성과 외부 연결성이 낮아 **일상적 교류가 단절**되는 구조
-
----
-
-## 💡 Hypothesis
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0005.jpg" alt="Hypothesis" width="800"/>
-</p>
-
-> **1인 노인의 남는 방을 공유해 제주 여행객에게 지역 소개와 다양한 경험을 함께하고, 부수익과 사회적 고립을 해결합니다.**
-
-1인 노인 가구를 '문제'로 보지 않고, 제주를 여행하는 청년에게 유휴공간을 제공해줄 수 있는 **'가능성'**으로 재해석했습니다.
 
 ---
 
@@ -92,58 +74,11 @@
 
 ---
 
-## 🛠 Improvement In Demand
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0008.jpg" alt="Improvement" width="800"/>
-</p>
-
-**서비스 내 숙소 등록을 위한 지자체원 방문 설문 및 조사 / 태그 및 표기로 제공해 청년이 홈스테이에 갖는 불안감 불식**
-
-- ✅ 숙소 활용 가능 기준의 **청결도 레벨 / 와이파이 존재 여부**
-- ✅ 호스트 성격에 대한 짧은 조사를 통해 **청년이 원하는 호스트 선택**
-- ✅ 호스트 기상 및 활동시간대와 **선호 고객에 대한 정보**
-
----
-
-## 🌟 Core Value — 제주의 온기를 잇는 삼춘이랑
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0009.jpg" alt="Core Value" width="800"/>
-</p>
-
-| (1) 제주 어르신의 따뜻한 온기 | (2) 청년들의 특별한 로컬 경험 | (3) 세대를 잇는 새로운 연결 |
-|:---:|:---:|:---:|
-| 빈 방 공유를 통해 어르신의 외로움을 해소하고 새로운 삶의 활력을 창출 | 합리적인 비용으로 어르신의 집에 머물며 진짜 제주의 정과 문화 체험 | 노인과 청년이 한 지붕 아래 머물며 세대 간의 단절을 허물고 상생의 가치를 나눔 |
-
----
-
-## 📌 Project Statement (5W1H)
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0010.jpg" alt="5W1H" width="800"/>
-</p>
-
-- **WHY** — 제주의 초고령화로 인한 1인 노인 가구 증가와 그에 따른 사회적 고립, 깊은 외로움 문제 해결
-- **WHEN/WHERE** — 제주의 일상이 머무는 공간 안에서, 서로의 삶과 시간이 교차하는 순간
-- **WHO** — 진심 어린 소통을 원하는 어르신과, 깊이 있는 로컬 삶을 경험하고 싶은 여행객
-- **HOW** — '사람과 경험' 기반의 매칭으로, 빈 집과 공유를 축과 세대 간의 정서적 연대 형성
-- **WHAT** — 차세대가 떠나고 비어있는 어르신의 유휴 주거 공간을 청년 여행객을 위한 새로운 형태의 숙박 공간으로 전환합니다
-
----
-
 ## 💼 Business Modelling
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0011.jpg" alt="Business Modelling" width="800"/>
 </p>
-
-```
-    [독거노인] ←── 집 대여 기반 수익 ──→ [삼춘이랑] ←── 특별한 로컬 경험 ──→ [여행자]
-                                            ↕
-                                         [지자체]
-                                 (등록/예약 관리 · 지역 경제 활성화)
-```
 
 - **독거노인** — 방과 체험 콘텐츠 제공 → 수익 창출
 - **여행자** — 저렴하고 특별한 로컬 숙박 경험
@@ -185,7 +120,7 @@
 ## 🏗 Service Architecture
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0015.jpg" alt="Service Architecture" width="800"/>
+  <img src="assets/service-architecture.png" alt="Service Architecture" width="600"/>
 </p>
 
 ### Tech Stack
@@ -198,6 +133,21 @@
 | **Infra** | AWS Cloud, Kubernetes (K8s), Nginx Ingress Controller |
 | **CI/CD** | GitHub, Jenkins, ArgoCD, ECR |
 | **External API** | Kakao Map API, Gemini API |
+
+### Frontend 상세
+
+- **NextJS** : App Router 방식의 직관적인 페이지 구조로 효율적인 라우팅 구현
+- **Typescript** : 타입 안정성이 보장된 개발 환경 구축
+- **TanStack Query** : 서버 상태 캐싱/재조회 관리 (QueryClient Provider 세팅 완료)
+- **Zustand** : 즐겨찾기 / 사용자 정보 등 전역 상태를 전역적으로 관리, 불필요한 props 전달 제거
+- **Web API - LocalStorage** : 첫 스플래시 페이지가 반복적으로 노출되는것을 방지하기 위해 브라우저 저장소 활용
+- **Vapor UI + inline style 기반 반응형 디자인 시스템** : 디자이너의 피그마 컴포넌트와 프론트엔드 개발자의 리액트 컴포넌트 연동하여 빠른 개발 생산성
+- **Open API Generator** : Swagger JSON 파일 기반으로 백엔드 API 호출 로직 자동 생성
+- **SSG** : 50개 숙소 상세 페이지를 빌드 타임에 정적 HTML로 프리렌더링 → 초기 로딩 속도 최적화
+- **Metadata API** : 페이지별 동적 메타데이터로 링크 공유 시 숙소 정보 미리보기 제공
+- (외부) **Kakao Map API** : 제주도 지도 내 홈스테이 가능한 노인의 집들을 보여주기위해 사용
+- **(후속) Mock API Layer** : 환경변수(`NEXT_PUBLIC_USE_MOCK`) 기반 스위치로 백엔드 종속성 없이 프론트엔드 배포 가능
+- **(후속) Vercel** : GitHub 연동 자동 배포 및 Preview 배포 환경 구성
 
 ---
 
@@ -237,25 +187,91 @@
 
 ---
 
+## 🎬 Demo & Live
+
+### 시연 영상
+
+<div align="center">
+
+https://github.com/user-attachments/assets/54b8214b-158f-4ab9-a729-f44279502c54
+
+</div>
+
+### 배포 링크
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://samchoon-irang.vercel.app/">
+        <img src="assets/qr-code.jpg" alt="QR Code" width="200"/>
+      </a>
+      <br/>
+      <sub><b>📱 QR 코드로 접속하기</b></sub>
+    </td>
+    <td align="center">
+      <h3>🌐 Live Demo</h3>
+      <a href="https://samchoon-irang.vercel.app/">
+        <b>https://samchoon-irang.vercel.app/</b>
+      </a>
+      <br/><br/>
+      <sub>모바일 환경에 최적화된 서비스입니다.<br/>
+      데스크톱 접속 시 개발자 도구의 모바일 뷰를 권장드립니다.</sub>
+    </td>
+  </tr>
+</table>
+</div>
+
+---
+
 ## 👨‍👩‍👧‍👦 Team — 마음충전소
 
+<div align="center">
 <table>
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/team.png" alt="Team 마음충전소" width="400"/>
     </td>
     <td>
-
-| 역할 | 이름 |
-|:---:|:---:|
-| **PM** | 류충모 |
-| **UI/UX** | 오민주 |
-| **BE** | 이정민 |
-| **FE** | 김서희, 조영찬 |
-
-</td>
+      <table>
+        <thead>
+          <tr>
+            <th align="center">역할</th>
+            <th align="center">이름</th>
+            <th align="center">링크</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td align="center"><b>PM</b></td>
+            <td align="center">류충모</td>
+            <td align="center"><a href="https://www.linkedin.com/in/aaron-ryu/">LinkedIn</a></td>
+          </tr>
+          <tr>
+            <td align="center"><b>UI/UX</b></td>
+            <td align="center">오민주</td>
+            <td align="center"><a href="https://www.behance.net/omj0433">Behance</a></td>
+          </tr>
+          <tr>
+            <td align="center"><b>BE</b></td>
+            <td align="center">이정민</td>
+            <td align="center"><a href="https://github.com/wjdalsdk70">GitHub</a></td>
+          </tr>
+          <tr>
+            <td align="center" rowspan="2"><b>FE</b></td>
+            <td align="center">김서희</td>
+            <td align="center"><a href="https://github.com/suki186">GitHub</a></td>
+          </tr>
+          <tr>
+            <td align="center">조영찬</td>
+            <td align="center"><a href="https://github.com/ychany">GitHub</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </td>
   </tr>
 </table>
+</div>
 
 ---
 
