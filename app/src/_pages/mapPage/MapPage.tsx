@@ -301,41 +301,53 @@ export default function MapPage() {
           }}
           $css={{ gap: '$100' }}
         >
-          {FILTERS.map((filter, idx) => (
-            <HStack
-              key={filter}
-              role="button"
-              tabIndex={0}
-              onClick={() => {
-                setSelectedFilter(idx);
-                setSelectedId(null);
-                setSheetMode('hidden');
-                setSearchQuery('');
-              }}
-              $css={{
-                height: '$300',
-                paddingInline: '$100',
-                paddingBlock: '$000',
-                borderRadius: '$500',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
-                backgroundColor: idx === selectedFilter ? '#6DBFFF' : '#fff',
-                color: idx === selectedFilter ? '#fff' : '#AEAEAE',
-              }}
-            >
-              <Text
+          {FILTERS.map((filter, idx) => {
+            const isActive = idx === selectedFilter;
+            const handleSelect = () => {
+              setSelectedFilter(idx);
+              setSelectedId(null);
+              setSheetMode('hidden');
+              setSearchQuery('');
+            };
+            return (
+              <HStack
+                key={filter}
+                role="button"
+                tabIndex={0}
+                aria-pressed={isActive}
+                aria-label={`${filter} 필터`}
+                onClick={handleSelect}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    handleSelect();
+                  }
+                }}
                 $css={{
-                  fontSize: '12px',
-                  fontWeight: 500,
-                  color: 'inherit',
+                  height: '$300',
+                  paddingInline: '$100',
+                  paddingBlock: '$000',
+                  borderRadius: '$500',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  cursor: 'pointer',
+                  whiteSpace: 'nowrap',
+                  backgroundColor: isActive ? '#6DBFFF' : '#fff',
+                  color: isActive ? '#fff' : '#AEAEAE',
                 }}
               >
-                {filter}
-              </Text>
-            </HStack>
-          ))}
+                <Text
+                  $css={{
+                    fontSize: '12px',
+                    fontWeight: 500,
+                    color: 'inherit',
+                  }}
+                >
+                  {filter}
+                </Text>
+              </HStack>
+            );
+          })}
         </HStack>
 
         {/* 오버레이 */}
