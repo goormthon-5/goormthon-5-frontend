@@ -13,6 +13,7 @@ import BottomNavBar from '@/components/BottomNavBar';
 import Spinner from '@/components/Spinner';
 import Modal from '@/components/Modal';
 import ActionButton from '@/components/ActionButton';
+import { useUserStore } from '@/store/userStore';
 import ImgLogo from '@/assets/images/main-logo.svg';
 import IcMenu from '@/assets/icons/menu-icon.svg';
 import IcBell from '@/assets/icons/bell-icon.svg';
@@ -28,7 +29,7 @@ export default function Home() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const name: string = '제주좋아';
+  const name = useUserStore((s) => s.userName);
 
   const filteredAccommodations = accommodations.filter((s: any) => {
     const area = AREAS[selectedIdx];

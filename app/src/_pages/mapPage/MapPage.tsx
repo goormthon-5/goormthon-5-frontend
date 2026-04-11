@@ -10,6 +10,7 @@ import CategoryTag from '@/components/CategoryTag';
 import Spinner from '@/components/Spinner';
 import { accommodationApi } from '@/apis/accommodationApi';
 import { getAccommodationStyle } from '@/utils/accommodationStyle';
+import { useFavoriteStore } from '@/store/favoriteStore';
 import IcSearch from '@/assets/icons/search-icon.svg';
 
 declare global {
@@ -42,7 +43,8 @@ export default function MapPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [sheetMode, setSheetMode] = useState<SheetMode>('hidden');
   const [selectedId, setSelectedId] = useState<number | null>(null);
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const favorites = useFavoriteStore((s) => s.favorites);
+  const toggleFavoriteStore = useFavoriteStore((s) => s.toggleFavorite);
 
   const selected = accommodations.find(
     (s: any) => s.accommodationId === selectedId,
@@ -60,9 +62,7 @@ export default function MapPage() {
 
   const toggleFavorite = (id: number, e: React.MouseEvent) => {
     e.stopPropagation();
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id],
-    );
+    toggleFavoriteStore(id);
   };
 
   const handleSearch = (e: React.KeyboardEvent<HTMLElement>) => {

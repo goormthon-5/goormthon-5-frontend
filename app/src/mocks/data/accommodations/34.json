@@ -1,0 +1,39 @@
+{
+  "accommodationId": 34,
+  "name": "의귀리 나물밥상 필순 할망",
+  "description": "숲속 마을 의귀리. 직접 캐온 나물 집밥과 간식이 정겹습니다.",
+  "address": {
+    "latitude": 33.31119918823242,
+    "longitude": 126.6510009765625,
+    "address_group": "서귀포시",
+    "address_short": "남원읍 의귀리",
+    "address_detail": "서귀포시 남원읍 의귀로 45"
+  },
+  "cost": 90000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "푸근한",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV3",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 2,
+      "name": "제철 텃밭 간식",
+      "price": 7000
+    },
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    }
+  ]
+}

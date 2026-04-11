@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 88,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:01",
+    "updatedAt": "2026-04-02T16:00:01"
+  },
+  {
+    "guestBookId": 87,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:01",
+    "updatedAt": "2026-04-02T16:00:01"
+  },
+  {
+    "guestBookId": 86,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:01",
+    "updatedAt": "2026-04-02T16:00:01"
+  },
+  {
+    "guestBookId": 85,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:01",
+    "updatedAt": "2026-04-02T16:00:01"
+  }
+]

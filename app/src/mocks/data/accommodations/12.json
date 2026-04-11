@@ -1,0 +1,39 @@
+{
+  "accommodationId": 12,
+  "name": "대서리 포구손맛 기태 삼춘",
+  "description": "추자도의 정취가 가득한 곳. 삼춘과 함께 밤낚시의 재미를!",
+  "address": {
+    "latitude": 33.96120071411133,
+    "longitude": 126.29100036621094,
+    "address_group": "제주시",
+    "address_short": "추자면 대서리",
+    "address_detail": "제주시 추자면 대서길 8"
+  },
+  "cost": 60000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "유쾌한",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 7000
+    },
+    {
+      "optionId": 4,
+      "name": "포구 밤낚시",
+      "price": 18000
+    },
+    {
+      "optionId": 13,
+      "name": "장기·바둑 한판",
+      "price": 5000
+    }
+  ]
+}

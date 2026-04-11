@@ -1,0 +1,34 @@
+{
+  "accommodationId": 39,
+  "name": "함덕리 함덕집밥 복순 삼춘",
+  "description": "함덕 해변 근처 마을. 오일장 구경 가고 할망 집밥을 맛보세요.",
+  "address": {
+    "latitude": 33.54119873046875,
+    "longitude": 126.66100311279297,
+    "address_group": "제주시",
+    "address_short": "조천읍 함덕리",
+    "address_detail": "제주시 조천읍 함덕6길 29"
+  },
+  "cost": 90000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "호탕한",
+    "trait": "생활력 강한",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 17,
+      "name": "오일장 구경 가기",
+      "price": 10000
+    }
+  ]
+}

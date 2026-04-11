@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 28,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "요가와 명상하기 좋은 분위기라 몸과 마음이 모두 가벼워졌어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 27,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "전체적으로 편안한 무드가 좋아서 쉼이 필요한 분께 추천합니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 26,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 25,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  }
+]

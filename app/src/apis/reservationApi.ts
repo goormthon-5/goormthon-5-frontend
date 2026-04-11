@@ -1,4 +1,4 @@
-import instance from './axios/instance';
+import { reservationApi as client } from './client';
 
 interface CreateReservationRequest {
   accommodationId: number;
@@ -10,9 +10,8 @@ interface CreateReservationRequest {
 
 export const reservationApi = {
   // 예약 목록 조회
-  getAll: () => instance.get('/api/reservations'),
+  getAll: () => client.getAll(),
 
   // 예약 생성
-  create: (data: CreateReservationRequest) =>
-    instance.post('/api/reservations', data),
+  create: (data: CreateReservationRequest) => client.create(data),
 };

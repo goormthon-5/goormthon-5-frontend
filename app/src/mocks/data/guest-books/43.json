@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 172,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "포구 산책과 바다 풍경이 너무 좋아서 아침저녁으로 계속 걷게 됐어요.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:07",
+    "updatedAt": "2026-04-02T16:00:07"
+  },
+  {
+    "guestBookId": 171,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:07",
+    "updatedAt": "2026-04-02T16:00:07"
+  },
+  {
+    "guestBookId": 170,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:07",
+    "updatedAt": "2026-04-02T16:00:07"
+  },
+  {
+    "guestBookId": 169,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:07",
+    "updatedAt": "2026-04-02T16:00:07"
+  }
+]

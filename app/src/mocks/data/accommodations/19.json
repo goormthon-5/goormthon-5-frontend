@@ -1,0 +1,39 @@
+{
+  "accommodationId": 19,
+  "name": "종달리 웃음가득 영철 하르방",
+  "description": "제주 동쪽 끝 종달리. 마당 바비큐와 제주어 교실에 초대합니다.",
+  "address": {
+    "latitude": 33.4911994934082,
+    "longitude": 126.91100311279297,
+    "address_group": "제주시",
+    "address_short": "구좌읍 종달리",
+    "address_detail": "제주시 구좌읍 종달로 62"
+  },
+  "cost": 90000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "인심 좋은",
+    "trait": "아침형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 3,
+      "name": "동네 비밀 산책",
+      "price": 8000
+    },
+    {
+      "optionId": 10,
+      "name": "할망 제주어 교실",
+      "price": 10000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 20000
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "accommodationId": 22,
+  "name": "명월리 만두체험 분남 할망",
+  "description": "오래된 나무가 멋진 마을. 할망과 만두를 빚으며 시골을 느껴요.",
+  "address": {
+    "latitude": 33.39120101928711,
+    "longitude": 126.2509994506836,
+    "address_group": "제주시",
+    "address_short": "한림읍 명월리",
+    "address_detail": "제주시 한림읍 명월로 89"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "인심 좋은",
+    "trait": "부지런한",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 9,
+      "name": "함께 빚는 만두",
+      "price": 10000
+    }
+  ]
+}

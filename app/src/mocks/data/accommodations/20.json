@@ -1,0 +1,34 @@
+{
+  "accommodationId": 20,
+  "name": "세화리 장맛집밥 미자 할망",
+  "description": "따뜻한 햇살 아래 장이 익어갑니다. 정성 가득한 집밥을 드립니다.",
+  "address": {
+    "latitude": 33.32120132446289,
+    "longitude": 126.79100036621094,
+    "address_group": "서귀포시",
+    "address_short": "표선면 세화리",
+    "address_detail": "서귀포시 표선면 세화로 19"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "인심 좋은",
+    "trait": "일찍 일어나는",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": false
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 18,
+      "name": "전통 장 담그기",
+      "price": 20000
+    }
+  ]
+}

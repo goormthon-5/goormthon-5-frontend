@@ -1,0 +1,34 @@
+{
+  "accommodationId": 49,
+  "name": "하도리 하도차담 정옥 할망",
+  "description": "철새 도래지 하도리의 고요한 집. 제주어를 배우며 차를 마셔요.",
+  "address": {
+    "latitude": 33.511199951171875,
+    "longitude": 126.89099884033203,
+    "address_group": "제주시",
+    "address_short": "구좌읍 하도리",
+    "address_detail": "제주시 구좌읍 하도로 56"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "수다스러운",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": false
+  },
+  "averageRating": 4.3,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 7,
+      "name": "마당 평상 차담",
+      "price": 5000
+    },
+    {
+      "optionId": 10,
+      "name": "할망 제주어 교실",
+      "price": 10000
+    }
+  ]
+}

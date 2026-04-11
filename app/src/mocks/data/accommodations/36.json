@@ -1,0 +1,34 @@
+{
+  "accommodationId": 36,
+  "name": "난산리 전통장담그기 순임 삼춘",
+  "description": "성산읍 작은 마을. 할망의 장 담그기 비법과 옛 이야기를 들어봐요.",
+  "address": {
+    "latitude": 33.41120147705078,
+    "longitude": 126.88099670410156,
+    "address_group": "서귀포시",
+    "address_short": "성산읍 난산리",
+    "address_detail": "서귀포시 성산읍 난산로 82"
+  },
+  "cost": 75000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정겨운",
+    "trait": "규칙적인",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 11,
+      "name": "옛날 이야기 보따리",
+      "price": 5000
+    },
+    {
+      "optionId": 18,
+      "name": "전통 장 담그기",
+      "price": 15000
+    }
+  ]
+}

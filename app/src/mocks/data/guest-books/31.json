@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 124,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:04",
+    "updatedAt": "2026-04-02T16:00:04"
+  },
+  {
+    "guestBookId": 123,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  },
+  {
+    "guestBookId": 122,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  },
+  {
+    "guestBookId": 121,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T16:00:03",
+    "updatedAt": "2026-04-02T16:00:03"
+  }
+]

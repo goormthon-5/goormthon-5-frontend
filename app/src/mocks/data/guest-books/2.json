@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 8,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:53",
+    "updatedAt": "2026-04-02T15:59:53"
+  },
+  {
+    "guestBookId": 7,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:53",
+    "updatedAt": "2026-04-02T15:59:53"
+  },
+  {
+    "guestBookId": 6,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:53",
+    "updatedAt": "2026-04-02T15:59:53"
+  },
+  {
+    "guestBookId": 5,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:53",
+    "updatedAt": "2026-04-02T15:59:53"
+  }
+]

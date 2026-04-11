@@ -1,0 +1,34 @@
+{
+  "accommodationId": 38,
+  "name": "광평리 숲속명상 순자 할망",
+  "description": "안덕 중산간 맑은 공기 가득한 곳. 요가와 명상으로 쉬어가는 집.",
+  "address": {
+    "latitude": 33.331199645996094,
+    "longitude": 126.38099670410156,
+    "address_group": "서귀포시",
+    "address_short": "안덕면 광평리",
+    "address_detail": "서귀포시 안덕면 광평로 6"
+  },
+  "cost": 80000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "다정한",
+    "trait": "일찍 일어나는",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": false
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 14,
+      "name": "함께하는 요가",
+      "price": 15000
+    },
+    {
+      "optionId": 16,
+      "name": "숲길 명상 걷기",
+      "price": 12000
+    }
+  ]
+}

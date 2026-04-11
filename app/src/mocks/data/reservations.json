@@ -1,0 +1,514 @@
+[
+  {
+    "reservationId": 32,
+    "accommodationId": 49,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-11",
+    "endDate": "2026-04-12",
+    "accommodationHostInfo": {
+      "personality": "수다스러운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.3,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 31,
+    "accommodationId": 34,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-07",
+    "endDate": "2026-04-08",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 30,
+    "accommodationId": 50,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-06",
+    "endDate": "2026-04-07",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": true
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 29,
+    "accommodationId": 12,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "유쾌한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 28,
+    "accommodationId": 42,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "정겨운",
+      "trait": "일찍 일어나는",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.3,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 27,
+    "accommodationId": 37,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "정 많은",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 26,
+    "accommodationId": 43,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "정 많은",
+      "trait": "손이 빠른",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 25,
+    "accommodationId": 44,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "인정 많은",
+      "trait": "부지런한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 24,
+    "accommodationId": 48,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 23,
+    "accommodationId": 28,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "정 많은",
+      "trait": "손이 빠른",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": true
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 22,
+    "accommodationId": 50,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": true
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 21,
+    "accommodationId": 21,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "정 많은",
+      "trait": "일찍 일어나는",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 20,
+    "accommodationId": 49,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "수다스러운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.3,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 19,
+    "accommodationId": 5,
+    "userId": 52,
+    "guestCount": 2,
+    "startDate": "2026-04-09",
+    "endDate": "2026-04-11",
+    "accommodationHostInfo": {
+      "personality": "솔직한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 18,
+    "accommodationId": 5,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-14",
+    "endDate": "2026-04-17",
+    "accommodationHostInfo": {
+      "personality": "솔직한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV2",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 17,
+    "accommodationId": 4,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-27",
+    "endDate": "2026-04-29",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 16,
+    "accommodationId": 4,
+    "userId": 51,
+    "guestCount": 3,
+    "startDate": "2026-04-07",
+    "endDate": "2026-04-09",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 15,
+    "accommodationId": 4,
+    "userId": 51,
+    "guestCount": 2,
+    "startDate": "2026-04-09",
+    "endDate": "2026-04-12",
+    "accommodationHostInfo": {
+      "personality": "푸근한",
+      "trait": "아침형",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.8,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 14,
+    "accommodationId": 3,
+    "userId": 51,
+    "guestCount": 3,
+    "startDate": "2026-04-25",
+    "endDate": "2026-04-27",
+    "accommodationHostInfo": {
+      "personality": "정겨운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 13,
+    "accommodationId": 3,
+    "userId": 52,
+    "guestCount": 4,
+    "startDate": "2026-04-04",
+    "endDate": "2026-04-07",
+    "accommodationHostInfo": {
+      "personality": "정겨운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 12,
+    "accommodationId": 3,
+    "userId": 51,
+    "guestCount": 3,
+    "startDate": "2026-04-25",
+    "endDate": "2026-04-26",
+    "accommodationHostInfo": {
+      "personality": "정겨운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 11,
+    "accommodationId": 3,
+    "userId": 51,
+    "guestCount": 4,
+    "startDate": "2026-04-09",
+    "endDate": "2026-04-12",
+    "accommodationHostInfo": {
+      "personality": "정겨운",
+      "trait": "규칙적인",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": false
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 10,
+    "accommodationId": 2,
+    "userId": 51,
+    "guestCount": 2,
+    "startDate": "2026-04-05",
+    "endDate": "2026-04-06",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "새벽형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": false
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 9,
+    "accommodationId": 2,
+    "userId": 52,
+    "guestCount": 1,
+    "startDate": "2026-04-19",
+    "endDate": "2026-04-22",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "새벽형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": false
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 8,
+    "accommodationId": 2,
+    "userId": 51,
+    "guestCount": 4,
+    "startDate": "2026-04-26",
+    "endDate": "2026-04-29",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "새벽형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": false
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 7,
+    "accommodationId": 2,
+    "userId": 52,
+    "guestCount": 3,
+    "startDate": "2026-04-27",
+    "endDate": "2026-04-29",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "새벽형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": false
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 6,
+    "accommodationId": 2,
+    "userId": 52,
+    "guestCount": 4,
+    "startDate": "2026-04-20",
+    "endDate": "2026-04-23",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "새벽형",
+      "cleanlinessLevel": "LV1",
+      "hasWifi": false
+    },
+    "averageRating": 5.0,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 5,
+    "accommodationId": 1,
+    "userId": 51,
+    "guestCount": 3,
+    "startDate": "2026-04-05",
+    "endDate": "2026-04-08",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 4,
+    "accommodationId": 1,
+    "userId": 51,
+    "guestCount": 1,
+    "startDate": "2026-04-12",
+    "endDate": "2026-04-14",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 3,
+    "accommodationId": 1,
+    "userId": 52,
+    "guestCount": 3,
+    "startDate": "2026-04-03",
+    "endDate": "2026-04-04",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 2,
+    "accommodationId": 1,
+    "userId": 52,
+    "guestCount": 4,
+    "startDate": "2026-04-07",
+    "endDate": "2026-04-08",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  },
+  {
+    "reservationId": 1,
+    "accommodationId": 1,
+    "userId": 52,
+    "guestCount": 1,
+    "startDate": "2026-04-20",
+    "endDate": "2026-04-21",
+    "accommodationHostInfo": {
+      "personality": "털털한",
+      "trait": "생활력 강한",
+      "cleanlinessLevel": "LV3",
+      "hasWifi": true
+    },
+    "averageRating": 4.5,
+    "guestBookCount": 4
+  }
+]

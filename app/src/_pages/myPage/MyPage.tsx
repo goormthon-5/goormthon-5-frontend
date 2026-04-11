@@ -7,6 +7,7 @@ import ActionButton from '@/components/ActionButton';
 import Modal from '@/components/Modal';
 import { Box, HStack, Text, VStack } from '@vapor-ui/core';
 import ImgProfile from '@/assets/images/my-profile.svg';
+import { useUserStore } from '@/store/userStore';
 
 const MENU_ITEMS = [
   '포인트',
@@ -24,6 +25,7 @@ const MENU_ITEMS = [
 
 export default function MyPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const userName = useUserStore((s) => s.userName);
 
   const handleOpenModal = () => setIsModalOpen(true);
   const handleCloseModal = () => setIsModalOpen(false);
@@ -71,7 +73,7 @@ export default function MyPage() {
               letterSpacing: '-0.33px',
             }}
           >
-            <span style={{ color: '#6DBFFF' }}>제주좋아</span>
+            <span style={{ color: '#6DBFFF' }}>{userName}</span>
             <span> 님</span>
           </Text>
 

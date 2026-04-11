@@ -1,0 +1,46 @@
+[
+  {
+    "guestBookId": 36,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 35,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 34,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+    "type": "TEXT",
+    "rating": 4,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  },
+  {
+    "guestBookId": 33,
+    "userId": 51,
+    "userName": "이정민",
+    "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+    "type": "TEXT",
+    "rating": 5,
+    "imageUrl": null,
+    "createdAt": "2026-04-02T15:59:55",
+    "updatedAt": "2026-04-02T15:59:55"
+  }
+]

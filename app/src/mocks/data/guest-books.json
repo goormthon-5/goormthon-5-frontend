@@ -1,0 +1,2302 @@
+{
+  "50": [
+    {
+      "guestBookId": 200,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:11",
+      "updatedAt": "2026-04-02T16:00:11"
+    },
+    {
+      "guestBookId": 199,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:11",
+      "updatedAt": "2026-04-02T16:00:11"
+    },
+    {
+      "guestBookId": 198,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:11",
+      "updatedAt": "2026-04-02T16:00:11"
+    },
+    {
+      "guestBookId": 197,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:11",
+      "updatedAt": "2026-04-02T16:00:11"
+    }
+  ],
+  "49": [
+    {
+      "guestBookId": 196,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "오일장과 동네 나들이가 재미있어서 관광지와 다른 매력을 느꼈어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 195,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트의 삶 이야기를 듣는 시간이 여행의 하이라이트였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 194,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 193,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    }
+  ],
+  "48": [
+    {
+      "guestBookId": 192,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 191,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 190,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    },
+    {
+      "guestBookId": 189,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:10",
+      "updatedAt": "2026-04-02T16:00:10"
+    }
+  ],
+  "47": [
+    {
+      "guestBookId": 188,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:09",
+      "updatedAt": "2026-04-02T16:00:09"
+    },
+    {
+      "guestBookId": 187,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:09",
+      "updatedAt": "2026-04-02T16:00:09"
+    },
+    {
+      "guestBookId": 186,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:09",
+      "updatedAt": "2026-04-02T16:00:09"
+    },
+    {
+      "guestBookId": 185,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:09",
+      "updatedAt": "2026-04-02T16:00:09"
+    }
+  ],
+  "46": [
+    {
+      "guestBookId": 184,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 183,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "중산간 특유의 고요함이 매력적이라 재방문하고 싶은 숙소입니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 182,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 181,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    }
+  ],
+  "45": [
+    {
+      "guestBookId": 180,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 179,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 178,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    },
+    {
+      "guestBookId": 177,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:08",
+      "updatedAt": "2026-04-02T16:00:08"
+    }
+  ],
+  "44": [
+    {
+      "guestBookId": 176,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "새 소리 들으며 조용히 쉬기 좋아서 마음이 편안해졌어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 175,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숲길 산책이 정말 좋았고 공기가 맑아서 머무는 내내 상쾌했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 174,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 173,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    }
+  ],
+  "43": [
+    {
+      "guestBookId": 172,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "포구 산책과 바다 풍경이 너무 좋아서 아침저녁으로 계속 걷게 됐어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 171,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 170,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 169,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    }
+  ],
+  "42": [
+    {
+      "guestBookId": 168,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 167,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 166,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:07",
+      "updatedAt": "2026-04-02T16:00:07"
+    },
+    {
+      "guestBookId": 165,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    }
+  ],
+  "41": [
+    {
+      "guestBookId": 164,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "책 읽고 음악 듣기 좋은 공간이라 하루가 금방 지나갔어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 163,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "차 한잔하며 쉬기 좋고 조용해서 생각 정리하기에 최고였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 162,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 161,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    }
+  ],
+  "40": [
+    {
+      "guestBookId": 160,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 159,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "포구 산책과 바다 풍경이 너무 좋아서 아침저녁으로 계속 걷게 됐어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 158,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 157,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    }
+  ],
+  "39": [
+    {
+      "guestBookId": 156,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 155,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 154,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:06",
+      "updatedAt": "2026-04-02T16:00:06"
+    },
+    {
+      "guestBookId": 153,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    }
+  ],
+  "38": [
+    {
+      "guestBookId": 152,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 151,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "중산간 특유의 고요함이 매력적이라 재방문하고 싶은 숙소입니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 150,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 149,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    }
+  ],
+  "37": [
+    {
+      "guestBookId": 148,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 147,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 146,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 145,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    }
+  ],
+  "36": [
+    {
+      "guestBookId": 144,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 143,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 142,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    },
+    {
+      "guestBookId": 141,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:05",
+      "updatedAt": "2026-04-02T16:00:05"
+    }
+  ],
+  "35": [
+    {
+      "guestBookId": 140,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 139,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 138,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 137,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    }
+  ],
+  "34": [
+    {
+      "guestBookId": 136,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 135,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "중산간 특유의 고요함이 매력적이라 재방문하고 싶은 숙소입니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 134,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 133,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    }
+  ],
+  "33": [
+    {
+      "guestBookId": 132,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 131,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 130,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 129,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    }
+  ],
+  "32": [
+    {
+      "guestBookId": 128,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "새 소리 들으며 조용히 쉬기 좋아서 마음이 편안해졌어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 127,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숲길 산책이 정말 좋았고 공기가 맑아서 머무는 내내 상쾌했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 126,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 125,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    }
+  ],
+  "31": [
+    {
+      "guestBookId": 124,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:04",
+      "updatedAt": "2026-04-02T16:00:04"
+    },
+    {
+      "guestBookId": 123,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 122,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 121,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    }
+  ],
+  "30": [
+    {
+      "guestBookId": 120,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 119,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 118,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 117,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    }
+  ],
+  "29": [
+    {
+      "guestBookId": 116,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "책 읽고 음악 듣기 좋은 공간이라 하루가 금방 지나갔어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 115,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "차 한잔하며 쉬기 좋고 조용해서 생각 정리하기에 최고였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 114,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 113,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    }
+  ],
+  "28": [
+    {
+      "guestBookId": 112,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "새 소리 들으며 조용히 쉬기 좋아서 마음이 편안해졌어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 111,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숲길 산책이 정말 좋았고 공기가 맑아서 머무는 내내 상쾌했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 110,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 109,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    }
+  ],
+  "27": [
+    {
+      "guestBookId": 108,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 107,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 106,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    },
+    {
+      "guestBookId": 105,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:03",
+      "updatedAt": "2026-04-02T16:00:03"
+    }
+  ],
+  "26": [
+    {
+      "guestBookId": 104,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "정겨운 대화와 체험이 많아 사람 냄새 나는 여행을 했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 103,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "오일장과 동네 나들이가 재미있어서 관광지와 다른 매력을 느꼈어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 102,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 101,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    }
+  ],
+  "25": [
+    {
+      "guestBookId": 100,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 99,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 98,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 97,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    }
+  ],
+  "24": [
+    {
+      "guestBookId": 96,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "차 한잔하며 쉬기 좋고 조용해서 생각 정리하기에 최고였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 95,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "요가와 명상하기 좋은 분위기라 몸과 마음이 모두 가벼워졌어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 94,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    },
+    {
+      "guestBookId": 93,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:02",
+      "updatedAt": "2026-04-02T16:00:02"
+    }
+  ],
+  "23": [
+    {
+      "guestBookId": 92,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숲길 산책이 정말 좋았고 공기가 맑아서 머무는 내내 상쾌했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 91,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 90,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 89,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    }
+  ],
+  "22": [
+    {
+      "guestBookId": 88,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 87,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 86,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 85,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    }
+  ],
+  "21": [
+    {
+      "guestBookId": 84,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 83,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 82,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 81,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    }
+  ],
+  "20": [
+    {
+      "guestBookId": 80,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 79,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 78,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    },
+    {
+      "guestBookId": 77,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:01",
+      "updatedAt": "2026-04-02T16:00:01"
+    }
+  ],
+  "19": [
+    {
+      "guestBookId": 76,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:00",
+      "updatedAt": "2026-04-02T16:00:00"
+    },
+    {
+      "guestBookId": 75,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:00",
+      "updatedAt": "2026-04-02T16:00:00"
+    },
+    {
+      "guestBookId": 74,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:00",
+      "updatedAt": "2026-04-02T16:00:00"
+    },
+    {
+      "guestBookId": 73,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T16:00:00",
+      "updatedAt": "2026-04-02T16:00:00"
+    }
+  ],
+  "18": [
+    {
+      "guestBookId": 72,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제철 간식과 체험이 있어 아이들과 함께 오기에도 좋아 보였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    },
+    {
+      "guestBookId": 71,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    },
+    {
+      "guestBookId": 70,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    },
+    {
+      "guestBookId": 69,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    }
+  ],
+  "17": [
+    {
+      "guestBookId": 68,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    },
+    {
+      "guestBookId": 67,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:59",
+      "updatedAt": "2026-04-02T15:59:59"
+    },
+    {
+      "guestBookId": 66,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:58",
+      "updatedAt": "2026-04-02T15:59:58"
+    },
+    {
+      "guestBookId": 65,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:58",
+      "updatedAt": "2026-04-02T15:59:58"
+    }
+  ],
+  "16": [
+    {
+      "guestBookId": 64,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트의 삶 이야기를 듣는 시간이 여행의 하이라이트였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:58",
+      "updatedAt": "2026-04-02T15:59:58"
+    },
+    {
+      "guestBookId": 63,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "제주어 이야기와 동네 문화 체험이 특별해서 기억에 오래 남을 것 같아요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:58",
+      "updatedAt": "2026-04-02T15:59:58"
+    },
+    {
+      "guestBookId": 62,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:58",
+      "updatedAt": "2026-04-02T15:59:58"
+    },
+    {
+      "guestBookId": 61,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:57",
+      "updatedAt": "2026-04-02T15:59:57"
+    }
+  ],
+  "15": [
+    {
+      "guestBookId": 60,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "요가와 명상하기 좋은 분위기라 몸과 마음이 모두 가벼워졌어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:57",
+      "updatedAt": "2026-04-02T15:59:57"
+    },
+    {
+      "guestBookId": 59,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "전체적으로 편안한 무드가 좋아서 쉼이 필요한 분께 추천합니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:57",
+      "updatedAt": "2026-04-02T15:59:57"
+    },
+    {
+      "guestBookId": 58,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 57,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    }
+  ],
+  "14": [
+    {
+      "guestBookId": 56,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 55,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 54,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 53,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    }
+  ],
+  "13": [
+    {
+      "guestBookId": 52,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 51,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 50,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 49,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    }
+  ],
+  "12": [
+    {
+      "guestBookId": 48,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "차 한잔하며 쉬기 좋고 조용해서 생각 정리하기에 최고였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 47,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "요가와 명상하기 좋은 분위기라 몸과 마음이 모두 가벼워졌어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 46,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    },
+    {
+      "guestBookId": 45,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:56",
+      "updatedAt": "2026-04-02T15:59:56"
+    }
+  ],
+  "11": [
+    {
+      "guestBookId": 44,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "포구 산책과 바다 풍경이 너무 좋아서 아침저녁으로 계속 걷게 됐어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 43,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 42,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 41,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    }
+  ],
+  "10": [
+    {
+      "guestBookId": 40,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 39,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "중산간 특유의 고요함이 매력적이라 재방문하고 싶은 숙소입니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 38,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 37,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    }
+  ],
+  "9": [
+    {
+      "guestBookId": 36,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 35,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 34,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 33,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    }
+  ],
+  "8": [
+    {
+      "guestBookId": 32,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 31,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "포구 산책과 바다 풍경이 너무 좋아서 아침저녁으로 계속 걷게 됐어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 30,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 29,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    }
+  ],
+  "7": [
+    {
+      "guestBookId": 28,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "요가와 명상하기 좋은 분위기라 몸과 마음이 모두 가벼워졌어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 27,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "전체적으로 편안한 무드가 좋아서 쉼이 필요한 분께 추천합니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 26,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    },
+    {
+      "guestBookId": 25,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:55",
+      "updatedAt": "2026-04-02T15:59:55"
+    }
+  ],
+  "6": [
+    {
+      "guestBookId": 24,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "전체적으로 편안한 무드가 좋아서 쉼이 필요한 분께 추천합니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 23,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "책 읽고 음악 듣기 좋은 공간이라 하루가 금방 지나갔어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 22,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 21,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    }
+  ],
+  "5": [
+    {
+      "guestBookId": 20,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 19,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "파도 소리 들으며 쉬는 시간이 정말 힐링이었고 밤바다도 인상적이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 18,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 17,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    }
+  ],
+  "4": [
+    {
+      "guestBookId": 16,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 15,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "귤밭과 텃밭 체험이 인상적이었고 먹거리도 신선해서 좋았습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 14,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 13,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    }
+  ],
+  "3": [
+    {
+      "guestBookId": 12,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숲길 산책이 정말 좋았고 공기가 맑아서 머무는 내내 상쾌했습니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 11,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "번잡하지 않고 차분한 분위기 덕분에 제대로 쉬다 갑니다.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 10,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "방이 깔끔하고 조용해서 편히 쉬다 갑니다. 다음에 또 오고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    },
+    {
+      "guestBookId": 9,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:54",
+      "updatedAt": "2026-04-02T15:59:54"
+    }
+  ],
+  "2": [
+    {
+      "guestBookId": 8,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "해 질 무렵 노을이 너무 예뻐서 마당에서 오래 머물렀어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 7,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "바다 가까운 위치 덕분에 제주 느낌을 제대로 만끽한 숙소였습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 6,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "위치도 좋고 응대도 좋아서 제주 여행 숙소로 추천하고 싶어요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 5,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    }
+  ],
+  "1": [
+    {
+      "guestBookId": 4,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "농촌 마을의 한적한 분위기와 정성 어린 식사가 기억에 남아요.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 3,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "마당에서 시골 분위기를 느끼며 여유롭게 쉬기 좋은 숙소였어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 2,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "숙소 분위기가 따뜻하고 정겨워서 가족 여행처럼 포근했습니다.",
+      "type": "TEXT",
+      "rating": 5,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    },
+    {
+      "guestBookId": 1,
+      "userId": 51,
+      "userName": "이정민",
+      "content": "호스트가 정말 친절해서 처음부터 끝까지 마음 편한 여행이었어요.",
+      "type": "TEXT",
+      "rating": 4,
+      "imageUrl": null,
+      "createdAt": "2026-04-02T15:59:53",
+      "updatedAt": "2026-04-02T15:59:53"
+    }
+  ]
+}

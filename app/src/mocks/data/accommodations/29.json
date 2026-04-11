@@ -1,0 +1,34 @@
+{
+  "accommodationId": 29,
+  "name": "감산리 뜨개공방 옥순 할망",
+  "description": "안덕계곡 근처 마을. 집밥과 뜨개질로 따뜻한 정을 나눕니다.",
+  "address": {
+    "latitude": 33.2411994934082,
+    "longitude": 126.36100006103516,
+    "address_group": "서귀포시",
+    "address_short": "안덕면 감산리",
+    "address_detail": "서귀포시 안덕면 감산로 22"
+  },
+  "cost": 85000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "정겨운",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV2",
+    "hasWifi": true
+  },
+  "averageRating": 4.8,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 1,
+      "name": "할망 손맛 집밥",
+      "price": 15000
+    },
+    {
+      "optionId": 12,
+      "name": "뜨개질 원데이",
+      "price": 10000
+    }
+  ]
+}

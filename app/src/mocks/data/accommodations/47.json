@@ -1,0 +1,34 @@
+{
+  "accommodationId": 47,
+  "name": "신풍리 텃밭수확 명희 할망",
+  "description": "평화로운 신풍리 마을. 텃밭을 가꾸고 신선한 간식을 따 먹어요.",
+  "address": {
+    "latitude": 33.34120178222656,
+    "longitude": 126.86100006103516,
+    "address_group": "서귀포시",
+    "address_short": "성산읍 신풍리",
+    "address_detail": "서귀포시 성산읍 신풍남로 22"
+  },
+  "cost": 70000,
+  "imageUrl": null,
+  "accommodationHostInfo": {
+    "personality": "유쾌한",
+    "trait": "새벽형",
+    "cleanlinessLevel": "LV1",
+    "hasWifi": true
+  },
+  "averageRating": 4.5,
+  "guestBookCount": 4,
+  "options": [
+    {
+      "optionId": 2,
+      "name": "제철 텃밭 간식",
+      "price": 7000
+    },
+    {
+      "optionId": 19,
+      "name": "마당 바비큐",
+      "price": 15000
+    }
+  ]
+}
