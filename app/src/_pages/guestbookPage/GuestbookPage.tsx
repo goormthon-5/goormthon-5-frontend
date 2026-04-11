@@ -8,6 +8,7 @@ import GuestBookItem from '@/components/GuestBookItem';
 import Spinner from '@/components/Spinner';
 import { guestBookApi } from '@/apis/guestBookApi';
 import { accommodationApi } from '@/apis/accommodationApi';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 import IcBack from '@/assets/icons/back-icon.svg';
 
 interface GuestbookPageProps {
@@ -71,12 +72,12 @@ export default function GuestbookPage({ accommodationId }: GuestbookPageProps) {
                 height: '140px',
                 marginBottom: '16px',
                 borderRadius: '50%',
-                backgroundColor: '#E6F4FF',
+                backgroundColor: getAccommodationStyle(accommodationId).bgColor,
                 overflow: 'hidden',
               }}
             >
               <Image
-                src={data.imageUrl || '/images/house-2.png'}
+                src={getAccommodationStyle(accommodationId).houseImage}
                 alt="숙소 프로필"
                 fill
                 style={{ objectFit: 'cover' }}
