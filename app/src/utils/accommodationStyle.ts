@@ -4,6 +4,13 @@ const HOUSE_IMAGES = [
   '/images/house-3-new.svg',
 ];
 
+// OG 공유용 PNG 이미지 (카톡/슬랙 미리보기는 SVG 미지원)
+const OG_IMAGES = [
+  '/images/house-1.png',
+  '/images/house-2.png',
+  '/images/house-3.png',
+];
+
 const BG_COLORS = ['#E0F4FF', '#FFECB3', '#D2FAE8'];
 
 const MARKER_ICONS = [
@@ -27,6 +34,7 @@ export function getAccommodationStyle(accommodationId: number) {
 
   return {
     houseImage: HOUSE_IMAGES[idx],
+    ogImage: OG_IMAGES[idx],
     bgColor: BG_COLORS[idx],
     markerIcon: MARKER_ICONS[idx],
     tagColor: TAG_COLORS[idx],
