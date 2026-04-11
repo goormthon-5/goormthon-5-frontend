@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import DetailPage from '@/_pages/detailPage/DetailPage';
 import accommodationsMock from '@/mocks/data/accommodations.json';
 import accommodationsDetailMock from '@/mocks/data/accommodations-detail.json';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 // 빌드 타임에 모든 숙소 상세 페이지를 정적 생성 (SSG)
 export async function generateStaticParams() {
@@ -32,6 +33,7 @@ export async function generateMetadata({
 
   const title = `${data.name} | 삼춘이랑`;
   const description = data.description;
+  const ogImage = getAccommodationStyle(Number(id)).ogImage;
 
   return {
     title,
@@ -42,12 +44,20 @@ export async function generateMetadata({
       type: 'website',
       locale: 'ko_KR',
       siteName: '삼춘이랑',
-      // images는 opengraph-image.tsx가 자동 생성
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: data.name,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: [ogImage],
     },
   };
 }

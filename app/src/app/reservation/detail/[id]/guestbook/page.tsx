@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import GuestbookPage from '@/_pages/guestbookPage/GuestbookPage';
 import accommodationsMock from '@/mocks/data/accommodations.json';
 import accommodationsDetailMock from '@/mocks/data/accommodations-detail.json';
+import { getAccommodationStyle } from '@/utils/accommodationStyle';
 
 // 빌드 타임에 모든 방명록 페이지를 정적 생성 (SSG)
 export async function generateStaticParams() {
@@ -22,6 +23,7 @@ export async function generateMetadata({
   >;
   const data = detailMap[id];
   const name = data?.name || '삼춘';
+  const ogImage = getAccommodationStyle(Number(id)).ogImage;
 
   return {
     title: `${name} 방명록 | 삼춘이랑`,
@@ -31,12 +33,20 @@ export async function generateMetadata({
       description: `${name}에 다녀온 여행객들의 이야기`,
       siteName: '삼춘이랑',
       locale: 'ko_KR',
-      // images는 opengraph-image.tsx가 자동 생성
+      images: [
+        {
+          url: ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${name} 방명록`,
+        },
+      ],
     },
     twitter: {
       card: 'summary_large_image',
       title: `${name} 방명록`,
       description: `${name}에 다녀온 여행객들의 이야기`,
+      images: [ogImage],
     },
   };
 }
