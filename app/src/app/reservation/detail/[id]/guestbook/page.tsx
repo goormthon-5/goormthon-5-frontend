@@ -1,11 +1,40 @@
-'use client';
-
-import { useParams } from 'next/navigation';
+import type { Metadata } from 'next';
 import GuestbookPage from '@/_pages/guestbookPage/GuestbookPage';
+import accommodationsDetailMock from '@/mocks/data/accommodations-detail.json';
 
-export default function Page() {
-  const params = useParams();
-  const id = Number(params.id);
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+  const detailMap = accommodationsDetailMock as Record<
+    string,
+    { name: string }
+  >;
+  const data = detailMap[id];
+  const name = data?.name || '삼춘';
 
-  return <GuestbookPage accommodationId={id} />;
+  return {
+    title: `${name} 방명록 | 삼춘이랑`,
+    description: `${name}에 다녀온 여행객들의 이야기를 확인해보세요.`,
+    openGraph: {
+      title: `${name} 방명록`,
+      description: `${name}에 다녀온 여행객들의 이야기`,
+      siteName: '삼춘이랑',
+      locale: 'ko_KR',
+    },
+  };
+}
+
+export default async function Page({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id } = await params;
+  const numId = Number(id);
+  return (
+    <GuestbookPage accommodationId={Number.isFinite(numId) ? numId : 1} />
+  );
 }
