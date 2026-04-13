@@ -247,7 +247,7 @@ https://github.com/user-attachments/assets/54b8214b-158f-4ab9-a729-f44279502c54
           <tr>
             <td align="center"><b>PM</b></td>
             <td align="center">류충모</td>
-            <td align="center"><a href="https://www.linkedin.com/in/aaron-ryu/">LinkedIn</a></td>
+            <td align="center"><a href="https://aaronryu.notion.site/resume">Notion</a></td>
           </tr>
           <tr>
             <td align="center"><b>UI/UX</b></td>
