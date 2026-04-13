@@ -169,7 +169,7 @@
   <img src="https://raw.githubusercontent.com/goormthon-5/.github/main/image/최종_발표자료_마음충전소_page-0017.jpg" alt="Main Page" width="800"/>
 </p>
 
-삼춘이 제공하는 특별한 경험을 직관적인 태그로 확인하고, 청하온 방명록을 읽으며 쉽고 빠르게 예약을 진행할 수 있습니다.
+삼춘이 제공하는 특별한 경험을 직관적인 태그로 확인하고, 방명록을 읽으며 쉽고 빠르게 예약을 진행할 수 있습니다.
 
 ### 3️⃣ Map Page — 지도로 한눈에 찾는 제주 전역의 삼춘 숙소
 
